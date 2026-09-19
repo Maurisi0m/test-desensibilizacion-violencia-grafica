@@ -36,3 +36,11 @@ powershell.cmd
 Thumbs.db
 [Dd]esktop.ini
 test-desensibilizacion-violencia-grafica/
+
+# Node & Web
+**/node_modules/
+**/dist/
+**/.vite/
+reconecta-web/powershell.cmd
+*.db-journal
+
