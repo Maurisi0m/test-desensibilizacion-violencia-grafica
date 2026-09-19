@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primeros Auxilios Psicológicos SOS | ReConecta Digital</title>
+  <meta name="description" content="Técnicas de regulación somatosensorial 4-7-8 y anclaje 5-4-3-2-1 para calmar la ansiedad tras presenciar violencia gráfica en redes.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚨</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🧠</div>
+        <div class="brand-text">Re<span>Conecta</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="sos.html" class="nav-link active">Primeros Auxilios</a></li>
+        <li><a href="test.html" class="nav-link">Test de Desensibilización</a></li>
+        <li><a href="guia-algoritmos.html" class="nav-link">Blindaje de Redes</a></li>
+        <li><a href="detox.html" class="nav-link">Reto 7 Días</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="mobile-menu-btn" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 40px; padding-bottom: 60px;">
+    <!-- Header banner -->
+    <div style="text-align: center; max-width: 720px; margin: 0 auto 30px;">
+      <div class="badge-tag" style="background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.35); color: #FB7185;">
+        🚨 Intervención Inmediata de Crisis Emocional
+      </div>
+      <h1 class="hero-title" style="font-size: 2.3rem;">
+        Si acabas de ver algo perturbador, <br>
+        <span class="gradient-text">estás en un lugar seguro.</span>
+      </h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem;">
+        Sentir asco, taquicardia, miedo o temblores en las manos <strong>no te hace débil</strong>: es la prueba biológica de que tu empatía y tu instinto de supervivencia están vivos. Vamos a calmar a tu sistema nervioso paso a paso.
+      </p>
+    </div>
+
+    <!-- Tool 1: 4-7-8 Breathing Circle -->
+    <section class="breathing-box">
+      <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 6px;">Paso 1: Respiración Vagal 4-7-8</h2>
+      <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px;">
+        Esta técnica disminuye el ritmo cardíaco y estimula el nervio vago para frenar la subida de adrenalina.
+      </p>
+
+      <div class="circle-wrapper">
+        <div class="breathing-ring"></div>
+        <div class="breathing-orb" id="breathing-orb">4-7-8</div>
+      </div>
+
+      <div class="timer-label" id="breathe-timer">Listo</div>
+      <div class="timer-instruction" id="breathe-instruction">Presiona Iniciar para sincronizar tu respiración</div>
+      <div style="font-size: 0.88rem; color: var(--accent-cyan); margin-bottom: 20px;" id="breathe-cycles">Ciclo: 0/4</div>
+
+      <div style="display: flex; justify-content: center; gap: 14px;">
+        <button class="btn-primary" id="start-breathe-btn" style="background: var(--gradient-sos);">
+          ▶ Iniciar Respiración
+        </button>
+        <button class="btn-secondary" id="stop-breathe-btn" style="display: none;">
+          ⏹ Detener
+        </button>
+      </div>
+    </section>
+
+    <!-- Tool 2: 5-4-3-2-1 Sensory Grounding -->
+    <section style="max-width: 680px; margin: 50px auto 30px;">
+      <div class="section-header" style="text-align: left; margin-bottom: 24px;">
+        <div class="section-tag">Técnica Cognitiva de Anclaje</div>
+        <h2 class="section-title" style="font-size: 1.8rem;">Paso 2: Reconexión Sensorial 5-4-3-2-1</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Cuando vemos una imagen de impacto, nuestra mente se queda atrapada en la pantalla. Esta técnica redirige la atención de tu cerebro hacia tu entorno físico real.
+        </p>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="grounding-step-card active" id="step-5">
+        <div class="grounding-step-header">
+          <div class="step-badge">5</div>
+          <div style="font-weight: 700; font-size: 1.05rem;">Mira a tu alrededor: Nombra 5 cosas que puedes VER</div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Observa texturas, colores o sombras en tu habitación (p. ej., una lámpara, tus zapatos, una planta, una ventana, tu cuaderno).
+        </p>
+        <input type="text" class="grounding-input" placeholder="Escribe o piensa en 5 cosas que ves ahora mismo..." />
+        <button class="btn-primary btn-next-step" style="margin-top: 14px; padding: 8px 18px; font-size: 0.88rem;">Siguiente Paso →</button>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="grounding-step-card" id="step-4">
+        <div class="grounding-step-header">
+          <div class="step-badge">4</div>
+          <div style="font-weight: 700; font-size: 1.05rem;">Siente con tu cuerpo: Nombra 4 cosas que puedes TOCAR</div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          La tela de tu camiseta, el tacto frío del piso, la textura de la mesa, el peso de tu teléfono en tus manos.
+        </p>
+        <input type="text" class="grounding-input" placeholder="4 sensaciones táctiles presentes..." />
+        <button class="btn-primary btn-next-step" style="margin-top: 14px; padding: 8px 18px; font-size: 0.88rem;">Siguiente Paso →</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="grounding-step-card" id="step-3">
+        <div class="grounding-step-header">
+          <div class="step-badge">3</div>
+          <div style="font-weight: 700; font-size: 1.05rem;">Escucha con atención: Nombra 3 SONIDOS reales</div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          El motor de un auto lejano, el viento en la ventana, el zumbido del refrigerador o tu propia respiración.
+        </p>
+        <input type="text" class="grounding-input" placeholder="3 sonidos que percibes..." />
+        <button class="btn-primary btn-next-step" style="margin-top: 14px; padding: 8px 18px; font-size: 0.88rem;">Siguiente Paso →</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="grounding-step-card" id="step-2">
+        <div class="grounding-step-header">
+          <div class="step-badge">2</div>
+          <div style="font-weight: 700; font-size: 1.05rem;">Respira hondo: Nombra 2 OLORES que percibas o recuerdes</div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          El aroma del café, tu perfume, jabón o el aire fresco al abrir la ventana.
+        </p>
+        <input type="text" class="grounding-input" placeholder="2 olores agradables..." />
+        <button class="btn-primary btn-next-step" style="margin-top: 14px; padding: 8px 18px; font-size: 0.88rem;">Siguiente Paso →</button>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="grounding-step-card" id="step-1">
+        <div class="grounding-step-header">
+          <div class="step-badge">1</div>
+          <div style="font-weight: 700; font-size: 1.05rem;">Di en voz alta o escribe: 1 cualidad valiosa sobre TI</div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Por ejemplo: "Soy una persona sensible", "Valoro la vida", "Merezco paz mental".
+        </p>
+        <input type="text" class="grounding-input" placeholder="Tu fortaleza o valor personal..." />
+        <button class="btn-primary btn-next-step" style="margin-top: 14px; padding: 8px 18px; font-size: 0.88rem;">Finalizar Anclaje ✓</button>
+      </div>
+
+      <!-- Grounding Complete Card -->
+      <div id="grounding-complete" style="display: none; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 14px; padding: 24px; text-align: center; margin-top: 20px;">
+        <div style="font-size: 2.2rem; margin-bottom: 8px;">✨</div>
+        <h3 style="color: #34D399; font-size: 1.3rem; margin-bottom: 8px;">¡Tu mente ha regresado al presente!</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 520px; margin: 0 auto 16px;">
+          El video violento fue solo luz en una pantalla; no está ocurriendo en tu habitación ni pone en riesgo tu seguridad física en este instante. Toma un vaso con agua fresca y date un descanso de las pantallas.
+        </p>
+        <a href="guia-algoritmos.html" class="btn-secondary" style="font-size: 0.88rem;">
+          🛡️ Configurar mis redes para no volver a ver esto
+        </a>
+      </div>
+    </section>
+
+    <!-- Emergency Crisis Banner -->
+    <div class="crisis-footer-banner">
+      <div>
+        <h3 style="font-size: 1.3rem; margin-bottom: 6px;">¿El malestar persiste o sientes pánico?</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Habla gratis y anónimamente con un psicólogo entrenado ahora mismo.</p>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="tel:8009112000" class="phone-pill">
+          <span>📞</span> Línea de la Vida (800 911 2000)
+        </a>
+        <a href="tel:5555335533" class="phone-pill" style="background: #6366F1;">
+          <span>💬</span> Consejo Ciudadano (55 5533 5533)
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>ReConecta Digital © 2026 — Primeros Auxilios Psicológicos para Jóvenes.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/sos-engine.js"></script>
+</body>
+</html>

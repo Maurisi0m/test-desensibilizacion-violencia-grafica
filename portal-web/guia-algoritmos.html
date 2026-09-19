@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blindaje de Algoritmos | Guía de Higiene Digital</title>
+  <meta name="description" content="Aprende a limpiar tus feeds, resetear recomendaciones y silenciar palabras violentas en TikTok, Instagram, X y Telegram.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🧠</div>
+        <div class="brand-text">Re<span>Conecta</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="sos.html" class="nav-link">Primeros Auxilios</a></li>
+        <li><a href="test.html" class="nav-link">Test de Desensibilización</a></li>
+        <li><a href="guia-algoritmos.html" class="nav-link active">Blindaje de Redes</a></li>
+        <li><a href="detox.html" class="nav-link">Reto 7 Días</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="sos.html" class="btn-sos-nav"><span>🚨</span> SOS</a>
+        <button class="mobile-menu-btn" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 40px; padding-bottom: 70px;">
+    <!-- Header -->
+    <div style="text-align: center; max-width: 720px; margin: 0 auto 36px;">
+      <div class="badge-tag">Higiene Digital Paso a Paso</div>
+      <h1 class="hero-title" style="font-size: 2.3rem;">
+        Entrena a tus Algoritmos: <br>
+        <span class="gradient-text">Elige qué entra en tu mente</span>
+      </h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem;">
+        Las aplicaciones no muestran violencia porque seas mala persona: la muestran porque el morbo retiene la mirada 3 segundos más. Aplica estas configuraciones oficiales para limpiar tus feeds.
+      </p>
+    </div>
+
+    <!-- Quick Copy Keywords Box -->
+    <div style="background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 14px; padding: 22px; margin-bottom: 36px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+        <div>
+          <h3 style="font-size: 1.1rem; color: #FFFFFF;">📋 Lista de Palabras Clave Recomendadas para Silenciar</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Copia esta lista y pégala en los filtros de palabras bloqueadas de TikTok, Instagram y X:</p>
+        </div>
+        <button id="copy-keywords-btn" class="btn-primary" style="padding: 8px 18px; font-size: 0.88rem;">
+          Copiar Palabras Clave 📋
+        </button>
+      </div>
+      <div id="keywords-text" style="background: #090D16; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px; font-family: monospace; font-size: 0.85rem; color: #A5B4FC; word-break: break-all;">
+        gore, balacera, linchamiento, choque mortal, atropellado, pelea callejera, ejecución, desmembrado, sangre, sicarios, asalto a mano armada, herido de bala, autopsia, shock content
+      </div>
+    </div>
+
+    <!-- Platform Tabs -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-target="tab-tiktok">🎵 TikTok</button>
+      <button class="tab-btn" data-target="tab-instagram">📸 Instagram / Reels</button>
+      <button class="tab-btn" data-target="tab-x">✖️ X (Twitter)</button>
+      <button class="tab-btn" data-target="tab-telegram">✈️ Telegram & WhatsApp</button>
+    </div>
+
+    <!-- Tab 1: TikTok -->
+    <div class="tab-content active" id="tab-tiktok">
+      <div class="step-instruction">
+        <div class="step-num-pill">1</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Actualizar el Feed "Para Ti" (Reinicio Total)</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            Ve a tu <strong>Perfil → Ajustes y privacidad (☰) → Preferencias de contenido → Actualizar feed Para ti</strong>. Pulsa continuar. Esto borrará el historial de recomendaciones violentas y comenzará desde cero como si la cuenta fuera nueva.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-instruction">
+        <div class="step-num-pill">2</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Filtrar palabras clave de videos</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            En <strong>Preferencias de contenido → Filtrar palabras clave de videos</strong>, agrega términos como <code>gore</code>, <code>pelea</code>, <code>balacera</code>, <code>accidente</code>. Cualquier video que contenga esos hashtags en su descripción no se mostrará en tu feed.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-instruction">
+        <div class="step-num-pill">3</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Usar la regla de los 2 segundos y "No me interesa"</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            Si ves el inicio de una agresión, <strong>mantén presionado el video y toca "No me interesa"</strong> en menos de 2 segundos. No mires los comentarios: TikTok mide los segundos de retención para recomendar más de lo mismo.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Instagram -->
+    <div class="tab-content" id="tab-instagram">
+      <div class="step-instruction">
+        <div class="step-num-pill">1</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Configurar Control de Contenido Delicado a "Menos"</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            Entra a tu <strong>Perfil → Configuración y privacidad → Contenido sugerido → Control de contenido delicado</strong>. Selecciona la opción <strong>"Menos"</strong>. Esto filtra de raíz publicaciones de agresiones físicas y accidentes en la pestaña Explorar y Reels.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-instruction">
+        <div class="step-num-pill">2</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Ocultar palabras y emojis ofensivos</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            En <strong>Configuración → Palabras ocultas → Administrar palabras personalizadas</strong>, pega la lista de palabras clave recomendadas para evitar comentarios y mensajes directos morbosos.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: X (Twitter) -->
+    <div class="tab-content" id="tab-x">
+      <div class="step-instruction">
+        <div class="step-num-pill">1</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Desactivar "Mostrar contenido multimedia que pueda contener material delicado"</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            Ve a <strong>Configuración y privacidad → Privacidad y seguridad → Contenido que ves</strong>. Desmarca la casilla para que X censure con advertencia cualquier foto o video explícito.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-instruction">
+        <div class="step-num-pill">2</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Desactivar reproducción automática (Autoplay)</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            En <strong>Accesibilidad, pantalla e idiomas → Uso de datos → Reproducción automática de videos</strong>, selecciona <strong>"Nunca"</strong>. Esto evitará que un video violento se reproduzca automáticamente mientras haces scroll.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-instruction">
+        <div class="step-num-pill">3</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Silenciar palabras y hashtags</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            En <strong>Privacidad y seguridad → Silenciar y bloquear → Palabras silenciadas</strong>, agrega los términos de noticias violentas y cuentas de crónica roja sensacionalista.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Telegram & WhatsApp -->
+    <div class="tab-content" id="tab-telegram">
+      <div class="step-instruction">
+        <div class="step-num-pill">1</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Desactivar la Descarga Automática de Multimedia</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            En WhatsApp y Telegram ve a <strong>Ajustes → Almacenamiento y datos → Descarga automática</strong>. Desactiva la descarga automática de videos y fotos tanto con datos móviles como con Wi-Fi. De este modo, ningún video morboso se guardará en tu galería sin tu permiso.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-instruction">
+        <div class="step-num-pill">2</div>
+        <div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Abandonar Canales y Grupos Tóxicos de Shock</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">
+            Estar en canales no moderados donde se comparte gore o peleas normales genera habituación patológica rápida. Salte y elimina el chat: no te estás perdiendo nada valioso y estás cuidando tu salud mental.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align: center; margin-top: 50px;">
+      <h3 style="font-size: 1.3rem; margin-bottom: 12px;">¿Listo para poner a prueba tu recuperación?</h3>
+      <a href="detox.html" class="btn-primary">
+        🌱 Unirme al Reto Detox de 7 Días →
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>ReConecta Digital © 2026 — Guía de Blindaje Algorítmico.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const target = document.getElementById(btn.getAttribute('data-target'));
+        if (target) target.classList.add('active');
+      });
+    });
+
+    // Copy keywords
+    const copyBtn = document.getElementById('copy-keywords-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const text = document.getElementById('keywords-text').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          if (window.showToast) window.showToast('¡Palabras clave copiadas al portapapeles!', 'success');
+        });
+      });
+    }
+  </script>
+</body>
+</html>

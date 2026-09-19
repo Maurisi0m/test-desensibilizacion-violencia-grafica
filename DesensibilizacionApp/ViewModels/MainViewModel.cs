@@ -59,6 +59,7 @@ public class MainViewModel : INotifyPropertyChanged
         });
         DeleteHistoryTestCommand = new RelayCommand(DeleteSelectedHistoryTest, () => SelectedHistoryTest != null);
         ExportSelectedHistoryReportCommand = new RelayCommand(ExportSelectedHistoryReport, () => SelectedHistoryTest != null);
+        OpenWebPlatformCommand = new RelayCommand(OpenWebPlatform);
 
         // Precargar cuestionario y registros existentes
         ResetQuestions();
@@ -255,6 +256,7 @@ public class MainViewModel : INotifyPropertyChanged
     public ICommand ExportReportCommand { get; }
     public ICommand OpenFileCommand { get; }
     public ICommand OpenFolderCommand { get; }
+    public ICommand OpenWebPlatformCommand { get; }
 
     // History Commands
     public ICommand OpenHistoryCommand { get; }
@@ -447,19 +449,43 @@ public class MainViewModel : INotifyPropertyChanged
 
     private void OpenFile()
     {
-        if (string.IsNullOrEmpty(ExportedFilePath) || !File.Exists(ExportedFilePath)) return;
+        if (File.Exists(ExportedFilePath))
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = ExportedFilePath,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al abrir el archivo: {ex.Message}";
+            }
+        }
+    }
 
+    public void OpenWebPlatform()
+    {
         try
         {
+            // Intentar abrir portal local o URL pública de GitHub
+            string localPortal = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "portal-web", "index.html"));
+            string targetUrl = File.Exists(localPortal)
+                ? new Uri(localPortal).AbsoluteUri
+                : "https://maurisi0m.github.io/test-desensibilizacion-violencia-grafica/portal-web/";
+
             Process.Start(new ProcessStartInfo
             {
-                FileName = ExportedFilePath,
+                FileName = targetUrl,
                 UseShellExecute = true
             });
+            StatusMessage = "Plataforma de Ayuda ReConecta abierta en el navegador.";
         }
         catch (Exception ex)
         {
-            StatusMessage = $"No se pudo abrir el archivo: {ex.Message}";
+            StatusMessage = $"No se pudo abrir el navegador: {ex.Message}";
         }
     }
 

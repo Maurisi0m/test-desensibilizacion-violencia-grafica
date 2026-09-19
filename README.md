@@ -52,13 +52,25 @@ El reporte generado proporciona pautas de intervención fundamentadas en **Terap
 
 ---
 
-## 💻 Características del Software
+## 🌐 Plataforma Web de Ayuda y Concientización (ReConecta Digital)
+
+Ubicada en `portal-web/`, es una plataforma web responsiva diseñada para que los jóvenes puedan acceder directamente desde teléfonos móviles o navegadores web sin necesidad de instalar software:
+- **🚨 Botón SOS (Primeros Auxilios Psicológicos)**: Respiración vagal 4-7-8 guiada visualmente con contador y anclaje sensorial 5-4-3-2-1 para disipar la intrusión de imágenes perturbadoras.
+- **📊 Test ED-CVG Web**: Los 20 reactivos psicométricos con cálculo en vivo de IGD %, subescalas y dictamen clínico descargable.
+- **🛡️ Guía de Blindaje de Algoritmos**: Tutoriales paso a paso para TikTok, Instagram Reels, X y Telegram con lista de palabras clave silenciables copiable en 1 clic.
+- **🌱 Reto Detox de 7 Días**: Desafíos diarios interactivos de higiene digital con progreso guardado en `localStorage`.
+- **📞 Directorio de Crisis**: Enlace directo a líneas gratuitas de atención psicológica (Línea de la Vida 800 911 2000, Consejo Ciudadano 55 5533 5533).
+
+---
+
+## 💻 Características del Software de Escritorio (WPF)
 
 - **Arquitectura MVVM**: Separación estricta entre modelos de datos, servicios de evaluación y vistas XAML.
 - **Tema Oscuro con Alto Contraste**: Paleta Slate/Indigo con controles adaptados para garantizar máxima legibilidad en campos de texto y selectores.
 - **Persistencia en Disco (JSON)**: Registro automático de todas las evaluaciones en `Data/historial_evaluaciones.json`.
 - **Inspector de Historial Individualizado**: Permite consultar qué respondió cada participante reactivo por reactivo (las 20 preguntas con su puntaje y descripción exacta).
 - **Generador de Reportes Multiformato**: Exportación inmediata a **Markdown (.md)** y **HTML interactivo estilizado (.html)** con diseño clínico formal.
+- **Acceso Directo a la Plataforma Web**: Botones integrados para abrir la plataforma de concientización en el navegador con 1 clic.
 - **Cobertura de Pruebas Unitarias (xUnit)**: Pruebas automatizadas de calibración, persistencia y ciclo de vida de la aplicación.
 
 ---

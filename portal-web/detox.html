@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reto Detox de 7 Días | ReConecta Digital</title>
+  <meta name="description" content="Un reto diario de una semana para recuperar tu empatía, regular tus feeds y desintoxicar tu mente de la violencia digital.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🧠</div>
+        <div class="brand-text">Re<span>Conecta</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="sos.html" class="nav-link">Primeros Auxilios</a></li>
+        <li><a href="test.html" class="nav-link">Test de Desensibilización</a></li>
+        <li><a href="guia-algoritmos.html" class="nav-link">Blindaje de Redes</a></li>
+        <li><a href="detox.html" class="nav-link active">Reto 7 Días</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="sos.html" class="btn-sos-nav"><span>🚨</span> SOS</a>
+        <button class="mobile-menu-btn" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 40px; padding-bottom: 70px; max-width: 780px;">
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 30px;">
+      <div class="badge-tag" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.35); color: #34D399;">
+        🌱 Hábitos Reversibles de Salud Emocional
+      </div>
+      <h1 class="hero-title" style="font-size: 2.3rem;">
+        Reto Detox de 7 Días: <br>
+        <span class="gradient-text">Recupera tu Sensibilidad</span>
+      </h1>
+      <p style="color: var(--text-muted); font-size: 1.05rem;">
+        No necesitas eliminar tus redes sociales ni aislarte del mundo. Solo necesitas una pequeña acción consciente cada día para enseñarle a tu cerebro y a tus algoritmos quién tiene el control.
+      </p>
+    </div>
+
+    <!-- Progress Meter -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 22px; margin-bottom: 30px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <span id="detox-progress-text" style="font-weight: 700; font-size: 0.95rem; color: #FFFFFF;">0% completado (0 de 7 días)</span>
+        <span id="detox-streak-text" style="color: var(--accent-cyan); font-weight: 700; font-size: 0.9rem;">0 días activos</span>
+      </div>
+      <div style="background: #1E293B; height: 10px; border-radius: 9999px; overflow: hidden; margin-bottom: 12px;">
+        <div id="detox-progress-bar" style="background: linear-gradient(90deg, #10B981, #06B6D4); height: 100%; width: 0%; transition: width 0.4s ease;"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 0.8rem; color: var(--text-faint);">Tu progreso se guarda automáticamente en este dispositivo</span>
+        <button id="reset-detox-btn" style="background: transparent; border: none; color: #F87171; font-size: 0.82rem; cursor: pointer; text-decoration: underline;">
+          Reiniciar Reto
+        </button>
+      </div>
+    </div>
+
+    <!-- Celebration Card -->
+    <div id="detox-complete-congrats" style="display: none; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 14px; padding: 24px; text-align: center; margin-bottom: 24px;">
+      <div style="font-size: 2.5rem; margin-bottom: 8px;">🏆</div>
+      <h3 style="color: #34D399; font-size: 1.3rem; margin-bottom: 8px;">¡Completaste los 7 días del Reto Detox!</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 540px; margin: 0 auto 16px;">
+        Has roto el bucle de recompensa de shock. Tu sistema simpático se ha relajado y tus feeds de redes son ahora un espacio más seguro. ¡Vuelve a hacer el test ED-CVG para comparar tus resultados!
+      </p>
+      <a href="test.html" class="btn-primary" style="background: var(--accent-emerald);">
+        📊 Medir mi progreso en el Test ED-CVG →
+      </a>
+    </div>
+
+    <!-- Day 1 to 7 Cards -->
+    <div id="detox-days-list">
+      <!-- Day 1 -->
+      <div class="detox-day-card" data-day="1">
+        <div class="detox-checkbox"></div>
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.78rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 4px;">DÍA 1</span>
+            <h3 class="detox-title" style="font-size: 1.05rem; font-weight: 700;">Silencia 5 palabras clave de morbo</h3>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Entra a TikTok, Instagram o X y bloquea términos como <code>gore</code>, <code>accidente</code>, <code>pelea</code> o <code>balacera</code>. Cierra la puerta a las recomendaciones directas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="detox-day-card" data-day="2">
+        <div class="detox-checkbox"></div>
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.78rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 4px;">DÍA 2</span>
+            <h3 class="detox-title" style="font-size: 1.05rem; font-weight: 700;">Aplica la "Regla de los 2 Segundos"</h3>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Si en tu feed aparece una riña o un video con sangre, desliza inmediatamente sin mirar los comentarios. Si no te quedas 2 segundos, el algoritmo sabrá que no quieres ver eso.
+          </p>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="detox-day-card" data-day="3">
+        <div class="detox-checkbox"></div>
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.78rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 4px;">DÍA 3</span>
+            <h3 class="detox-title" style="font-size: 1.05rem; font-weight: 700;">Resetea tu feed Para Ti o Explorar</h3>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Usa el botón oficial de "Actualizar feed Para Ti" en TikTok o marca 3 videos sanos de música, ciencia o comedia con "Me gusta" para recalibrar tus recomendaciones.
+          </p>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="detox-day-card" data-day="4">
+        <div class="detox-checkbox"></div>
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.78rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 4px;">DÍA 4</span>
+            <h3 class="detox-title" style="font-size: 1.05rem; font-weight: 700;">Sal de canales o chats grupales de shock</h3>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Si estás en algún canal de Telegram o grupo de WhatsApp donde mandan stickers cruentos o videos de accidentes, salte y bórralo. No normalices el dolor ajeno como chiste.
+          </p>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="detox-day-card" data-day="5">
+        <div class="detox-checkbox"></div>
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.78rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 4px;">DÍA 5</span>
+            <h3 class="detox-title" style="font-size: 1.05rem; font-weight: 700;">Noche libre de pantallas 30 min antes de dormir</h3>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Ver estímulos violentos antes de dormir altera la fase REM del sueño e incrementa la ansiedad matutina. Cambia la pantalla por un podcast tranquilo, música o un libro.
+          </p>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <div class="detox-day-card" data-day="6">
+        <div class="detox-checkbox"></div>
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.78rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 4px;">DÍA 6</span>
+            <h3 class="detox-title" style="font-size: 1.05rem; font-weight: 700;">Desactiva la reproducción automática (Autoplay)</h3>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            En la configuración de X, Facebook o WhatsApp, desactiva la reproducción automática de videos. Tú debes decidir qué video se reproduce, no la aplicación.
+          </p>
+        </div>
+      </div>
+
+      <!-- Day 7 -->
+      <div class="detox-day-card" data-day="7">
+        <div class="detox-checkbox"></div>
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.78rem; font-weight: 700; color: #38BDF8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 4px;">DÍA 7</span>
+            <h3 class="detox-title" style="font-size: 1.05rem; font-weight: 700;">Reconexión Empática en el Mundo Real</h3>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Haz un gesto intencional de bondad o escucha activa hacia un amigo, familiar o mascota. La empatía es un músculo neurológico que se reactiva con el contacto humano genuino.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>ReConecta Digital © 2026 — Reto Detox de 7 Días.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/detox-tracker.js"></script>
+</body>
+</html>

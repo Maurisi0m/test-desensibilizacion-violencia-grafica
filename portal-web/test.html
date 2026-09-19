@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test ED-CVG Online | Evaluación de Desensibilización</title>
+  <meta name="description" content="Evaluación psicométrica online de 20 reactivos para medir el nivel de desensibilización al contenido violento en jóvenes de 12 a 29 años.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <style>
+    .badge-ea-i { background: rgba(56, 189, 248, 0.15); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-ba-c { background: rgba(244, 114, 182, 0.15); color: #F472B6; border: 1px solid rgba(244, 114, 182, 0.3); }
+    .badge-rf-e { background: rgba(167, 139, 250, 0.15); color: #A78BFA; border: 1px solid rgba(167, 139, 250, 0.3); }
+    .badge-nc-d { background: rgba(52, 211, 153, 0.15); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🧠</div>
+        <div class="brand-text">Re<span>Conecta</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="sos.html" class="nav-link">Primeros Auxilios</a></li>
+        <li><a href="test.html" class="nav-link active">Test de Desensibilización</a></li>
+        <li><a href="guia-algoritmos.html" class="nav-link">Blindaje de Redes</a></li>
+        <li><a href="detox.html" class="nav-link">Reto 7 Días</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="sos.html" class="btn-sos-nav"><span>🚨</span> SOS</a>
+        <button class="mobile-menu-btn" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 40px; padding-bottom: 70px;">
+    <div class="test-container">
+
+      <!-- 1. Welcome Card -->
+      <div id="test-welcome-card" class="question-box">
+        <div class="badge-tag">Instrumento Psicométrico ED-CVG (20 Ítems)</div>
+        <h1 class="hero-title" style="font-size: 2.2rem; margin-bottom: 14px;">
+          Evalúa tu Nivel de <span class="gradient-text">Desensibilización Digital</span>
+        </h1>
+        <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 28px;">
+          Este cuestionario confidencial mide de 0% a 100% cuánto se ha habituado tu mente a la violencia en redes (reels, foros y canales). Tus respuestas se procesan únicamente en tu navegador de forma anónima.
+        </p>
+
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 20px; margin-bottom: 26px;">
+          <div style="margin-bottom: 16px;">
+            <label for="user-alias" style="display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 6px;">Alias o Nombre Opcional:</label>
+            <input type="text" id="user-alias" class="grounding-input" placeholder="Ej. Alex / Estudiante" style="margin-top: 0;" />
+          </div>
+
+          <div>
+            <label for="user-age" style="display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 6px;">Tu Edad (Calibración del instrumento):</label>
+            <select id="user-age" class="grounding-input" style="margin-top: 0; background-color: #1E293B; color: #FFFFFF; font-weight: 700; cursor: pointer;">
+              <option value="12">12 años (Adolescente)</option>
+              <option value="13">13 años (Adolescente)</option>
+              <option value="14">14 años (Adolescente)</option>
+              <option value="15">15 años (Adolescente)</option>
+              <option value="16" selected>16 años (Adolescente)</option>
+              <option value="17">17 años (Adolescente)</option>
+              <option value="18">18 años (Joven Adulto)</option>
+              <option value="19">19 años (Joven Adulto)</option>
+              <option value="20">20 años (Joven Adulto)</option>
+              <option value="21">21 años (Joven Adulto)</option>
+              <option value="22">22 años (Joven Adulto)</option>
+              <option value="23">23 años (Joven Adulto)</option>
+              <option value="24">24 años (Joven Adulto)</option>
+              <option value="25">25 años (Joven Adulto)</option>
+              <option value="26">26 años (Joven Adulto)</option>
+              <option value="27">27 años (Joven Adulto)</option>
+              <option value="28">28 años (Joven Adulto)</option>
+              <option value="29">29 años (Joven Adulto)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="start-test-btn" style="width: 100%; justify-content: center; font-size: 1.05rem;">
+          Comenzar Evaluación de 20 Reactivos →
+        </button>
+      </div>
+
+      <!-- 2. Question Runner Card -->
+      <div id="test-runner-card" class="question-box" style="display: none;">
+        <!-- Top Progress Bar -->
+        <div style="margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
+            <span id="q-number">Reactivo 1 de 20</span>
+            <span id="test-progress-text">5% Completado</span>
+          </div>
+          <div style="background: rgba(30, 41, 59, 0.6); border-radius: 9999px; height: 8px; overflow: hidden;">
+            <div id="test-progress-bar" style="background: var(--gradient-brand); height: 100%; width: 5%; transition: width 0.3s ease;"></div>
+          </div>
+        </div>
+
+        <!-- Question Content -->
+        <div class="question-header">
+          <span class="dimension-badge" id="q-dimension-badge">Exposición Algorítmica</span>
+          <button id="prev-q-btn" class="btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">← Anterior</button>
+        </div>
+
+        <h2 id="q-text" style="font-size: 1.35rem; font-weight: 700; line-height: 1.45; margin-bottom: 12px; color: #FFFFFF;">
+          Pregunta cargando...
+        </h2>
+
+        <div id="q-hint" style="font-size: 0.9rem; color: var(--text-muted); background: rgba(15, 23, 42, 0.4); border-left: 3px solid var(--accent-cyan); padding: 10px 14px; border-radius: 4px; margin-bottom: 20px;">
+          💡 Consejo
+        </div>
+
+        <!-- Likert Options -->
+        <div class="likert-options" id="q-options-wrap">
+          <!-- Populated by test-web.js -->
+        </div>
+      </div>
+
+      <!-- 3. Results Dashboard Card -->
+      <div id="test-results-card" class="question-box" style="display: none;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <div class="badge-tag" id="res-igd-badge">Diagnóstico Final</div>
+          <h2 style="font-size: 2.4rem; font-weight: 800; margin: 10px 0;">
+            IGD: <span id="res-igd-val" class="gradient-text">0.0%</span>
+          </h2>
+          <div id="res-title" style="font-size: 1.25rem; font-weight: 700; color: #FFFFFF; margin-bottom: 10px;">
+            Nivel
+          </div>
+          <p id="res-summary" style="color: var(--text-muted); font-size: 0.98rem; max-width: 600px; margin: 0 auto;">
+            Resumen clínico
+          </p>
+        </div>
+
+        <!-- Subscales Breakdown -->
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px;">📊 Desglose por Subescalas</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 26px;">
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px;">
+              <span>📱 Exposición Pasiva (EA-I)</span>
+              <span id="val-eai" style="color: #38BDF8;">0%</span>
+            </div>
+            <div style="background: #1E293B; height: 8px; border-radius: 9999px; overflow: hidden;">
+              <div id="bar-eai" style="height: 100%; width: 0%; background: #38BDF8; transition: width 0.5s ease;"></div>
+            </div>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px;">
+              <span>🔍 Búsqueda Activa (BA-C)</span>
+              <span id="val-bac" style="color: #F472B6;">0%</span>
+            </div>
+            <div style="background: #1E293B; height: 8px; border-radius: 9999px; overflow: hidden;">
+              <div id="bar-bac" style="height: 100%; width: 0%; background: #F472B6; transition: width 0.5s ease;"></div>
+            </div>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px;">
+              <span>🫀 Embotamiento Físico (RF-E)</span>
+              <span id="val-rfe" style="color: #A78BFA;">0%</span>
+            </div>
+            <div style="background: #1E293B; height: 8px; border-radius: 9999px; overflow: hidden;">
+              <div id="bar-rfe" style="height: 100%; width: 0%; background: #A78BFA; transition: width 0.5s ease;"></div>
+            </div>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px;">
+              <span>🧠 Normalización Moral (NC-D)</span>
+              <span id="val-ncd" style="color: #34D399;">0%</span>
+            </div>
+            <div style="background: #1E293B; height: 8px; border-radius: 9999px; overflow: hidden;">
+              <div id="bar-ncd" style="height: 100%; width: 0%; background: #34D399; transition: width 0.5s ease;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Differential Consumption Box -->
+        <div style="background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 18px; margin-bottom: 26px;">
+          <div style="font-weight: 700; color: #A5B4FC; font-size: 0.95rem; margin-bottom: 6px;">
+            ⚖️ Análisis de Consumo Diferencial
+          </div>
+          <p id="res-diff-analysis" style="color: var(--text-main); font-size: 0.92rem; line-height: 1.5;">
+            Análisis cargando...
+          </p>
+        </div>
+
+        <!-- Cognitive Constructs Identified -->
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px;">🔬 Constructos Psicológicos Cognitivos</h3>
+        <div id="res-constructs-wrap" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px;">
+          <!-- Populated by test-web.js -->
+        </div>
+
+        <!-- Actions -->
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <button class="btn-primary" id="download-report-btn">
+            📥 Descargar Dictamen Clínico (.TXT)
+          </button>
+          <a href="guia-algoritmos.html" class="btn-secondary">
+            🛡️ Ver Guía para Limpiar Algoritmos
+          </a>
+          <button class="btn-secondary" id="retake-test-btn" style="margin-left: auto;">
+            🔄 Repetir Test
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>ReConecta Digital © 2026 — Test Psicométrico ED-CVG Online.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/test-web.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+:root {
+  /* Color Palette - Cyber / Deep Calming Dark Theme */
+  --bg-dark: #070B14;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --bg-card-hover: rgba(30, 41, 59, 0.85);
+  --bg-elevated: #1E293B;
+  --border-subtle: rgba(148, 163, 184, 0.15);
+  --border-bright: rgba(99, 102, 241, 0.4);
+  
+  /* Vibrant Accents */
+  --accent-primary: #6366F1;       /* Indigo */
+  --accent-primary-hover: #4F46E5;
+  --accent-cyan: #06B6D4;          /* Cyan / Calm */
+  --accent-cyan-glow: rgba(6, 182, 212, 0.25);
+  --accent-emerald: #10B981;       /* Emerald / Safe */
+  --accent-rose: #F43F5E;          /* Rose / SOS Alert */
+  --accent-amber: #F59E0B;         /* Amber / Warning */
+  --accent-purple: #A855F7;        /* Purple / Insight */
+
+  /* Text Colors */
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-faint: #64748B;
+  --text-inverse: #0F172A;
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #6366F1 0%, #06B6D4 100%);
+  --gradient-sos: linear-gradient(135deg, #F43F5E 0%, #FB7185 100%);
+  --gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+  --gradient-glow: radial-gradient(circle at top center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+
+  /* Spacing & Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows & Glassmorphism */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.3);
+  --backdrop-blur: blur(16px);
+
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
