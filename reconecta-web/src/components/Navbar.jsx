@@ -1,163 +1,214 @@
 import React from 'react';
-import { IconClipboard, IconBarChart, IconBookOpen, IconShield } from './Icons';
+import { IconBarChart, IconBookOpen, IconUser, IconCheckCircle } from './Icons';
 
 export default function Navbar({ currentView, setView, isAuthenticated, onOpenLogin, onLogout, authUser }) {
   return (
     <header className="navbar" style={{
-      background: 'rgba(15, 23, 42, 0.95)',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid #1e293b',
+      background: 'rgba(255, 255, 255, 0.96)',
+      backdropFilter: 'blur(16px)',
+      borderBottom: '1px solid #EDE4F8',
       position: 'sticky',
       top: 0,
-      zIndex: 50
+      zIndex: 100,
+      boxShadow: '0 2px 12px rgba(124, 58, 237, 0.05)'
     }}>
       <div className="container" style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '14px 20px',
-        maxWidth: '1200px',
-        margin: '0 auto'
+        padding: '12px 20px',
+        maxWidth: '1220px',
+        margin: '0 auto',
+        gap: '16px'
       }}>
-        {/* Brand */}
+        {/* Brand / Título de la Web */}
         <div 
           onClick={() => setView('test')} 
-          style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}
+          style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}
         >
-          <div style={{
-            width: '36px',
-            height: '36px',
-            borderRadius: '8px',
-            background: 'linear-gradient(135deg, #0284c7, #2563eb)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#ffffff'
-          }}>
-            <IconClipboard size={20} color="#ffffff" />
-          </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1.05rem', color: '#f8fafc', letterSpacing: '-0.02em' }}>
-              Investigación Escolar
+            <div style={{ 
+              fontWeight: 800, 
+              fontSize: '1.18rem', 
+              color: '#1E1B4B', 
+              letterSpacing: '-0.02em',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}>
+              <span style={{
+                background: 'linear-gradient(135deg, #7C3AED 0%, #6366F1 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontWeight: 800
+              }}>
+                Redes & Violencia
+              </span>
+              <span style={{ 
+                fontSize: '0.72rem', 
+                fontWeight: 700, 
+                padding: '2px 8px', 
+                background: '#F3E8FF', 
+                color: '#7C3AED', 
+                borderRadius: '6px',
+                border: '1px solid #DDD6FE'
+              }}>
+                EDV
+              </span>
             </div>
-            <div style={{ fontSize: '0.74rem', color: '#94a3b8' }}>
-              Exposición a Violencia Gráfica y Desensibilización
+            <div style={{ fontSize: '0.76rem', color: '#6B7280', fontWeight: 500 }}>
+              Desensibilización a Violencia Gráfica y Convivencia Escolar
             </div>
           </div>
         </div>
 
-        {/* Navigation Tabs */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <button
-            onClick={() => setView('test')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '8px 14px',
-              borderRadius: '8px',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              border: 'none',
-              background: currentView === 'test' ? '#1e293b' : 'transparent',
-              color: currentView === 'test' ? '#38bdf8' : '#94a3b8',
-              borderBottom: currentView === 'test' ? '2px solid #38bdf8' : '2px solid transparent'
-            }}
-          >
-            <IconClipboard size={16} />
-            <span>Cuestionario (42 Reactivos)</span>
-          </button>
-
-          {/* Panel de Investigación solo visible / accesible si está autenticado */}
-          {isAuthenticated && (
+        {/* Navigation Tabs y Lado Derecho */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <button
-              onClick={() => setView('admin')}
+              onClick={() => setView('test')}
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
                 padding: '8px 14px',
                 borderRadius: '8px',
-                fontSize: '0.85rem',
+                fontSize: '0.86rem',
                 fontWeight: 600,
                 cursor: 'pointer',
                 border: 'none',
-                background: currentView === 'admin' ? '#1e293b' : 'transparent',
-                color: currentView === 'admin' ? '#38bdf8' : '#94a3b8',
-                borderBottom: currentView === 'admin' ? '2px solid #38bdf8' : '2px solid transparent'
+                background: currentView === 'test' ? '#F3E8FF' : 'transparent',
+                color: currentView === 'test' ? '#7C3AED' : '#475569',
+                transition: 'all 0.2s ease'
               }}
             >
-              <IconBarChart size={16} />
-              <span>Panel de Investigación Grupal</span>
+              <span>Cuestionario (42 Ítems)</span>
             </button>
-          )}
 
-          <button
-            onClick={() => setView('references')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '8px 14px',
-              borderRadius: '8px',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              border: 'none',
-              background: currentView === 'references' ? '#1e293b' : 'transparent',
-              color: currentView === 'references' ? '#38bdf8' : '#94a3b8',
-              borderBottom: currentView === 'references' ? '2px solid #38bdf8' : '2px solid transparent'
-            }}
-          >
-            <IconBookOpen size={16} />
-            <span>Marco Teórico APA 7</span>
-          </button>
-
-          {/* Botón Iniciar Sesión / Cerrar Sesión */}
-          {isAuthenticated ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: '6px', paddingLeft: '8px', borderLeft: '1px solid #334155' }}>
-              <span style={{ fontSize: '0.8rem', color: '#38bdf8', fontWeight: 600 }}>
-                {authUser}
-              </span>
+            {/* Panel de Investigación solo visible si está autenticado */}
+            {isAuthenticated && (
               <button
-                onClick={onLogout}
+                onClick={() => setView('admin')}
                 style={{
-                  padding: '6px 12px',
-                  background: '#1e293b',
-                  color: '#f8fafc',
-                  border: '1px solid #334155',
-                  borderRadius: '6px',
-                  fontSize: '0.78rem',
-                  cursor: 'pointer'
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '8px 14px',
+                  borderRadius: '8px',
+                  fontSize: '0.86rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  border: 'none',
+                  background: currentView === 'admin' ? '#F3E8FF' : 'transparent',
+                  color: currentView === 'admin' ? '#7C3AED' : '#475569',
+                  transition: 'all 0.2s ease'
                 }}
               >
-                Cerrar Sesión
+                <IconBarChart size={16} color={currentView === 'admin' ? '#7C3AED' : '#475569'} />
+                <span>Panel de Investigación</span>
               </button>
-            </div>
-          ) : (
+            )}
+
             <button
-              onClick={onOpenLogin}
+              onClick={() => setView('references')}
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
-                padding: '6px 14px',
-                background: 'rgba(56, 189, 248, 0.1)',
-                color: '#38bdf8',
-                border: '1px solid rgba(56, 189, 248, 0.3)',
-                borderRadius: '6px',
-                fontSize: '0.8rem',
+                padding: '8px 14px',
+                borderRadius: '8px',
+                fontSize: '0.86rem',
                 fontWeight: 600,
                 cursor: 'pointer',
-                marginLeft: '8px'
+                border: 'none',
+                background: currentView === 'references' ? '#F3E8FF' : 'transparent',
+                color: currentView === 'references' ? '#7C3AED' : '#475569',
+                transition: 'all 0.2s ease'
               }}
             >
-              <IconShield size={14} color="#38bdf8" />
-              <span>Acceso Investigadores</span>
+              <IconBookOpen size={16} color={currentView === 'references' ? '#7C3AED' : '#475569'} />
+              <span>Marco Teórico APA 7</span>
             </button>
-          )}
-        </nav>
+
+            {/* Botón Acceso Investigadores / Cerrar Sesión con icono de persona */}
+            {isAuthenticated ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: '6px', paddingLeft: '10px', borderLeft: '1px solid #EDE4F8' }}>
+                <span style={{ 
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  fontSize: '0.8rem', 
+                  color: '#7C3AED', 
+                  fontWeight: 700,
+                  background: '#F3E8FF',
+                  padding: '4px 10px',
+                  borderRadius: '6px'
+                }}>
+                  <IconUser size={13} color="#7C3AED" />
+                  {authUser}
+                </span>
+                <button
+                  onClick={onLogout}
+                  style={{
+                    padding: '6px 12px',
+                    background: '#FFFFFF',
+                    color: '#64748B',
+                    border: '1px solid #EDE4F8',
+                    borderRadius: '6px',
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  Cerrar Sesión
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={onOpenLogin}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '7px 15px',
+                  background: '#7C3AED',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '0.82rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  marginLeft: '8px',
+                  boxShadow: '0 2px 8px rgba(124, 58, 237, 0.25)',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <IconUser size={15} color="#FFFFFF" />
+                <span>Acceso Investigadores</span>
+              </button>
+            )}
+          </nav>
+
+          {/* Logo Oficial de La Salle en la Esquina Superior Derecha */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            paddingLeft: '12px',
+            borderLeft: '1px solid #EDE4F8'
+          }}>
+            <img 
+              src="/lasalle-logo.png" 
+              alt="Logo La Salle" 
+              style={{
+                height: '42px',
+                width: 'auto',
+                objectFit: 'contain',
+                display: 'block'
+              }}
+            />
+          </div>
+        </div>
       </div>
     </header>
   );

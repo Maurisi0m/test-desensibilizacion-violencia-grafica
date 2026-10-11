@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconShield, IconAlertCircle, IconArrowRight } from './Icons';
+import { IconUser, IconAlertCircle, IconArrowRight } from './Icons';
 
 export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
   const [username, setUsername] = useState('equiposalle');
@@ -44,7 +44,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
       left: 0,
       right: 0,
       bottom: 0,
-      background: 'rgba(0,0,0,0.8)',
+      background: 'rgba(30, 27, 75, 0.45)',
       backdropFilter: 'blur(8px)',
       display: 'flex',
       alignItems: 'center',
@@ -53,98 +53,119 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
       padding: '20px'
     }}>
       <div style={{
-        background: '#111827',
-        border: '1px solid #1f2937',
-        borderRadius: '16px',
+        background: '#FFFFFF',
+        border: '1px solid #EDE4F8',
+        borderRadius: '20px',
         width: '100%',
-        maxWidth: '420px',
-        padding: '30px',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.6)'
+        maxWidth: '430px',
+        padding: '32px',
+        boxShadow: '0 25px 50px -12px rgba(124, 58, 237, 0.25)'
       }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <IconShield size={20} color="#38bdf8" />
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#f8fafc', margin: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '10px',
+              background: '#F3E8FF',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <IconUser size={18} color="#7C3AED" />
+            </div>
+            <h3 style={{ fontSize: '1.22rem', fontWeight: 800, color: '#1E1B4B', margin: 0 }}>
               Acceso a Investigación
             </h3>
           </div>
           <button
             onClick={onClose}
             style={{
-              background: 'none',
+              background: '#F5F3FF',
               border: 'none',
-              color: '#94a3b8',
-              fontSize: '1rem',
+              color: '#6B7280',
+              width: '32px',
+              height: '32px',
+              borderRadius: '8px',
+              fontSize: '0.85rem',
               fontWeight: 700,
-              cursor: 'pointer'
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
-            Cerrar (X)
+            ✕
           </button>
         </div>
 
-        <p style={{ color: '#94a3b8', fontSize: '0.86rem', lineHeight: 1.5, marginBottom: '20px' }}>
-          Módulo restringido para el equipo de investigación escolar. Permite auditar respuestas, consultar análisis grupal y exportar a SPSS.
+        <p style={{ color: '#6B7280', fontSize: '0.86rem', lineHeight: 1.5, marginBottom: '22px' }}>
+          Módulo restringido para el equipo de investigación La Salle. Permite auditar respuestas, consultar análisis individual/grupal y exportar datos a SPSS.
         </p>
 
         {errorMsg && (
           <div style={{
-            background: 'rgba(239, 68, 68, 0.1)',
-            border: '1px solid #ef4444',
-            borderRadius: '8px',
+            background: '#FEF2F2',
+            border: '1px solid #FCA5A5',
+            borderRadius: '10px',
             padding: '10px 14px',
-            color: '#fca5a5',
+            color: '#B91C1C',
             fontSize: '0.84rem',
-            marginBottom: '16px',
+            marginBottom: '18px',
             display: 'flex',
             alignItems: 'center',
             gap: '8px'
           }}>
-            <IconAlertCircle size={16} color="#ef4444" />
+            <IconAlertCircle size={16} color="#B91C1C" />
             <span>{errorMsg}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '14px' }}>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px' }}>
-              Usuario de Investigación
+          <div style={{ marginBottom: '16px' }}>
+            <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#374151', marginBottom: '6px' }}>
+              Usuario de Investigación:
             </label>
             <input
               type="text"
               value={username}
-              onChange={e => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="equiposalle"
               required
               style={{
                 width: '100%',
-                padding: '10px 12px',
-                background: '#1e293b',
-                border: '1px solid #334155',
-                borderRadius: '8px',
-                color: '#f8fafc',
-                fontSize: '0.9rem'
+                padding: '12px 14px',
+                background: '#FAF8FE',
+                border: '1px solid #E9D5FF',
+                borderRadius: '10px',
+                color: '#1E1B4B',
+                fontSize: '0.92rem',
+                outline: 'none',
+                boxSizing: 'border-box'
               }}
             />
           </div>
 
-          <div style={{ marginBottom: '22px' }}>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px' }}>
-              Contraseña
+          <div style={{ marginBottom: '24px' }}>
+            <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#374151', marginBottom: '6px' }}>
+              Contraseña:
             </label>
             <input
               type="password"
-              placeholder="Contraseña"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
               required
               style={{
                 width: '100%',
-                padding: '10px 12px',
-                background: '#1e293b',
-                border: '1px solid #334155',
-                borderRadius: '8px',
-                color: '#f8fafc',
-                fontSize: '0.9rem'
+                padding: '12px 14px',
+                background: '#FAF8FE',
+                border: '1px solid #E9D5FF',
+                borderRadius: '10px',
+                color: '#1E1B4B',
+                fontSize: '0.92rem',
+                outline: 'none',
+                boxSizing: 'border-box'
               }}
             />
           </div>
@@ -154,21 +175,23 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
             disabled={loading}
             style={{
               width: '100%',
+              padding: '13px',
+              background: '#7C3AED',
+              color: '#FFFFFF',
+              border: 'none',
+              borderRadius: '10px',
+              fontSize: '0.94rem',
+              fontWeight: 700,
+              cursor: loading ? 'not-allowed' : 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '8px',
-              padding: '12px',
-              background: 'linear-gradient(135deg, #0284c7, #2563eb)',
-              color: '#ffffff',
-              border: 'none',
-              borderRadius: '8px',
-              fontSize: '0.95rem',
-              fontWeight: 700,
-              cursor: loading ? 'not-allowed' : 'pointer'
+              boxShadow: '0 4px 14px rgba(124, 58, 237, 0.3)',
+              transition: 'all 0.2s'
             }}
           >
-            <span>{loading ? 'Verificando...' : 'Entrar al Panel de Investigación'}</span>
+            <span>{loading ? 'Verificando...' : 'Iniciar Sesión'}</span>
             <IconArrowRight size={16} />
           </button>
         </form>

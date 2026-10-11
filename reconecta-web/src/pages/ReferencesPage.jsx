@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconBookOpen, IconShield, IconFileText } from '../components/Icons';
+import { IconBookOpen, IconCheckCircle } from '../components/Icons';
 
 export default function ReferencesPage() {
   const references = [
@@ -10,7 +10,7 @@ export default function ReferencesPage() {
       title: 'Propiedades psicométricas de la Escala de Desensibilización a la Violencia para Adolescentes (EDV)',
       source: 'Nova Scientia, 11(22), 346–371',
       doi: 'https://doi.org/10.21640/ns.v11i22.1680',
-      note: 'Fundamento de las 3 dimensiones de desensibilización: diversión ante violencia física, agrado al ejercer violencia psicológica y diversión ante violencia psicológica.'
+      note: 'Fundamento psicométrico de partida para los reactivos del Bloque 2 (desensibilización y habituación somática ante lesiones físicas graves).'
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export default function ReferencesPage() {
       title: 'The Aggression Questionnaire',
       source: 'Journal of Personality and Social Psychology, 63(3), 452–459',
       doi: 'https://doi.org/10.1037/0022-3514.63.3.452',
-      note: 'Fundamento para las 4 dimensiones de agresividad autoinformada: agresión física, agresión verbal, ira y hostilidad.'
+      note: 'Fundamento teórico para el Bloque 4: agresión física, agresión verbal, ira y hostilidad autoinformada.'
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ export default function ReferencesPage() {
       title: 'Aggression: A social learning analysis',
       source: 'Prentice-Hall',
       doi: null,
-      note: 'Contextualización del aprendizaje por observación, modelamiento de conductas agresivas y mecanismos de desinhibición.'
+      note: 'Teoría del aprendizaje social: modelamiento de conductas agresivas y mecanismos de desinhibición conductual tras observar violencia en medios.'
     },
     {
       id: 4,
@@ -37,7 +37,7 @@ export default function ReferencesPage() {
       title: 'Living with television: The violence profile',
       source: 'Journal of Communication, 26(2), 172–199',
       doi: 'https://doi.org/10.1111/j.1460-2466.1976.tb01397.x',
-      note: 'Teoría del cultivo mediático: asociación entre exposición acumulada a contenidos mediáticos y percepción de la violencia como habitual o normal.'
+      note: 'Teoría del cultivo mediático: marco para el Bloque 3 sobre normalización cognitiva y percepción de la violencia como cotidiana o aceptable.'
     },
     {
       id: 5,
@@ -46,7 +46,7 @@ export default function ReferencesPage() {
       title: 'Desensibilización a la violencia en adolescentes: Una aproximación conceptual',
       source: 'Revista Criminalidad, 56(1), 27–40',
       doi: null,
-      note: 'Marco teórico conceptual sobre la habituación psicológica ante la violencia en población adolescente mexicana.'
+      note: 'Aproximación conceptual a los procesos de habituación emocional y pérdida de reactividad somática en adolescentes mexicanos.'
     },
     {
       id: 6,
@@ -55,7 +55,7 @@ export default function ReferencesPage() {
       title: 'Brainstorm: The power and purpose of the teenage brain',
       source: 'TarcherPerigee',
       doi: null,
-      note: 'Neurodesarrollo adolescente: maduración del córtex prefrontal, regulación emocional, búsqueda de sensaciones y relación con pares.'
+      note: 'Neurodesarrollo adolescente: maduración del córtex prefrontal, regulación del afecto, búsqueda de sensaciones intensas y relación con pares.'
     },
     {
       id: 7,
@@ -64,85 +64,114 @@ export default function ReferencesPage() {
       title: 'Some effects of thoughts on appraisal and emotional reactions to stimuli',
       source: 'Advances in Experimental Social Psychology, 17, 303–342',
       doi: 'https://doi.org/10.1016/S0065-2601(08)60124-7',
-      note: 'Mecanismos de priming cognitivo y activación afectiva (arousal) ante estímulos visuales agresivos.'
+      note: 'Mecanismos de priming cognitivo y reactividad afectiva ante imágenes y videos con representación explícita de violencia física.'
     }
   ];
 
   return (
-    <div className="container" style={{ maxWidth: '900px', padding: '30px 20px 80px' }}>
+    <div className="container" style={{ maxWidth: '940px', padding: '36px 20px 80px' }}>
       <div style={{
-        background: '#111827',
-        border: '1px solid #1f2937',
-        borderRadius: '16px',
-        padding: '36px',
-        boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+        background: '#FFFFFF',
+        border: '1px solid #EDE4F8',
+        borderRadius: '24px',
+        padding: '38px',
+        boxShadow: '0 12px 35px -8px rgba(124, 58, 237, 0.10)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-          <IconBookOpen size={24} color="#38bdf8" />
-          <h1 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f8fafc', margin: 0 }}>
-            Marco Teórico y Referencias Bibliográficas (APA 7)
-          </h1>
+        {/* Cabecera con Logo */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '22px', gap: '20px' }}>
+          <div>
+            <div style={{
+              display: 'inline-block',
+              padding: '4px 12px',
+              borderRadius: '9999px',
+              background: '#F3E8FF',
+              color: '#7C3AED',
+              fontSize: '0.78rem',
+              fontWeight: 800,
+              textTransform: 'uppercase',
+              marginBottom: '10px'
+            }}>
+              Sustento Científico y Metodológico
+            </div>
+            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 6px' }}>
+              Marco Teórico y Referencias (APA 7)
+            </h1>
+            <p style={{ color: '#6B7280', fontSize: '0.92rem', margin: 0, maxWidth: '640px', lineHeight: 1.55 }}>
+              Fuentes académicas que fundamentan los 42 reactivos en 5 bloques temáticos y las variables de desensibilización, normalización, agresividad y relaciones interpersonales.
+            </p>
+          </div>
+
+          <img 
+            src="/lasalle-logo.png" 
+            alt="Logo La Salle" 
+            style={{
+              height: '56px',
+              width: 'auto',
+              objectFit: 'contain',
+              flexShrink: 0
+            }}
+          />
         </div>
-        <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '28px' }}>
-          Fuentes científicas que sustentan la construcción de los 38 reactivos, las 11 dimensiones 
-          y los supuestos conceptuales del estudio escolar sobre desensibilización, agresividad y convivencia.
-        </p>
 
         {/* Declaración de rigor metodológico */}
         <div style={{
-          background: 'rgba(56, 189, 248, 0.08)',
-          border: '1px solid rgba(56, 189, 248, 0.25)',
-          borderRadius: '10px',
-          padding: '16px 20px',
-          marginBottom: '28px',
-          display: 'flex',
-          gap: '12px',
-          alignItems: 'flex-start'
+          background: '#FAF8FE',
+          border: '1px solid #EDE4F8',
+          borderRadius: '16px',
+          padding: '18px 22px',
+          marginBottom: '28px'
         }}>
-          <IconShield size={20} color="#38bdf8" />
-          <div style={{ fontSize: '0.86rem', color: '#bae6fd', lineHeight: 1.55 }}>
-            <strong>Nota de adaptación psicométrica:</strong> La Escala de Desensibilización a la Violencia (EDV) y el Aggression Questionnaire (BPAQ) constituyen referencias teóricas e instrumentales de partida. Los reactivos fueron adaptados lingüísticamente para estudiantes adolescentes y no se presentan como automáticamente equivalentes a las versiones completas validadas.
+          <div style={{ fontWeight: 800, fontSize: '0.88rem', color: '#5B21B6', marginBottom: '4px' }}>
+            Nota de Rigor Metodológico
           </div>
+          <p style={{ color: '#4B5563', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+            La Escala de Desensibilización a la Violencia (EDV) y el Aggression Questionnaire (BPAQ) constituyen antecedentes teóricos de referencia. Los 42 reactivos fueron adaptados lingüísticamente para adolescentes de secundaria y preparatoria sin presentarse como instrumentos clínicos de diagnóstico.
+          </p>
         </div>
 
         {/* Lista de referencias */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {references.map(ref => (
             <div
               key={ref.id}
               style={{
-                background: '#1e293b',
-                border: '1px solid #334155',
-                borderRadius: '10px',
-                padding: '18px 20px'
+                background: '#FAF8FE',
+                border: '1px solid #EDE4F8',
+                borderRadius: '14px',
+                padding: '20px'
               }}
             >
-              <div style={{ fontSize: '0.92rem', color: '#f8fafc', lineHeight: 1.5, marginBottom: '6px' }}>
-                <span style={{ fontWeight: 700 }}>{ref.authors}</span> ({ref.year}). <em>{ref.title}</em>. {ref.source}.
+              <div style={{ fontSize: '0.94rem', color: '#1E1B4B', lineHeight: 1.55, marginBottom: '6px' }}>
+                <span style={{ fontWeight: 800 }}>{ref.authors}</span> ({ref.year}). <em>{ref.title}</em>. {ref.source}.
               </div>
 
               {ref.doi && (
-                <div style={{ marginBottom: '8px' }}>
+                <div style={{ marginBottom: '10px' }}>
                   <a
                     href={ref.doi}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      color: '#38bdf8',
+                      color: '#7C3AED',
                       fontSize: '0.82rem',
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px'
+                      fontWeight: 600,
+                      textDecoration: 'none'
                     }}
                   >
-                    <span>{ref.doi}</span>
+                    {ref.doi}
                   </a>
                 </div>
               )}
 
-              <div style={{ fontSize: '0.8rem', color: '#94a3b8', borderTop: '1px solid #334155', paddingTop: '8px', marginTop: '6px' }}>
-                <strong>Función en la investigación:</strong> {ref.note}
+              <div style={{
+                fontSize: '0.82rem',
+                color: '#6B7280',
+                borderTop: '1px solid #EDE4F8',
+                paddingTop: '8px',
+                marginTop: '6px',
+                lineHeight: 1.45
+              }}>
+                <strong style={{ color: '#1E1B4B' }}>Función en la investigación:</strong> {ref.note}
               </div>
             </div>
           ))}

@@ -1,38 +1,64 @@
 :root {
-  --bg-dark: #070B14;
-  --bg-card: rgba(15, 23, 42, 0.75);
-  --bg-card-hover: rgba(30, 41, 59, 0.85);
-  --bg-elevated: #1E293B;
-  --border-subtle: rgba(148, 163, 184, 0.15);
-  --border-bright: rgba(99, 102, 241, 0.4);
-  
-  --accent-primary: #6366F1;
-  --accent-primary-hover: #4F46E5;
-  --accent-cyan: #06B6D4;
-  --accent-emerald: #10B981;
-  --accent-rose: #F43F5E;
-  --accent-amber: #F59E0B;
-  --accent-purple: #A855F7;
+  /* Fondo general: Moradito blanquecino suave y limpio */
+  --bg-page: #FAF8FE;
+  --bg-subtle: #F5F1FC;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FCFAFF;
+  --bg-elevated: #FFFFFF;
 
-  --text-main: #F8FAFC;
-  --text-muted: #94A3B8;
+  /* Moraditos claros para badges, acentos y contenedores */
+  --bg-purple-light: #F3E8FF;
+  --bg-purple-soft: #EDE9FE;
+  --bg-purple-pill: #DDD6FE;
+
+  /* Bordes suaves en lavanda y lila */
+  --border-subtle: #EDE4F8;
+  --border-purple: #D8B4FE;
+  --border-bright: #8B5CF6;
+
+  /* Paleta morada / violeta principal (atractiva, moderna y formal) */
+  --accent-purple: #7C3AED;
+  --accent-purple-hover: #6D28D9;
+  --accent-purple-soft: #8B5CF6;
+  --accent-purple-light: #A78BFA;
+  --accent-indigo: #6366F1;
+  --accent-rose: #E11D48;
+  --accent-emerald: #059669;
+  --accent-amber: #D97706;
+  --accent-cyan: #0284C7;
+
+  /* Compatibilidad con variables antiguas */
+  --accent-primary: #7C3AED;
+  --accent-primary-hover: #6D28D9;
+  --bg-dark: #FAF8FE;
+
+  /* Textos oscuros legibles de alto contraste */
+  --text-main: #1E1B4B;       /* Índigo muy oscuro, máxima legibilidad */
+  --text-muted: #5B21B6;      /* Morado profundo suave para subtítulos */
+  --text-secondary: #475569;  /* Gris slate legible */
   --text-faint: #64748B;
-  --text-inverse: #0F172A;
+  --text-inverse: #FFFFFF;
 
-  --gradient-brand: linear-gradient(135deg, #6366F1 0%, #06B6D4 100%);
-  --gradient-sos: linear-gradient(135deg, #F43F5E 0%, #FB7185 100%);
-  --gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+  /* Gradientes moraditos atractivos */
+  --gradient-brand: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+  --gradient-soft: linear-gradient(135deg, #FAF5FF 0%, #FFFFFF 100%);
+  --gradient-hero: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+  --gradient-card: linear-gradient(180deg, #FFFFFF 0%, #FAF8FE 100%);
+  --gradient-purple-pill: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
 
+  /* Radios */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-full: 9999px;
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.3);
-  --backdrop-blur: blur(16px);
+  /* Sombras suaves moraditas (efecto flotante limpio) */
+  --shadow-sm: 0 2px 8px rgba(124, 58, 237, 0.05);
+  --shadow-md: 0 8px 24px -4px rgba(124, 58, 237, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 16px 36px -6px rgba(124, 58, 237, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 25px rgba(167, 139, 250, 0.35);
 
+  --backdrop-blur: blur(16px);
   --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
