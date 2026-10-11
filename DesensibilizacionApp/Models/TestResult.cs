@@ -33,22 +33,29 @@ public class TestResult
     /// Análisis de la fuente predominante de desensibilización:
     /// ¿Se debe más al algoritmo pasivo (Reels/TikTok/X) o a la búsqueda deliberada (Telegram/gore/shock)?
     /// </summary>
+    public double ConsumptionBalanceIndex => Math.Round(ActiveSeekingIndex - PassiveExposureIndex, 1);
+
+    public string EthicalDisclaimer { get; set; } = "Este resultado es de carácter orientativo, psicoeducativo y de autoevaluación. Se basa en indicadores autoinformados y no constituye un diagnóstico psicológico, psiquiátrico o clínico formal. Los rangos interpretativos corresponden a una fase experimental preliminar sujeta a baremación en muestra normativa.";
+
+    /// <summary>
+    /// Índice de Balance de Consumo (IBC = BA-C - EA-I)
+    /// </summary>
     public string ConsumptionDominanceAnalysis
     {
         get
         {
-            double diff = ActiveSeekingIndex - PassiveExposureIndex;
-            if (Math.Abs(diff) < 10.0)
+            double ibc = ConsumptionBalanceIndex;
+            if (ibc < -15.0)
             {
-                return "Perfil Mixto Equilibrado: Tu desensibilización se alimenta tanto de lo que los algoritmos te muestran de improviso como de tu propia iniciativa de búsqueda.";
+                return "Predominio de Exposición Incidental: El consumo está impulsado primordialmente por el flujo algorítmico y recomendaciones automáticas en redes sociales, sin una intencionalidad deliberada de búsqueda cruenta.";
             }
-            else if (diff > 0)
+            else if (ibc > 15.0)
             {
-                return "Predominio de Búsqueda Activa e Intencional: Tu nivel de desensibilización está impulsado principalmente por curiosidad mórbida personal, acceso deliberado a canales/foros o petición activa de material violento a terceros.";
+                return "Predominio de Búsqueda Activa: El consumo presenta una iniciativa personal deliberada de consulta de material gráfico en canales de mensajería, grupos o foros específicos.";
             }
             else
             {
-                return "Predominio de Inundación Algorítmica Pasiva: Tu desensibilización es mayormente incidental, provocada por la saturación de videos de peleas, accidentes y agresiones en feeds de redes sociales (Reels, TikTok, X) sin que necesariamente las busques.";
+                return "Patrón Mixto / Balanceado: Existe una interacción equilibrada entre la recepción involuntaria de contenidos en feeds y la interacción o consulta ocasional por iniciativa propia.";
             }
         }
     }

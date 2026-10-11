@@ -40,11 +40,11 @@ public class DiagnosticLevel
             return new DiagnosticLevel
             {
                 Level = SeverityLevel.SensibilidadPreservada,
-                Title = "Sensibilidad Emocional Preservada (Reactividad Afectiva Típica)",
+                Title = "Nivel Preliminar Bajo — Reactividad Emocional Típica",
                 ScoreRange = "0% - 24%",
-                BadgeText = "NIVEL BAJO / SALUDABLE",
+                BadgeText = "PRELIMINAR BAJO",
                 ColorHex = "#10B981", // Verde Esmeralda
-                Summary = "Tus respuestas reflejan una reactividad afectiva y fisiológica biológicamente típica y saludable ante estímulos aversivos. El circuito de aversión empática y la respuesta somática de alarma permanecen plenamente conservados.",
+                Summary = "Los indicadores autoinformados reflejan una reactividad afectiva y somática conservada ante estímulos aversivos. No se observan señales autoinformadas significativas de habituación visual ni normalización.",
                 ClinicalInterpretation = "Se observa una respuesta simpática congruente ante estímulos dolorosos ajenos. El sistema de alarma somatomotor (reflejo de sobresalto, náusea aversiva, rechazo motor de retirada) previene la normalización del daño humano.",
                 NeurocognitiveProfile = "Integridad funcional del eje amígdala-ínsula anterior-corteza cingulada anterior (ACC). No existe atenuación patológica del potencial de preparación motora ni habituación atencional frente a la imaginería cruenta.",
                 AppliedCognitiveConstructs = new List<CognitiveConstructDetail>
@@ -96,12 +96,12 @@ public class DiagnosticLevel
             return new DiagnosticLevel
             {
                 Level = SeverityLevel.DesensibilizacionLeve,
-                Title = "Desensibilización Leve a Moderada-Baja (Habituación Periférica por Exposición Digital)",
+                Title = "Nivel Preliminar Leve — Habituación Periférica por Exposición Digital",
                 ScoreRange = "25% - 49%",
-                BadgeText = "NIVEL MODERADO-BAJO",
+                BadgeText = "PRELIMINAR LEVE",
                 ColorHex = "#0EA5E9", // Azul Cielo
-                Summary = "Se identifica una habituación sensorial periférica derivada de la exposición involuntaria reiterada en redes sociales. Aunque se conserva la capacidad de angustia vicaria ante hechos severos, existe una tolerancia creciente a la violencia cotidiana mediada por pantalla.",
-                ClinicalInterpretation = "Fenómeno de fatiga perceptiva y habituación hedónica adaptativa. El participante presenta menor tasa de sobresalto ante altercados callejeros, riñas escolares o siniestros leves, aunque el umbral de desconexión empática no se ha generalizado hacia el gore severo.",
+                Summary = "La exposición repetida a estímulos aversivos en redes puede asociarse con procesos de habituación, caracterizados por una disminución de determinadas respuestas atencionales, emocionales o fisiológicas ante estímulos cotidianos.",
+                ClinicalInterpretation = "Fenómeno de fatiga perceptiva y habituación adaptativa. El participante presenta menor tasa de sobresalto ante altercados callejeros, riñas escolares o siniestros leves, aunque el umbral de desconexión empática no se ha generalizado hacia el gore severo.",
                 NeurocognitiveProfile = "Atenuación inicial del componente de respuesta atencional temprana (P300 disminuida frente a violencia moderada). Persiste reactividad autonómica frente a dolor catastrófico, pero la latencia para apartar la mirada se ha incrementado.",
                 AppliedCognitiveConstructs = new List<CognitiveConstructDetail>
                 {
@@ -136,8 +136,8 @@ public class DiagnosticLevel
                 },
                 PsychoeducationalRecommendations = new List<string>
                 {
-                    "Implementar la 'Regla de Corte Temprano a los 2 Segundos': omitir inmediatamente al detectar agresión física.",
-                    "Reajustar el algoritmo: dar 'No me interesa' a cuentas de noticias de nota roja y recopilaciones de incidentes.",
+                    "Implementar la Hipótesis Experimental de Omisión Rápida: deslizar inmediatamente al detectar agresión física.",
+                    "Reajustar el algoritmo: dar 'No me interesa' a cuentas de notas rojas y recopilaciones de incidentes.",
                     "Establecer 'Dietas Digitales': pausas programadas sin consumo de videos en formato scroll vertical."
                 },
                 AppliedInterventions = new List<string>
@@ -152,12 +152,12 @@ public class DiagnosticLevel
             return new DiagnosticLevel
             {
                 Level = SeverityLevel.DesensibilizacionSignificativa,
-                Title = "Desensibilización Significativa (Embotamiento Afectivo Marcado y Distanciamiento Moral)",
+                Title = "Nivel Preliminar Moderado — Atenuación de Reactividad y Distanciamiento Cognitivo",
                 ScoreRange = "50% - 74%",
-                BadgeText = "NIVEL MODERADO-ALTO / ALERTA",
+                BadgeText = "PRELIMINAR MODERADO",
                 ColorHex = "#F59E0B", // Ámbar / Naranja
-                Summary = "Tus niveles de reactividad autonómica ante la violencia explícita se encuentran severamente atenuados. Se evidencia la activación de mecanismos cognitivos de distanciamiento moral y una normalización del sufrimiento humano.",
-                ClinicalInterpretation = "Bloqueo funcional de la resonancia vicaria. El individuo es capaz de procesar imágenes de daño físico grave (sangre abundante, fracturas expuestas, agonía) sin activación concomitante del sistema simpático (taquicardia, sudoración o náuseas). La violencia comienza a conceptualizarse como mercancía lúdica o entretenimiento.",
+                Summary = "Se observan puntuaciones moderadas-altas en indicadores de habituación. Se reporta menor incomodidad física ante agresiones grabadas y emergencia de mecanismos de justificación o distanciamiento moral.",
+                ClinicalInterpretation = "Atenuación de la resonancia vicaria. El individuo es capaz de procesar imágenes de daño físico grave sin activación concomitante del sistema simpático (taquicardia o náuseas). La violencia comienza a conceptualizarse bajo dinámicas de comedia o indiferencia.",
                 NeurocognitiveProfile = "Hipoactividad de la ínsula anterior y amígdala ante imaginería nociva. Sobrecarga del córtex prefrontal ventromedial (VMPFC) en la supresión de respuestas afectivas aversivas. Se observa inhibición de la 'Pain Matrix' cerebral.",
                 AppliedCognitiveConstructs = new List<CognitiveConstructDetail>
                 {
@@ -216,12 +216,12 @@ public class DiagnosticLevel
             return new DiagnosticLevel
             {
                 Level = SeverityLevel.DesensibilizacionSevera,
-                Title = "Desensibilización Severa (Anestesia Emocional Crítica y Deshumanización Sistemática)",
+                Title = "Nivel Preliminar Elevado — Indicadores Notables de Habituación y Normalización",
                 ScoreRange = "75% - 100%",
-                BadgeText = "NIVEL SEVERO / CRÍTICO",
+                BadgeText = "PRELIMINAR ELEVADO",
                 ColorHex = "#EF4444", // Rojo Carmesí
-                Summary = "Tus resultados evidencian un estado de anestesia emocional profunda y deshumanización sistemática frente al sufrimiento humano explícito. Se observa un embotamiento afectivo generalizado y búsqueda deliberada recurrente de violencia extrema.",
-                ClinicalInterpretation = "Extinción casi completa de la respuesta aversiva autonómica ante la muerte y la mutilación física. La persona no experimenta náuseas, taquicardia ni perturbación emocional ante escenas de crueldad extrema. Coexiste una erosión profunda de la empatía vicaria y una legitimación ideológica de la violencia.",
+                Summary = "Se identifican puntuaciones elevadas en la mayoría de las subescalas autoinformadas. Se reporta escasa perturbación emocional ante imaginería cruenta, acompañada de búsqueda deliberada y tolerancia cognitiva a la violencia extrema.",
+                ClinicalInterpretation = "Atenuación severa de la respuesta aversiva autonómica ante la muerte y la mutilación física. La persona autoinforma no experimentar náuseas ni perturbación emocional ante escenas cruentas.",
                 NeurocognitiveProfile = "Marcada hiporreactividad límbica frente a imaginería gráfica dolorosa; atenuación sustancial de la conductancia electrodérmica y variabilidad de la frecuencia cardíaca (HRV). Desconexión de la corteza prefrontal medial en la asignación de valor a la vida del semejante.",
                 AppliedCognitiveConstructs = new List<CognitiveConstructDetail>
                 {

@@ -9,39 +9,41 @@ public class ReportExportService
     public static string GenerateMarkdownReport(TestResult result)
     {
         var sb = new StringBuilder();
-        sb.AppendLine("# INFORME PSICOMÉTRICO Y NEUROCOGNITIVO: DESENSIBILIZACIÓN A LA VIOLENCIA GRÁFICA");
-        sb.AppendLine("Instrumento: Escala de Desensibilización a la Violencia Gráfica Digital (ED-CVG 12-29)");
+        sb.AppendLine("# INFORME DE INDICADORES AUTOINFORMADOS: EXPOSICIÓN Y HABITUACIÓN A LA VIOLENCIA GRÁFICA");
+        sb.AppendLine("Instrumento: ED-CVG — Escala de Indicadores de Desensibilización y Habituación a la Violencia Gráfica Digital (12–29 años)");
         sb.AppendLine($"Fecha de Evaluación: {result.EvaluatedAt:yyyy-MM-dd HH:mm:ss}");
+        sb.AppendLine();
+        sb.AppendLine("> **AVISO METODOLÓGICO Y ÉTICO:** Este instrumento evalúa indicadores autoinformados con propósitos psicoeducativos y de autoevaluación. **No constituye un diagnóstico clínico, psicológico o psiquiátrico formal.** Los puntos de corte corresponden a una fase experimental preliminar sujeta a validación psicométrica normativa.");
         sb.AppendLine();
         sb.AppendLine("## DATOS DEL PARTICIPANTE");
         sb.AppendLine($"- **Identificador / Alias:** {result.ParticipantAlias}");
         sb.AppendLine($"- **Edad:** {result.Age} años");
         sb.AppendLine($"- **Cohorte Poblacional:** {AgeHelper.GetCohortDescription(result.Cohort)}");
         sb.AppendLine();
-        sb.AppendLine("## 1. RESULTADOS CUANTITATIVOS GLOBALES");
-        sb.AppendLine($"| Indicador | Puntuación Bruta | Escala Normalizada (0-100%) | Nivel Diagnóstico |");
+        sb.AppendLine("## 1. RESULTADO CUANTITATIVO GLOBAL");
+        sb.AppendLine($"| Indicador | Puntuación Bruta | Escala Normalizada (0-100%) | Rango Interpretativo Preliminar |");
         sb.AppendLine($"| :--- | :---: | :---: | :--- |");
         sb.AppendLine($"| **Índice Global de Desensibilización (IGD)** | {result.RawTotalScore} / 100 | **{result.GlobalIndex:F1}%** | **{result.Diagnostic.BadgeText}** |");
         sb.AppendLine();
-        sb.AppendLine("## 2. DESGLOSE POR SUBESCALAS PSICOMÉTRICAS");
-        sb.AppendLine("| Dimensión Evaluada | Puntuación (0-100%) | Interpretación Fenomenológica |");
+        sb.AppendLine("## 2. PUNTUACIÓN DE PERFIL (4 SUBESCALAS PSICOMÉTRICAS)");
+        sb.AppendLine("| Dimensión Evaluada | Puntuación (0-100%) | Definición Operativa |");
         sb.AppendLine("| :--- | :---: | :--- |");
-        sb.AppendLine($"| **Exposición Algorítmica Pasiva (Reels/Feeds)** | {result.PassiveExposureIndex:F1}% | Saturación incidental por plataformas de video corto y algoritmos |");
-        sb.AppendLine($"| **Búsqueda Activa y Curiosidad Mórbida** | {result.ActiveSeekingIndex:F1}% | Búsqueda intencional (canales Telegram/foros gore/shock sites) |");
-        sb.AppendLine($"| **Embotamiento Emocional y Fisiológico** | {result.PhysiologicalNumbingIndex:F1}% | Supresión de taquicardia, náuseas y aversión autonómica |");
-        sb.AppendLine($"| **Normalización Cognitiva y Desconexión Empática** | {result.CognitiveNormalizationIndex:F1}% | Trivialización (memes, culpa a víctimas, deshumanización) |");
+        sb.AppendLine($"| **Exposición Algorítmica Incidental (EA-I)** | {result.PassiveExposureIndex:F1}% | Frecuencia con la que el usuario encuentra contenido violento sin buscarlo deliberadamente |");
+        sb.AppendLine($"| **Búsqueda Activa y Curiosidad (BA-C)** | {result.ActiveSeekingIndex:F1}% | Tendencia a buscar deliberadamente contenido violento o particularmente gráfico |");
+        sb.AppendLine($"| **Reactividad Emocional Autopercibida (RE-A)** | {result.PhysiologicalNumbingIndex:F1}% | Cambios percibidos en asco, sobresalto, activación emocional y respuesta corporal |");
+        sb.AppendLine($"| **Normalización Cognitiva de la Violencia Digital (NC-D)** | {result.CognitiveNormalizationIndex:F1}% | Grado en que el usuario percibe la violencia digital como normal, justificable o trivial |");
         sb.AppendLine();
-        sb.AppendLine("## 3. ANÁLISIS DIFERENCIAL DE FUENTE");
+        sb.AppendLine($"## 3. ÍNDICE DE BALANCE DE CONSUMO (IBC = BA-C - EA-I: {result.ConsumptionBalanceIndex:F1}%)");
         sb.AppendLine($"> **{result.ConsumptionDominanceAnalysis}**");
         sb.AppendLine();
-        sb.AppendLine("## 4. ANÁLISIS COGNITIVO Y CONSTRUCTOS PSICOLÓGICOS APLICADOS");
-        sb.AppendLine($"### Diagnóstico Clínico: {result.Diagnostic.Title}");
+        sb.AppendLine("## 4. ANÁLISIS DESCRIPTIVO Y CONSTRUCTOS COGNITIVOS");
+        sb.AppendLine($"### Rango Preliminar: {result.Diagnostic.Title}");
         sb.AppendLine(result.Diagnostic.Summary);
         sb.AppendLine();
-        sb.AppendLine("**Fundamentación Teórica y Clínica:**");
+        sb.AppendLine("**Fundamentación Fenomenológica y de Habituación:**");
         sb.AppendLine(result.Diagnostic.ClinicalInterpretation);
         sb.AppendLine();
-        sb.AppendLine("**Perfil Neurocognitivo y Procesamiento Afectivo:**");
+        sb.AppendLine("**Perfil Neurocognitivo de Referencia:**");
         sb.AppendLine(result.Diagnostic.NeurocognitiveProfile);
         sb.AppendLine();
         sb.AppendLine("### Constructos Psicológicos Operacionalizados en este Perfil:");
@@ -58,28 +60,29 @@ public class ReportExportService
             sb.AppendLine($"- {indicator}");
         }
         sb.AppendLine();
-        sb.AppendLine("### Intervenciones Cognitivo-Conductuales Aplicadas (TCC y Digital Wellbeing):");
+        sb.AppendLine("### Pautas de Intervención y Prevención (Higiene Digital):");
         foreach (var inter in result.Diagnostic.AppliedInterventions)
         {
             sb.AppendLine($"- {inter}");
         }
         sb.AppendLine();
-        sb.AppendLine("### Recomendaciones Psicoeducativas y de Higiene Digital:");
+        sb.AppendLine("### Recomendaciones Psicoeducativas:");
         foreach (var rec in result.Diagnostic.PsychoeducationalRecommendations)
         {
             sb.AppendLine($"- {rec}");
         }
         sb.AppendLine();
-        sb.AppendLine("## 5. REGISTRO DETALLADO DE RESPUESTAS (20 REACTIVOS)");
-        sb.AppendLine("| # | Dimensión | Reactivo / Pregunta | Puntuación | Respuesta Seleccionada |");
-        sb.AppendLine("| -: | :---: | :--- | :---: | :--- |");
+        sb.AppendLine("## 5. AUDITORÍA REACTIVO POR REACTIVO (20 PREGUNTAS)");
+        sb.AppendLine("| # | Subescala | Reactivo | Puntuación |");
+        sb.AppendLine("| :---: | :--- | :--- | :--- |");
         foreach (var ans in result.Answers)
         {
-            sb.AppendLine($"| {ans.QuestionId} | {ans.Dimension.GetShortCode()} | {ans.QuestionText} | {ans.Score}/5 | {ans.ScoreLabel} |");
+            sb.AppendLine($"| {ans.QuestionId} | {ans.Dimension.GetShortCode()} | {ans.QuestionText} | **{ans.ScoreLabel}** |");
         }
         sb.AppendLine();
         sb.AppendLine("---");
-        sb.AppendLine("*Nota de confidencialidad y rigor: Este informe tiene fines de evaluación psicológica, concienciación neurocognitiva y orientación diagnóstica especializada.*");
+        sb.AppendLine("*Informe generado por la suite ED-CVG. Proyecto de concientización y evaluación de bienestar digital.*");
+
         return sb.ToString();
     }
 
@@ -89,86 +92,90 @@ public class ReportExportService
         sb.AppendLine("<!DOCTYPE html>");
         sb.AppendLine("<html lang=\"es\">");
         sb.AppendLine("<head>");
-        sb.AppendLine("<meta charset=\"utf-8\">");
-        sb.AppendLine("<title>Informe Psicométrico y Neurocognitivo - ED-CVG</title>");
-        sb.AppendLine("<style>");
-        sb.AppendLine(@"
-            body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 40px 20px; }
-            .container { max-width: 920px; margin: 0 auto; background: #1e293b; border-radius: 16px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #334155; }
-            .header { border-bottom: 2px solid #334155; padding-bottom: 24px; margin-bottom: 30px; }
-            .badge { display: inline-block; padding: 6px 14px; border-radius: 9999px; font-weight: 700; font-size: 13px; letter-spacing: 0.5px; }
-            h1 { font-size: 26px; color: #ffffff; margin: 0 0 10px 0; }
-            .subtitle { color: #94a3b8; font-size: 15px; margin: 0; }
-            .meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; background: #0f172a; padding: 18px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #1e293b; }
-            .meta-item strong { display: block; color: #94a3b8; font-size: 12px; text-transform: uppercase; margin-bottom: 4px; }
-            .meta-item span { font-size: 16px; font-weight: 600; color: #e2e8f0; }
-            .score-hero { background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95)); border: 1px solid #334155; border-radius: 16px; padding: 30px; text-align: center; margin-bottom: 30px; }
-            .score-num { font-size: 64px; font-weight: 800; line-height: 1; margin: 10px 0; }
-            .subscales { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
-            .subscale-card { background: #0f172a; border-radius: 12px; padding: 20px; border: 1px solid #334155; }
-            .progress-bar-bg { background: #334155; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 10px; }
-            .progress-bar-fill { height: 100%; border-radius: 5px; }
-            .box-notice { background: rgba(99, 102, 241, 0.12); border-left: 4px solid #6366f1; padding: 16px 20px; border-radius: 8px; margin-bottom: 30px; font-size: 14.5px; color: #cbd5e1; line-height: 1.5; }
-            .section-title { font-size: 18px; color: #f8fafc; border-bottom: 1px solid #334155; padding-bottom: 8px; margin-top: 32px; margin-bottom: 16px; }
-            .construct-card { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; }
-            .construct-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-            .construct-name { font-weight: 700; color: #818cf8; font-size: 15px; }
-            .construct-framework { font-size: 11.5px; color: #94a3b8; background: #1e293b; padding: 3px 8px; border-radius: 6px; }
-            .construct-desc { font-size: 13.5px; color: #cbd5e1; margin-bottom: 6px; line-height: 1.5; }
-            .construct-manifestation { font-size: 12.5px; color: #38bdf8; background: rgba(56, 189, 248, 0.08); padding: 8px 12px; border-radius: 6px; border-left: 3px solid #38bdf8; }
-            table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13.5px; }
-            th { text-align: left; background: #0f172a; color: #94a3b8; padding: 12px; border-bottom: 2px solid #334155; }
-            td { padding: 12px; border-bottom: 1px solid #334155; color: #e2e8f0; line-height: 1.4; }
-            ul { margin: 10px 0; padding-left: 24px; color: #cbd5e1; line-height: 1.6; }
-            .footer { margin-top: 40px; text-align: center; font-size: 12.5px; color: #64748b; border-top: 1px solid #334155; padding-top: 20px; }
-        ");
-        sb.AppendLine("</style>");
+        sb.AppendLine("  <meta charset=\"UTF-8\">");
+        sb.AppendLine("  <title>Dictamen ED-CVG - Indicadores Autoinformados</title>");
+        sb.AppendLine("  <style>");
+        sb.AppendLine("    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: #0b0f19; color: #f8fafc; margin: 0; padding: 30px 20px; }");
+        sb.AppendLine("    .container { max-width: 860px; margin: 0 auto; background-color: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 40px; box-shadow: 0 10px 35px rgba(0,0,0,0.5); }");
+        sb.AppendLine("    .header { text-align: center; border-bottom: 1px solid #1f2937; padding-bottom: 24px; margin-bottom: 24px; }");
+        sb.AppendLine("    h1 { color: #f8fafc; font-size: 26px; margin: 0 0 6px 0; font-weight: 800; }");
+        sb.AppendLine("    .subtitle { color: #94a3b8; font-size: 14px; margin: 0; }");
+        sb.AppendLine("    .disclaimer-box { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px 18px; margin-bottom: 26px; font-size: 13px; color: #bae6fd; line-height: 1.5; }");
+        sb.AppendLine("    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; background-color: #1e293b; padding: 18px; border-radius: 10px; margin-bottom: 28px; }");
+        sb.AppendLine("    .meta-item strong { display: block; font-size: 11px; text-transform: uppercase; color: #64748b; margin-bottom: 4px; }");
+        sb.AppendLine("    .meta-item span { font-size: 15px; font-weight: 600; color: #f1f5f9; }");
+        sb.AppendLine("    .score-hero { text-align: center; background: radial-gradient(circle, rgba(30,58,138,0.2) 0%, rgba(17,24,39,0) 70%); border: 1px solid #1f2937; border-radius: 16px; padding: 30px; margin-bottom: 30px; }");
+        sb.AppendLine("    .score-num { font-size: 52px; font-weight: 800; margin: 10px 0; }");
+        sb.AppendLine("    .badge { display: inline-block; padding: 6px 16px; border-radius: 9999px; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; }");
+        sb.AppendLine("    .section-title { font-size: 18px; font-weight: 700; color: #38bdf8; margin: 28px 0 16px; border-left: 4px solid #38bdf8; padding-left: 10px; }");
+        sb.AppendLine("    .subscales { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }");
+        sb.AppendLine("    .subscale-card { background-color: #1e293b; padding: 16px; border-radius: 10px; border: 1px solid #334155; }");
+        sb.AppendLine("    .progress-bar-bg { background-color: #0f172a; height: 10px; border-radius: 9999px; overflow: hidden; margin-top: 8px; }");
+        sb.AppendLine("    .progress-bar-fill { height: 100%; border-radius: 9999px; }");
+        sb.AppendLine("    .box-notice { background-color: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 10px; padding: 16px; color: #e2e8f0; font-size: 14px; line-height: 1.5; margin-bottom: 24px; }");
+        sb.AppendLine("    .construct-card { background: #1a2234; border: 1px solid #334155; border-radius: 10px; padding: 16px; margin-bottom: 12px; }");
+        sb.AppendLine("    .construct-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }");
+        sb.AppendLine("    .construct-name { font-weight: 700; color: #f8fafc; font-size: 15px; }");
+        sb.AppendLine("    .construct-framework { font-size: 12px; color: #38bdf8; font-weight: 600; background: rgba(56,189,248,0.1); padding: 2px 8px; border-radius: 4px; }");
+        sb.AppendLine("    .construct-desc { font-size: 13px; color: #cbd5e1; margin-bottom: 6px; line-height: 1.4; }");
+        sb.AppendLine("    .construct-manifestation { font-size: 13px; color: #94a3b8; font-style: italic; line-height: 1.4; }");
+        sb.AppendLine("    table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }");
+        sb.AppendLine("    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #1e293b; }");
+        sb.AppendLine("    th { color: #64748b; font-weight: 600; text-transform: uppercase; font-size: 11px; background-color: #1e293b; }");
+        sb.AppendLine("    ul { margin: 0; padding-left: 20px; color: #cbd5e1; font-size: 14px; line-height: 1.6; }");
+        sb.AppendLine("    li { margin-bottom: 8px; }");
+        sb.AppendLine("    .footer { text-align: center; margin-top: 36px; padding-top: 20px; border-top: 1px solid #1f2937; font-size: 12px; color: #64748b; }");
+        sb.AppendLine("  </style>");
         sb.AppendLine("</head>");
         sb.AppendLine("<body>");
         sb.AppendLine("<div class=\"container\">");
         sb.AppendLine("  <div class=\"header\">");
-        sb.AppendLine("    <h1>Informe Psicométrico y Neurocognitivo</h1>");
-        sb.AppendLine("    <p class=\"subtitle\">Escala de Desensibilización a la Violencia Gráfica Digital (ED-CVG 12-29)</p>");
+        sb.AppendLine("    <h1>Dictamen de Indicadores Autoinformados</h1>");
+        sb.AppendLine("    <p class=\"subtitle\">ED-CVG (12–29 años) — Escala de Exposición y Habituación a la Violencia Gráfica Digital</p>");
         sb.AppendLine("  </div>");
-
+        sb.AppendLine();
+        sb.AppendLine("  <div class=\"disclaimer-box\">");
+        sb.AppendLine($"    <strong>⚖️ Aviso Metodológico y Ético:</strong> {result.EthicalDisclaimer}");
+        sb.AppendLine("  </div>");
+        sb.AppendLine();
         sb.AppendLine("  <div class=\"meta-grid\">");
         sb.AppendLine($"    <div class=\"meta-item\"><strong>Participante</strong><span>{result.ParticipantAlias}</span></div>");
         sb.AppendLine($"    <div class=\"meta-item\"><strong>Edad y Cohorte</strong><span>{result.Age} años ({AgeHelper.GetCohortDescription(result.Cohort)})</span></div>");
-        sb.AppendLine($"    <div class=\"meta-item\"><strong>Fecha</strong><span>{result.EvaluatedAt:dd/MM/yyyy HH:mm}</span></div>");
+        sb.AppendLine($"    <div class=\"meta-item\"><strong>Fecha de Registro</strong><span>{result.EvaluatedAt:dd/MM/yyyy HH:mm}</span></div>");
         sb.AppendLine("  </div>");
-
+        sb.AppendLine();
         sb.AppendLine("  <div class=\"score-hero\">");
         sb.AppendLine($"    <span class=\"badge\" style=\"background-color:{result.Diagnostic.ColorHex}; color:#0f172a;\">{result.Diagnostic.BadgeText}</span>");
-        sb.AppendLine($"    <div class=\"score-num\" style=\"color:{result.Diagnostic.ColorHex};\">{result.GlobalIndex:F1}%</div>");
+        sb.AppendLine($"    <div class=\"score-num\" style=\"color:{result.Diagnostic.ColorHex};\">{result.GlobalIndex:F1} <span style=\"font-size:24px; color:#64748b;\">/ 100</span></div>");
         sb.AppendLine($"    <div style=\"font-size:18px; font-weight:600; color:#f1f5f9;\">{result.Diagnostic.Title}</div>");
         sb.AppendLine($"    <p style=\"color:#94a3b8; max-width:640px; margin:10px auto 0; font-size:14px; line-height:1.5;\">{result.Diagnostic.Summary}</p>");
         sb.AppendLine("  </div>");
-
-        sb.AppendLine("  <h2 class=\"section-title\">Desglose de Subescalas Clínicas</h2>");
+        sb.AppendLine();
+        sb.AppendLine("  <h2 class=\"section-title\">Puntuación de Perfil (4 Subescalas Psicométricas)</h2>");
         sb.AppendLine("  <div class=\"subscales\">");
 
-        void AppendCard(string title, double val, string color)
+        void AppendCard(string title, double val, string color, string desc)
         {
             sb.AppendLine("    <div class=\"subscale-card\">");
-            sb.AppendLine($"      <div style=\"display:flex; justify-content:space-between; font-weight:600; font-size:14px; color:#e2e8f0;\"><span>{title}</span><span style=\"color:{color};\">{val:F1}%</span></div>");
+            sb.AppendLine($"      <div style=\"display:flex; justify-content:space-between; font-weight:600; font-size:13px; color:#e2e8f0;\"><span>{title}</span><span style=\"color:{color}; font-weight:700;\">{val:F1}%</span></div>");
             sb.AppendLine("      <div class=\"progress-bar-bg\">");
             sb.AppendLine($"        <div class=\"progress-bar-fill\" style=\"width:{val:F1}%; background-color:{color};\"></div>");
             sb.AppendLine("      </div>");
+            sb.AppendLine($"      <div style=\"font-size:11px; color:#94a3b8; margin-top:6px;\">{desc}</div>");
             sb.AppendLine("    </div>");
         }
 
-        AppendCard("Exposición Algorítmica en Redes (Reels)", result.PassiveExposureIndex, "#3B82F6");
-        AppendCard("Búsqueda Activa y Curiosidad Mórbida", result.ActiveSeekingIndex, "#EC4899");
-        AppendCard("Embotamiento Emocional y Corporal", result.PhysiologicalNumbingIndex, "#8B5CF6");
-        AppendCard("Normalización Cognitiva y Falta de Empatía", result.CognitiveNormalizationIndex, "#F59E0B");
+        AppendCard("Exposición Algorítmica Incidental (EA-I)", result.PassiveExposureIndex, "#38BDF8", "Frecuencia de recepción en feeds sin búsqueda deliberada.");
+        AppendCard("Búsqueda Activa y Curiosidad (BA-C)", result.ActiveSeekingIndex, "#F472B6", "Iniciativa voluntaria de consulta de material gráfico.");
+        AppendCard("Reactividad Emocional Autopercibida (RE-A)", result.PhysiologicalNumbingIndex, "#A78BFA", "Atenuación percibida de asco, sobresalto o aceleración.");
+        AppendCard("Normalización Cognitiva (NC-D)", result.CognitiveNormalizationIndex, "#34D399", "Percepción de la violencia digital como trivial o justificable.");
 
         sb.AppendLine("  </div>");
-
-        sb.AppendLine($"  <div class=\"box-notice\"><strong>⚖️ Análisis Diferencial de Consumo:</strong> {result.ConsumptionDominanceAnalysis}</div>");
-
-        // Section: Constructos Cognitivos Aplicados
-        sb.AppendLine("  <h2 class=\"section-title\">Constructos Psicológicos y Cognitivos Operacionalizados</h2>");
-        sb.AppendLine($"  <p style=\"color:#cbd5e1; line-height:1.6; margin-bottom:16px;\"><strong>Fundamentación Neurocognitiva:</strong> {result.Diagnostic.NeurocognitiveProfile}</p>");
+        sb.AppendLine();
+        sb.AppendLine($"  <div class=\"box-notice\"><strong>⚖️ Índice de Balance de Consumo (IBC: {(result.ConsumptionBalanceIndex > 0 ? "+" : "")}{result.ConsumptionBalanceIndex:F1}%):</strong> {result.ConsumptionDominanceAnalysis}</div>");
+        sb.AppendLine();
+        sb.AppendLine("  <h2 class=\"section-title\">Marcos Teóricos y Constructos Operacionalizados</h2>");
+        sb.AppendLine($"  <p style=\"color:#cbd5e1; line-height:1.6; margin-bottom:16px;\"><strong>Referencia Neurocognitiva:</strong> {result.Diagnostic.NeurocognitiveProfile}</p>");
 
         foreach (var c in result.Diagnostic.AppliedCognitiveConstructs)
         {
@@ -178,11 +185,11 @@ public class ReportExportService
             sb.AppendLine($"      <span class=\"construct-framework\">{c.TheoreticalFramework}</span>");
             sb.AppendLine("    </div>");
             sb.AppendLine($"    <div class=\"construct-desc\"><strong>Definición Operacional:</strong> {c.OperationalDefinition}</div>");
-            sb.AppendLine($"    <div class=\"construct-manifestation\"><strong>Manifestación en este participante:</strong> {c.ManifestationInProfile}</div>");
+            sb.AppendLine($"    <div class=\"construct-manifestation\"><strong>Manifestación en el perfil:</strong> {c.ManifestationInProfile}</div>");
             sb.AppendLine("  </div>");
         }
 
-        sb.AppendLine("  <h2 class=\"section-title\">Intervenciones Cognitivo-Conductuales y de Salud Digital (TCC)</h2>");
+        sb.AppendLine("  <h2 class=\"section-title\">Pautas de Higiene Digital y Prevención</h2>");
         sb.AppendLine("  <ul>");
         foreach (var inter in result.Diagnostic.AppliedInterventions)
         {
@@ -190,26 +197,18 @@ public class ReportExportService
         }
         sb.AppendLine("  </ul>");
 
-        sb.AppendLine("  <h2 class=\"section-title\">Recomendaciones de Higiene Neurocognitiva</h2>");
-        sb.AppendLine("  <ul>");
-        foreach (var rec in result.Diagnostic.PsychoeducationalRecommendations)
-        {
-            sb.AppendLine($"    <li>{rec}</li>");
-        }
-        sb.AppendLine("  </ul>");
-
-        sb.AppendLine("  <h2 class=\"section-title\">Registro Detallado de Respuestas (20 Reactivos)</h2>");
+        sb.AppendLine("  <h2 class=\"section-title\">Auditoría de Respuestas Reactivo por Reactivo (20 Ítems)</h2>");
         sb.AppendLine("  <table>");
-        sb.AppendLine("    <thead><tr><th>#</th><th>Dimensión</th><th>Reactivo / Pregunta</th><th>Puntaje</th></tr></thead>");
+        sb.AppendLine("    <thead><tr><th>#</th><th>Subescala</th><th>Reactivo Evaluado</th><th>Respuesta Autoinformada</th></tr></thead>");
         sb.AppendLine("    <tbody>");
         foreach (var ans in result.Answers)
         {
-            sb.AppendLine($"      <tr><td>{ans.QuestionId}</td><td><span style=\"font-size:11px; padding:2px 8px; border-radius:4px; background:#334155;\">{ans.Dimension.GetShortCode()}</span></td><td>{ans.QuestionText}</td><td><strong>{ans.ScoreLabel}</strong></td></tr>");
+            sb.AppendLine($"      <tr><td>{ans.QuestionId}</td><td><span style=\"font-size:11px; padding:2px 8px; border-radius:4px; background:#334155; color:#38bdf8;\">{ans.Dimension.GetShortCode()}</span></td><td>{ans.QuestionText}</td><td><strong>{ans.ScoreLabel}</strong></td></tr>");
         }
         sb.AppendLine("    </tbody>");
         sb.AppendLine("  </table>");
 
-        sb.AppendLine("  <div class=\"footer\">Reporte generado por el software ED-CVG v1.0. Batería psicométrica y neurocognitiva para medios digitales.</div>");
+        sb.AppendLine("  <div class=\"footer\">Documento generado con base en la escala ED-CVG. Autoevaluación confidencial y psicoeducativa.</div>");
         sb.AppendLine("</div>");
         sb.AppendLine("</body>");
         sb.AppendLine("</html>");

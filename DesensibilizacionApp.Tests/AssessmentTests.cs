@@ -131,7 +131,7 @@ public class AssessmentTests
 
         Assert.Equal(100.0, result.PassiveExposureIndex);
         Assert.Equal(0.0, result.ActiveSeekingIndex);
-        Assert.Contains("Algorítmica Pasiva", result.ConsumptionDominanceAnalysis);
+        Assert.Contains("Exposición Incidental", result.ConsumptionDominanceAnalysis);
     }
 
     [Fact]
