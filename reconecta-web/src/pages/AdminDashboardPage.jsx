@@ -15,6 +15,7 @@ import {
 import { BLOCKS, QUESTIONS_42 } from '../data/questionBank';
 import DimensionExplanationCard from '../components/DimensionExplanationCard';
 import StudentVisualCharts from '../components/StudentVisualCharts';
+import { generateStudentConclusion } from '../data/conclusionGenerator';
 
 export default function AdminDashboardPage({ onRequireLogin }) {
   const [evaluations, setEvaluations] = useState([]);
@@ -1177,6 +1178,86 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                 />
               </div>
 
+              {/* CONCLUSIÓN INDIVIDUAL Y DIAGNÓSTICO PERSONALIZADO DEL ALUMNO */}
+              {(() => {
+                const conc = generateStudentConclusion({
+                  participant: selectedStudent.participant || {},
+                  desScore: selectedStudent.central_score?.index ?? selectedStudent.idx_central_des ?? 0,
+                  expScore: selectedStudent.blocks?.EXP?.index ?? selectedStudent.idx_exp ?? 0,
+                  norScore: selectedStudent.blocks?.NOR?.index ?? selectedStudent.idx_nor ?? 0,
+                  agrScore: selectedStudent.blocks?.AGR?.index ?? selectedStudent.idx_agr ?? 0,
+                  relScore: selectedStudent.blocks?.REL?.index ?? selectedStudent.idx_rel ?? 0,
+                  exposureComp: selectedStudent.exposure_comparison || null,
+                  answers: selectedStudent.answers || []
+                });
+
+                return (
+                  <div style={{
+                    background: '#FFFFFF',
+                    border: '2px solid #DDD6FE',
+                    borderRadius: '20px',
+                    padding: '26px 30px',
+                    boxShadow: '0 4px 20px rgba(124, 58, 237, 0.05)'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '10px', marginBottom: '14px' }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                          <span style={{
+                            display: 'inline-block',
+                            padding: '3px 10px',
+                            borderRadius: '9999px',
+                            background: conc.profileBadgeBg,
+                            color: conc.profileBadgeColor,
+                            fontSize: '0.74rem',
+                            fontWeight: 800,
+                            textTransform: 'uppercase'
+                          }}>
+                            {conc.profileCategory}
+                          </span>
+                          <span style={{ fontSize: '0.74rem', color: '#6B7280', fontWeight: 600 }}>
+                            • Diagnóstico Algorítmico Personalizado
+                          </span>
+                        </div>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 4px' }}>
+                          Conclusión Individual: {conc.profileTitle}
+                        </h3>
+                        <p style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.55, margin: 0 }}>
+                          {conc.summary}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Hallazgos Cruzados */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '16px', marginBottom: '18px' }}>
+                      {conc.findings.map((f, i) => (
+                        <div key={i} style={{ background: '#FAF8FE', border: '1px solid #EDE4F8', borderRadius: '12px', padding: '14px 16px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px', flexWrap: 'wrap', gap: '6px' }}>
+                            <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1E1B4B' }}>{f.topic}</span>
+                            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: f.color, background: '#FFFFFF', padding: '2px 8px', borderRadius: '6px', border: '1px solid #EDE4F8' }}>{f.status}</span>
+                          </div>
+                          <p style={{ color: '#4B5563', fontSize: '0.85rem', lineHeight: 1.5, margin: 0 }}>{f.text}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Conclusión para el Equipo de Investigación */}
+                    <div style={{
+                      background: 'linear-gradient(135deg, #FAF5FF 0%, #F5F3FF 100%)',
+                      border: '1px solid #C4B5FD',
+                      borderRadius: '14px',
+                      padding: '16px 18px'
+                    }}>
+                      <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#5B21B6', marginBottom: '4px' }}>
+                        Aporte de este Alumno a la Pregunta de Investigación:
+                      </div>
+                      <p style={{ color: '#4B5563', fontSize: '0.84rem', lineHeight: 1.5, margin: 0 }}>
+                        {conc.researcherTakeaway}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })()}
+
               {/* DETALLE Y AUDITORÍA REACTIVO POR REACTIVO (42 PREGUNTAS) */}
               <div style={{
                 background: '#FFFFFF',
@@ -1438,31 +1519,76 @@ export default function AdminDashboardPage({ onRequireLogin }) {
             </div>
           </div>
 
-          {/* MATRIZ DE CORRELACIÓN DE SPEARMAN */}
+          {/* MATRIZ DE CORRELACIÓN DE SPEARMAN Y GUÍA EXPLICATIVA */}
           {stats && stats.n >= 2 && (
             <div style={{
               background: '#FFFFFF',
               border: '1px solid #EDE4F8',
               borderRadius: '20px',
-              padding: '26px 30px',
+              padding: '28px 32px',
               marginBottom: '26px',
               boxShadow: '0 4px 20px rgba(124, 58, 237, 0.05)'
             }}>
-              <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 4px' }}>
-                Matriz de Correlación de Spearman (ρ) entre Bloques
-              </h2>
-              <p style={{ color: '#6B7280', fontSize: '0.84rem', margin: '0 0 16px' }}>
-                Asociación estadística no paramétrica entre exposición gráfica, desensibilización, normalización, agresividad y relaciones.
-              </p>
+              <div style={{ marginBottom: '18px' }}>
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '4px 12px',
+                  background: '#F3E8FF',
+                  borderRadius: '9999px',
+                  color: '#7C3AED',
+                  fontSize: '0.74rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  marginBottom: '8px'
+                }}>
+                  <span>Estadística Inferencial • Spearman (ρ)</span>
+                </div>
+                <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 6px' }}>
+                  Matriz de Correlación entre Dimensiones
+                </h2>
+                <p style={{ color: '#4B5563', fontSize: '0.9rem', margin: 0, lineHeight: 1.55 }}>
+                  Compara los 5 bloques evaluados de forma cruzada para determinar qué variables se mueven juntas. Permite responder con rigor estadístico si ver más violencia en redes se asocia con mayor frialdad o pérdida de sensibilidad en los adolescentes.
+                </p>
+              </div>
 
-              <div style={{ overflowX: 'auto', border: '1px solid #EDE4F8', borderRadius: '12px' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem', textAlign: 'center' }}>
+              {/* GUÍA VISUAL: CÓMO SE LEE LA MATRIZ */}
+              <div style={{
+                background: '#FAF8FE',
+                border: '1px solid #EDE4F8',
+                borderRadius: '14px',
+                padding: '16px 20px',
+                marginBottom: '20px'
+              }}>
+                <div style={{ fontSize: '0.86rem', fontWeight: 800, color: '#1E1B4B', marginBottom: '8px' }}>
+                  ¿Cómo interpretar los valores del coeficiente de Spearman (de -1.00 a +1.00)?
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', fontSize: '0.8rem' }}>
+                  <div style={{ background: '#EDE9FE', border: '1px solid #DDD6FE', borderRadius: '8px', padding: '8px 12px', color: '#5B21B6' }}>
+                    <strong>+0.50 a +1.00 (Fuerte Positiva):</strong> A mayor puntuación en una variable, mayor es la otra (van de la mano).
+                  </div>
+                  <div style={{ background: '#F5F3FF', border: '1px solid #EDE4F8', borderRadius: '8px', padding: '8px 12px', color: '#7C3AED' }}>
+                    <strong>+0.25 a +0.49 (Moderada Positiva):</strong> Existe una tendencia observable de incremento conjunto.
+                  </div>
+                  <div style={{ background: '#FFFFFF', border: '1px solid #EDE4F8', borderRadius: '8px', padding: '8px 12px', color: '#6B7280' }}>
+                    <strong>-0.24 a +0.24 (Débil / Nula):</strong> No existe asociación lineal clara entre ambas variables.
+                  </div>
+                  <div style={{ background: '#FEE2E2', border: '1px solid #FECACA', borderRadius: '8px', padding: '8px 12px', color: '#B91C1C' }}>
+                    <strong>-0.25 a -1.00 (Inversa / Negativa):</strong> Son opuestas; cuando una variable aumenta, la otra disminuye.
+                  </div>
+                </div>
+              </div>
+
+              {/* TABLA DE LA MATRIZ */}
+              <div style={{ overflowX: 'auto', border: '1px solid #EDE4F8', borderRadius: '12px', marginBottom: '22px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.84rem', textAlign: 'center' }}>
                   <thead>
                     <tr style={{ background: '#FAF8FE', color: '#1E1B4B' }}>
-                      <th style={{ padding: '10px 14px', textAlign: 'left' }}>Bloque</th>
+                      <th style={{ padding: '12px 14px', textAlign: 'left' }}>Dimensión Evaluada</th>
                       {blockKeys.map(k => (
-                        <th key={k} style={{ padding: '10px 8px', width: '80px' }}>
-                          {k}
+                        <th key={k} style={{ padding: '12px 8px', width: '90px', fontWeight: 800 }}>
+                          [{k}]
                         </th>
                       ))}
                     </tr>
@@ -1470,7 +1596,7 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                   <tbody>
                     {blockKeys.map(rKey => (
                       <tr key={rKey} style={{ borderBottom: '1px solid #EDE4F8' }}>
-                        <td style={{ padding: '10px 14px', textAlign: 'left', fontWeight: 700, color: '#1E1B4B' }}>
+                        <td style={{ padding: '12px 14px', textAlign: 'left', fontWeight: 700, color: '#1E1B4B' }}>
                           [{rKey}] {blockStats[rKey]?.name}
                         </td>
                         {blockKeys.map(cKey => {
@@ -1493,7 +1619,7 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                           }
 
                           return (
-                            <td key={cKey} style={{ padding: '10px 6px', background: bg, color: color, fontWeight: Math.abs(val) > 0.4 ? 800 : 600 }}>
+                            <td key={cKey} style={{ padding: '12px 8px', background: bg, color: color, fontWeight: Math.abs(val) > 0.4 ? 800 : 600 }}>
                               {val.toFixed(2)}
                             </td>
                           );
@@ -1503,6 +1629,50 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                   </tbody>
                 </table>
               </div>
+
+              {/* PANEL DE HALLAZGOS AUTOMÁTICOS DE LA MUESTRA ACTUAL */}
+              {(() => {
+                const rhoExpDes = correlations['EXP']?.['DES'] ?? 0;
+                const rhoDesNor = correlations['DES']?.['NOR'] ?? 0;
+                const rhoDesRel = correlations['DES']?.['REL'] ?? 0;
+
+                return (
+                  <div style={{
+                    background: 'linear-gradient(135deg, #FAF5FF 0%, #F5F3FF 100%)',
+                    border: '1px solid #DDD6FE',
+                    borderRadius: '16px',
+                    padding: '20px 22px'
+                  }}>
+                    <h3 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#5B21B6', margin: '0 0 12px' }}>
+                      Lectura Automática de Hallazgos para el Reporte de Investigación
+                    </h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.86rem', color: '#4B5563', lineHeight: 1.55 }}>
+                      <div style={{ background: '#FFFFFF', padding: '12px 14px', borderRadius: '10px', border: '1px solid #EDE4F8' }}>
+                        <strong style={{ color: '#1E1B4B' }}>1. Hipótesis Central [Exposición ↔ Desensibilización] (ρ = {rhoExpDes.toFixed(2)}):</strong>{' '}
+                        {rhoExpDes >= 0.3 
+                          ? 'Existe una correlación positiva perceptible: los participantes que reportan mayor frecuencia de violencia visual en redes tienden a manifestar mayor pérdida de sensibilidad y atenuación de respuestas de asco o sobresalto.' 
+                          : rhoExpDes <= -0.3
+                          ? 'Se observa una relación inversa en la muestra actual: mayor exposición coincide con menor tolerancia, lo que puede reflejar rechazo o sensibilización acumulada.'
+                          : 'Asociación débil en la muestra analizada; el tamaño muestral sugiere que la respuesta de desensibilización varía heterogéneamente entre participantes.'}
+                      </div>
+
+                      <div style={{ background: '#FFFFFF', padding: '12px 14px', borderRadius: '10px', border: '1px solid #EDE4F8' }}>
+                        <strong style={{ color: '#1E1B4B' }}>2. Normalización y Banalización [Desensibilización ↔ Memes/Humor] (ρ = {rhoDesNor.toFixed(2)}):</strong>{' '}
+                        {rhoDesNor >= 0.3
+                          ? 'Correlación positiva moderada o fuerte: el acostumbramiento físico ante imágenes violentas se acompaña del uso de humor negro y justificación cognitiva del daño.'
+                          : 'Los niveles de humor negro y memes operan con relativa independencia frente al acostumbramiento corporal en los datos registrados.'}
+                      </div>
+
+                      <div style={{ background: '#FFFFFF', padding: '12px 14px', borderRadius: '10px', border: '1px solid #EDE4F8' }}>
+                        <strong style={{ color: '#1E1B4B' }}>3. Impacto en Relaciones [Desensibilización ↔ Empatía/Convivencia] (ρ = {rhoDesRel.toFixed(2)}):</strong>{' '}
+                        {rhoDesRel <= -0.25
+                          ? 'Correlación inversa detectada: a mayor nivel de desensibilización hacia la violencia gráfica, se observan puntuaciones más reducidas en empatía prosocial y mayor fricción de convivencia.'
+                          : 'No se evidencia una reducción estadísticamente concluyente de la empatía ligada únicamente a la desensibilización en este corte muestral.'}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           )}
 

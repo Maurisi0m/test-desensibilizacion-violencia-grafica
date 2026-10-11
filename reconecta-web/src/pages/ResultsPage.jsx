@@ -2,6 +2,7 @@ import React from 'react';
 import { IconDownload, IconArrowLeft, IconFileText, IconCheckCircle } from '../components/Icons';
 import DimensionExplanationCard from '../components/DimensionExplanationCard';
 import StudentVisualCharts from '../components/StudentVisualCharts';
+import { generateStudentConclusion } from '../data/conclusionGenerator';
 
 export default function ResultsPage({ result, onBackToTest }) {
   if (!result || !result.blocks) {
@@ -209,32 +210,115 @@ export default function ResultsPage({ result, onBackToTest }) {
           />
         </div>
 
-        {/* PERFIL EXPLORATORIO Y NARRATIVA */}
-        <div style={{
-          background: '#FAF8FE',
-          border: '1px solid #EDE4F8',
-          borderRadius: '16px',
-          padding: '22px',
-          marginBottom: '30px'
-        }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 6px' }}>
-            Perfil Interpretativo Observado: {profile.name}
-          </h3>
-          <p style={{ color: '#4B5563', fontSize: '0.88rem', lineHeight: 1.55, margin: '0 0 14px' }}>
-            {profile.description}
-          </p>
-          <div style={{
-            background: '#FFFFFF',
-            border: '1px solid #EDE4F8',
-            borderRadius: '10px',
-            padding: '14px',
-            color: '#6B7280',
-            fontSize: '0.84rem',
-            lineHeight: 1.5
-          }}>
-            <strong>Asociación observada:</strong> {result.descriptive_association || 'Sin datos adicionales.'}
-          </div>
-        </div>
+        {/* CONCLUSIÓN INDIVIDUAL Y DIAGNÓSTICO PERSONALIZADO */}
+        {(() => {
+          const conc = generateStudentConclusion({
+            participant: p,
+            desScore: c.index ?? b.DES?.index ?? 0,
+            expScore: b.EXP?.index ?? 0,
+            norScore: b.NOR?.index ?? 0,
+            agrScore: b.AGR?.index ?? 0,
+            relScore: b.REL?.index ?? 0,
+            exposureComp: expComp,
+            answers: result.answers || []
+          });
+
+          return (
+            <div style={{
+              background: '#FFFFFF',
+              border: '2px solid #DDD6FE',
+              borderRadius: '20px',
+              padding: '26px 28px',
+              marginBottom: '30px',
+              boxShadow: '0 8px 30px rgba(124, 58, 237, 0.08)'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '10px', marginBottom: '14px' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                    <span style={{
+                      display: 'inline-block',
+                      padding: '3px 10px',
+                      borderRadius: '9999px',
+                      background: conc.profileBadgeBg,
+                      color: conc.profileBadgeColor,
+                      fontSize: '0.74rem',
+                      fontWeight: 800,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.04em'
+                    }}>
+                      {conc.profileCategory}
+                    </span>
+                    <span style={{ fontSize: '0.74rem', color: '#6B7280', fontWeight: 600 }}>
+                      • Generado dinámicamente con tus 5 porcentajes
+                    </span>
+                  </div>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 4px' }}>
+                    Conclusión Individual: {conc.profileTitle}
+                  </h3>
+                  <p style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.55, margin: 0 }}>
+                    {conc.summary}
+                  </p>
+                </div>
+              </div>
+
+              {/* CUADRÍCULA DE 3 HALLAZGOS CRUZADOS */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '18px', marginBottom: '20px' }}>
+                {conc.findings.map((f, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      background: '#FAF8FE',
+                      border: '1px solid #EDE4F8',
+                      borderRadius: '12px',
+                      padding: '14px 16px'
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px', flexWrap: 'wrap', gap: '6px' }}>
+                      <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1E1B4B' }}>
+                        {f.topic}
+                      </span>
+                      <span style={{
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        color: f.color,
+                        background: '#FFFFFF',
+                        padding: '2px 8px',
+                        borderRadius: '6px',
+                        border: '1px solid #EDE4F8'
+                      }}>
+                        {f.status}
+                      </span>
+                    </div>
+                    <p style={{ color: '#4B5563', fontSize: '0.85rem', lineHeight: 1.5, margin: 0 }}>
+                      {f.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* RECOMENDACIÓN DE BIENESTAR DIGITAL PERSONALIZADA */}
+              <div style={{
+                background: 'linear-gradient(135deg, #FAF5FF 0%, #F5F3FF 100%)',
+                border: '1px solid #C4B5FD',
+                borderRadius: '14px',
+                padding: '16px 18px',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '12px'
+              }}>
+                <IconCheckCircle size={20} color="#7C3AED" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <div>
+                  <strong style={{ display: 'block', fontSize: '0.86rem', color: '#5B21B6', marginBottom: '4px' }}>
+                    Recomendación Personalizada para tu Salud Digital
+                  </strong>
+                  <p style={{ color: '#4B5563', fontSize: '0.84rem', lineHeight: 1.5, margin: 0 }}>
+                    {conc.studentGuidance}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* ACCIONES INFERIORES */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '14px' }}>
