@@ -16,42 +16,53 @@ export const BLOCKS = [
   {
     id: 1,
     code: 'EXP',
-    title: 'Bloque 1. Exposición a violencia gráfica',
+    title: 'Bloque 1: ¿Con qué frecuencia te aparecen estos contenidos?',
+    shortName: 'Frecuencia de videos',
+    description: 'Preguntas sobre qué tan seguido te salen publicaciones o videos con sangre o accidentes en redes sociales, y si alguna vez los buscas por curiosidad.',
     itemCount: 10,
-    purpose: 'Identificar cuánto y con qué frecuencia el estudiante se expone de forma incidental o intencional a imágenes y videos explícitos de sangre, heridas o muerte.',
-    guidance: 'Frecuencia de aparición no solicitada y búsqueda voluntaria de contenido gráfico en redes sociales y mensajería.'
+    purpose: 'Conocer con qué frecuencia el estudiante ve publicaciones con accidentes, heridas o violencia en internet.',
+    guidance: 'Frecuencia con la que te aparecen estos videos o fotos en tus redes.'
   },
   {
     id: 2,
     code: 'DES',
-    title: 'Bloque 2. Desensibilización y habituación a la violencia gráfica (Variable Central)',
+    title: 'Bloque 2: ¿Cómo reaccionas al ver este tipo de videos?',
+    shortName: 'Reacción emocional y física',
+    description: 'Preguntas sobre cómo reacciona tu cuerpo y tus emociones al ver videos fuertes: si te da impresión, tristeza o si sientes que ya te acostumbraste.',
+    isCentral: true,
     itemCount: 12,
-    purpose: 'Calcular la puntuación global principal de desensibilización: atenuación de náuseas, taquicardia o aversión somática, acostumbramiento y diversión al atestiguar violencia física.',
-    guidance: 'Reacción afectiva y corporal autopercibida ante material gráfico violento y habituación por exposición repetida (EDV adaptada).'
+    purpose: 'Conocer las reacciones físicas y emocionales inmediatas ante material gráfico.',
+    guidance: 'Tu sensación física o si sientes que ya no te impacta como antes.'
   },
   {
     id: 3,
     code: 'NOR',
-    title: 'Bloque 3. Normalización de la violencia gráfica',
+    title: 'Bloque 3: ¿Qué tan normal te parece ver esto en internet?',
+    shortName: 'Normalización y humor',
+    description: 'Preguntas sobre si consideras algo común ver tragedias en redes sociales, o si es habitual compartir memes y stickers sobre estos temas.',
     itemCount: 6,
-    purpose: 'Examinar si el participante considera la violencia gráfica como algo habitual, normal, justificado o motivo de diversión mediante memes y humor negro.',
-    guidance: 'Creencias sobre la crudeza visual en internet, uso de stickers/memes de tragedias reales y justificación de daños.'
+    purpose: 'Saber si este contenido se percibe como algo común o habitual.',
+    guidance: 'Tu opinión sobre si ver estos contenidos en internet es algo cotidiano.'
   },
   {
     id: 4,
     code: 'AGR',
-    title: 'Bloque 4. Agresividad (Variable Secundaria)',
+    title: 'Bloque 4: Reacciones cotidianas y manejo de desacuerdos',
+    shortName: 'Reacciones y enojo',
+    description: 'Preguntas sobre cómo reaccionas cuando estás molesto o tienes un desacuerdo con alguien en la vida diaria.',
     itemCount: 8,
-    purpose: 'Explorar la relación entre la desensibilización gráfica y la agresividad autoinformada (física, verbal, ira y hostilidad del BPAQ adaptado).',
-    guidance: 'Respuestas de confrontación física, verbal, impulsividad de enojo y suspicacia interpersonal.'
+    purpose: 'Conocer cómo se maneja el enojo y las diferencias con los demás.',
+    guidance: 'Formas cotidianas de expresar desacuerdos o molestia.'
   },
   {
     id: 5,
     code: 'REL',
-    title: 'Bloque 5. Relaciones interpersonales (Variable Secundaria)',
+    title: 'Bloque 5: Convivencia y empatía con los demás',
+    shortName: 'Empatía y convivencia',
+    description: 'Preguntas sobre cómo te sientes cuando ves a otra persona pasándola mal o si te nace apoyarla en la escuela o con amigos.',
     itemCount: 6,
-    purpose: 'Explorar posibles asociaciones de la desensibilización con la empatía, disposición a ayudar y dificultades de convivencia escolar.',
-    guidance: 'Resonancia afectiva ante el dolor ajeno, ayuda prosocial y fricciones de convivencia de pares.'
+    purpose: 'Conocer la cercanía, empatía y convivencia con compañeros.',
+    guidance: 'Solidaridad y apoyo hacia los demás.'
   }
 ];
 

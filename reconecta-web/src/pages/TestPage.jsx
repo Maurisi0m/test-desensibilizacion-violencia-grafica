@@ -105,66 +105,34 @@ export default function TestPage({ onComplete }) {
     }
   };
 
-  // VISTA 1: BIENVENIDA Y CONSENTIMIENTO (ESTILO MORADITO CLARO CON BLANCO)
+  // VISTA 1: BIENVENIDA, DATOS DEL USUARIO Y CONSENTIMIENTO
   if (step === 'welcome') {
     return (
-      <div className="container" style={{ maxWidth: '820px', padding: '36px 20px 80px' }}>
-        <div style={{
-          background: '#FFFFFF',
-          border: '1px solid #EDE4F8',
-          borderRadius: '24px',
-          padding: '40px',
-          boxShadow: '0 12px 35px -8px rgba(124, 58, 237, 0.10)'
-        }}>
+      <div className="test-wrapper">
+        <div className="test-card-panel">
           {/* Cabecera con Logo de La Salle en la Esquina Superior Derecha */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px', gap: '20px' }}>
-            <div>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '6px 14px',
-                background: '#F3E8FF',
-                border: '1px solid #DDD6FE',
-                borderRadius: '9999px',
-                color: '#7C3AED',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                marginBottom: '14px'
-              }}>
-                <span>Exposición al Contenido Violento Gráfico en las Redes Sociales</span>
+          <div className="test-header-grid">
+            <div style={{ flex: '1 1 auto' }}>
+              <div className="test-badge-chip">
+                <span>Investigación Escolar • Redes Sociales</span>
               </div>
-              <h1 style={{ fontSize: '1.9rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 10px', lineHeight: 1.25 }}>
-                Desensibilización a Contenido Gráfico Violento
+              <h1 className="test-title-main">
+                Exposición al Contenido Violento Gráfico en las Redes Sociales
               </h1>
-              <p style={{ color: '#4B5563', fontSize: '0.96rem', lineHeight: 1.6, margin: 0 }}>
-                Evaluación cuantitativa sobre la frecuencia de exposición incidental y búsqueda activa de publicaciones con violencia gráfica en medios digitales, y la respuesta afectiva observada en adolescentes.
+              <p className="test-subtitle">
+                Estudio sobre la frecuencia con la que encontramos accidentes, heridas o videos fuertes en redes sociales y cómo reaccionamos ante ellos.
               </p>
             </div>
 
             <img 
               src="/lasalle-logo.png" 
               alt="Logo La Salle" 
-              style={{
-                height: '64px',
-                width: 'auto',
-                objectFit: 'contain',
-                flexShrink: 0
-              }}
+              className="test-logo-img"
             />
           </div>
 
           {/* Ficha de Autores e Investigación */}
-          <div style={{
-            background: 'linear-gradient(135deg, #FAF5FF 0%, #F5F3FF 100%)',
-            border: '1px solid #DDD6FE',
-            borderRadius: '16px',
-            padding: '16px 20px',
-            marginBottom: '24px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '6px'
-          }}>
+          <div className="test-authors-card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
               <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Equipo de Investigación • Metodología de la Investigación
@@ -181,60 +149,40 @@ export default function TestPage({ onComplete }) {
             </div>
           </div>
 
-          {/* Definición Operacional y Marco Ético */}
-          <div style={{
-            background: '#FAF8FE',
-            border: '1px solid #EDE4F8',
-            borderRadius: '16px',
-            padding: '22px',
-            marginBottom: '26px'
-          }}>
-            <h2 style={{ fontSize: '1.02rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span>Definición Operacional y Compromiso Ético</span>
-            </h2>
-            <div style={{ color: '#4B5563', fontSize: '0.9rem', lineHeight: 1.6 }}>
-              <p style={{ margin: '0 0 10px 0' }}>
-                <strong style={{ color: '#1E1B4B' }}>Contenido gráfico violento:</strong> Se refiere operacionalmente a publicaciones, fotografías o videos reales que muestran <em>sangre visible, heridas físicas severas, fracturas expuestas, mutilaciones o muertes violentas</em>. Se distingue claramente de discusiones verbales, desacuerdos de opinión o insultos sin representación visual de daño físico.
+          {/* SECCIÓN PRINCIPAL ARRIBA: DATOS DEL PARTICIPANTE Y BOTÓN DE INICIO */}
+          <div className="test-form-box">
+            <div style={{ borderBottom: '1px solid #EDE4F8', paddingBottom: '14px', marginBottom: '16px' }}>
+              <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Paso 1 de 2 • Cuestionario Anónimo
+              </span>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1E1B4B', margin: '4px 0 6px' }}>
+                Datos para Iniciar el Test
+              </h2>
+              <p style={{ color: '#6B7280', fontSize: '0.88rem', margin: 0, lineHeight: 1.5 }}>
+                Son 42 preguntas sencillas y toma entre 4 y 6 minutos. Por favor completa estos datos antes de comenzar (no te pediremos tu nombre real):
               </p>
-              <ul style={{ margin: 0, paddingLeft: '20px' }}>
-                <li><strong style={{ color: '#1E1B4B' }}>Anónimo y confidencial:</strong> No se solicitan nombres reales ni información privada de contacto.</li>
-                <li><strong style={{ color: '#1E1B4B' }}>Carácter no clínico:</strong> Este instrumento no emite diagnósticos médicos ni psicológicos; describe indicadores exploratorios autoinformados con fines académicos.</li>
-                <li><strong style={{ color: '#1E1B4B' }}>Extensión:</strong> Contiene 42 reactivos estructurados en 5 bloques temáticos (tiempo estimado: 5 a 7 minutos).</li>
-              </ul>
             </div>
-          </div>
 
-          {/* Datos sociodemográficos */}
-          <div style={{ marginBottom: '26px' }}>
-            <h2 style={{ fontSize: '1.02rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 16px' }}>
-              Datos Sociodemográficos
-            </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+            {/* Grid adaptado para celular y tablet */}
+            <div className="test-form-grid">
               <div>
-                <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#374151', marginBottom: '6px' }}>
-                  Alias o Código de Participante (Opcional)
+                <label className="test-label">
+                  Alias o Apodo (Opcional)
                 </label>
                 <input
                   type="text"
-                  placeholder="Ej. Alumno-12"
+                  placeholder="Ej. Alumno-12 (o déjalo en blanco)"
                   value={participant.alias}
                   onChange={e => setParticipant({ ...participant, alias: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '11px 14px',
-                    background: '#FAF8FE',
-                    border: '1px solid #E9D5FF',
-                    borderRadius: '10px',
-                    color: '#1E1B4B',
-                    fontSize: '0.92rem',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
+                  className="test-input-control"
                 />
+                <span style={{ fontSize: '0.74rem', color: '#9CA3AF', marginTop: '4px', display: 'block' }}>
+                  Solo para que reconozcas tu reporte final
+                </span>
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#374151', marginBottom: '6px' }}>
+                <label className="test-label">
                   Edad (Años cumplidos)
                 </label>
                 <input
@@ -243,38 +191,18 @@ export default function TestPage({ onComplete }) {
                   max="19"
                   value={participant.age}
                   onChange={e => setParticipant({ ...participant, age: parseInt(e.target.value, 10) || 15 })}
-                  style={{
-                    width: '100%',
-                    padding: '11px 14px',
-                    background: '#FAF8FE',
-                    border: '1px solid #E9D5FF',
-                    borderRadius: '10px',
-                    color: '#1E1B4B',
-                    fontSize: '0.92rem',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
+                  className="test-input-control"
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#374151', marginBottom: '6px' }}>
+                <label className="test-label">
                   Sexo / Género
                 </label>
                 <select
                   value={participant.gender}
                   onChange={e => setParticipant({ ...participant, gender: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '11px 14px',
-                    background: '#FAF8FE',
-                    border: '1px solid #E9D5FF',
-                    borderRadius: '10px',
-                    color: '#1E1B4B',
-                    fontSize: '0.92rem',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
+                  className="test-input-control"
                 >
                   <option value="Femenino">Femenino</option>
                   <option value="Masculino">Masculino</option>
@@ -284,23 +212,13 @@ export default function TestPage({ onComplete }) {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#374151', marginBottom: '6px' }}>
+                <label className="test-label">
                   Grado Escolar
                 </label>
                 <select
                   value={participant.school_grade}
                   onChange={e => setParticipant({ ...participant, school_grade: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '11px 14px',
-                    background: '#FAF8FE',
-                    border: '1px solid #E9D5FF',
-                    borderRadius: '10px',
-                    color: '#1E1B4B',
-                    fontSize: '0.92rem',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
+                  className="test-input-control"
                 >
                   <option value="Secundaria">Secundaria (1º, 2º o 3º)</option>
                   <option value="Preparatoria">Preparatoria / Bachillerato</option>
@@ -308,24 +226,14 @@ export default function TestPage({ onComplete }) {
                 </select>
               </div>
 
-              <div>
-                <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 700, color: '#374151', marginBottom: '6px' }}>
-                  Tiempo diario en redes sociales
+              <div className="test-field-full">
+                <label className="test-label">
+                  Tiempo diario que pasas en redes sociales
                 </label>
                 <select
                   value={participant.screen_hours}
                   onChange={e => setParticipant({ ...participant, screen_hours: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '11px 14px',
-                    background: '#FAF8FE',
-                    border: '1px solid #E9D5FF',
-                    borderRadius: '10px',
-                    color: '#1E1B4B',
-                    fontSize: '0.92rem',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
+                  className="test-input-control"
                 >
                   <option value="Menos de 2 horas">Menos de 2 horas al día</option>
                   <option value="2 a 4 horas">2 a 4 horas al día</option>
@@ -334,70 +242,90 @@ export default function TestPage({ onComplete }) {
                 </select>
               </div>
             </div>
-          </div>
 
-          {/* Consentimiento informado con Checkbox */}
-          <div style={{
-            background: '#F5F1FC',
-            border: '1px solid #E9D5FF',
-            borderRadius: '14px',
-            padding: '16px 20px',
-            marginBottom: '26px'
-          }}>
-            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', cursor: 'pointer' }}>
-              <input
-                type="checkbox"
-                checked={consentAccepted}
-                onChange={e => setConsentAccepted(e.target.checked)}
-                style={{ width: '20px', height: '20px', marginTop: '2px', accentColor: '#7C3AED', cursor: 'pointer' }}
-              />
-              <span style={{ color: '#1E1B4B', fontSize: '0.88rem', lineHeight: 1.5, fontWeight: 600 }}>
-                He leído la definición operacional, confirmo que mi participación es voluntaria y acepto responder de manera sincera este instrumento anónimo sobre exposición a violencia gráfica.
-              </span>
-            </label>
-          </div>
-
-          {errorMsg && (
-            <div style={{
-              background: '#FEF2F2',
-              border: '1px solid #FCA5A5',
-              borderRadius: '10px',
-              padding: '12px 16px',
-              color: '#B91C1C',
-              fontSize: '0.88rem',
-              marginBottom: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              <IconAlertCircle size={18} color="#B91C1C" />
-              <span>{errorMsg}</span>
+            {/* Consentimiento informado con Checkbox */}
+            <div className="test-consent-box">
+              <label style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={consentAccepted}
+                  onChange={e => setConsentAccepted(e.target.checked)}
+                  style={{ width: '22px', height: '22px', marginTop: '2px', accentColor: '#7C3AED', cursor: 'pointer', flexShrink: 0 }}
+                />
+                <span style={{ color: '#1E1B4B', fontSize: '0.88rem', lineHeight: 1.5, fontWeight: 600 }}>
+                  Acepto participar voluntariamente y responder de forma sincera. Entiendo que este cuestionario es 100% anónimo y se utilizará únicamente para nuestra investigación escolar de Metodología de la Investigación.
+                </span>
+              </label>
             </div>
-          )}
 
-          <button
-            onClick={handleStartSurvey}
-            style={{
-              width: '100%',
-              padding: '15px 24px',
-              background: '#7C3AED',
-              color: '#FFFFFF',
-              border: 'none',
-              borderRadius: '12px',
-              fontSize: '1.02rem',
-              fontWeight: 800,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '10px',
-              boxShadow: '0 6px 20px rgba(124, 58, 237, 0.28)',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            <span>Iniciar Cuestionario (42 Reactivos)</span>
-            <IconArrowRight size={18} />
-          </button>
+            {errorMsg && (
+              <div style={{
+                background: '#FEF2F2',
+                border: '1px solid #FCA5A5',
+                borderRadius: '12px',
+                padding: '12px 16px',
+                color: '#B91C1C',
+                fontSize: '0.88rem',
+                marginBottom: '18px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}>
+                <IconAlertCircle size={18} color="#B91C1C" />
+                <span>{errorMsg}</span>
+              </div>
+            )}
+
+            {/* Botón Grande de Iniciar el Cuestionario */}
+            <button
+              onClick={handleStartSurvey}
+              className="test-btn-start"
+            >
+              <span>Comenzar Cuestionario (42 Preguntas)</span>
+              <IconArrowRight size={20} />
+            </button>
+          </div>
+
+          {/* SECCIÓN INFORMATIVA Y ÉTICA ABAJO (EXPLICACIÓN CLARA SIN TECNICISMOS) */}
+          <div className="test-info-accordion">
+            <h2 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span>¿De qué trata este estudio y qué información analizamos?</span>
+            </h2>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', color: '#4B5563', fontSize: '0.88rem', lineHeight: 1.6 }}>
+              <div style={{ background: '#FFFFFF', padding: '14px 16px', borderRadius: '12px', border: '1px solid #EDE4F8' }}>
+                <strong style={{ color: '#1E1B4B', display: 'block', marginBottom: '4px' }}>
+                  ¿Qué consideramos contenido violento gráfico?
+                </strong>
+                <span>
+                  Nos referimos a fotos o videos reales donde se ven accidentes fuertes de tránsito, caídas graves, personas con heridas o sangre visible, asaltos con armas o peleas físicas reales que aparecen en plataformas como TikTok, Instagram, X (Twitter), Facebook o chats grupales.
+                  <br />
+                  <em style={{ color: '#7C3AED' }}>No incluye:</em> discusiones de palabras, comentarios de odio sin video, ni películas o videojuegos de ficción.
+                </span>
+              </div>
+
+              <div style={{ background: '#FFFFFF', padding: '14px 16px', borderRadius: '12px', border: '1px solid #EDE4F8' }}>
+                <strong style={{ color: '#1E1B4B', display: 'block', marginBottom: '4px' }}>
+                  ¿Qué mide este cuestionario?
+                </strong>
+                <ul style={{ margin: 0, paddingLeft: '18px' }}>
+                  <li><strong>Frecuencia:</strong> Si estos videos te aparecen por sorpresa en tu feed o si alguna vez los has buscado por curiosidad.</li>
+                  <li><strong>Reacción física y emocional:</strong> Si al verlos sientes impresión (náuseas, taquicardia) o si sientes que poco a poco te has acostumbrado a verlos.</li>
+                  <li><strong>Opinión sobre el contenido:</strong> Si te parece común que circulen estos videos y si compartes memes o stickers al respecto.</li>
+                  <li><strong>Convivencia diaria:</strong> Cómo manejas desacuerdos cotidianos y tu cercanía cuando alguien necesita apoyo.</li>
+                </ul>
+              </div>
+
+              <div style={{ background: '#FFFFFF', padding: '14px 16px', borderRadius: '12px', border: '1px solid #EDE4F8' }}>
+                <strong style={{ color: '#1E1B4B', display: 'block', marginBottom: '4px' }}>
+                  Privacidad y Compromiso Ético
+                </strong>
+                <span>
+                  Tu participación es libre y anónima. No guardamos correos ni contraseñas. Este cuestionario tiene un fin estrictamente educativo y escolar para nuestra materia de investigación, por lo que no representa una evaluación médica ni psicológica.
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -406,29 +334,29 @@ export default function TestPage({ onComplete }) {
   // VISTA 2: RESPONDER CUESTIONARIO POR BLOQUES
   if (step === 'survey') {
     return (
-      <div className="container" style={{ maxWidth: '840px', padding: '30px 20px 80px' }}>
+      <div className="test-wrapper">
         {/* Barra Superior con Logo y Progreso */}
         <div style={{
           background: '#FFFFFF',
           border: '1px solid #EDE4F8',
           borderRadius: '18px',
-          padding: '18px 24px',
-          marginBottom: '24px',
+          padding: '16px 20px',
+          marginBottom: '20px',
           boxShadow: '0 4px 16px rgba(124, 58, 237, 0.06)'
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '10px' }}>
             <div>
-              <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>
                 Progreso General
               </span>
-              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1E1B4B' }}>
-                {totalAnswered} de 42 reactivos completados ({progressPercent}%)
+              <div style={{ fontSize: '1.08rem', fontWeight: 800, color: '#1E1B4B' }}>
+                {totalAnswered} de 42 preguntas respondidas ({progressPercent}%)
               </div>
             </div>
             <img 
               src="/lasalle-logo.png" 
               alt="La Salle" 
-              style={{ height: '38px', width: 'auto', objectFit: 'contain' }}
+              style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
             />
           </div>
 
@@ -443,7 +371,7 @@ export default function TestPage({ onComplete }) {
           </div>
 
           {/* Stepper de Bloques */}
-          <div style={{ display: 'flex', gap: '8px', marginTop: '16px', overflowX: 'auto', paddingBottom: '4px' }}>
+          <div style={{ display: 'flex', gap: '8px', marginTop: '14px', overflowX: 'auto', paddingBottom: '4px', WebkitOverflowScrolling: 'touch' }}>
             {BLOCKS.map((b, idx) => {
               const complete = isBlockComplete(b.id);
               const isCurrent = idx === currentBlockIndex;
@@ -479,18 +407,11 @@ export default function TestPage({ onComplete }) {
         </div>
 
         {/* Bloque Actual */}
-        <div style={{
-          background: '#FFFFFF',
-          border: '1px solid #EDE4F8',
-          borderRadius: '24px',
-          padding: '32px',
-          marginBottom: '26px',
-          boxShadow: '0 8px 30px rgba(124, 58, 237, 0.08)'
-        }}>
+        <div className="test-card-panel" style={{ marginBottom: '24px' }}>
           <div style={{
             borderBottom: '1px solid #EDE4F8',
-            paddingBottom: '18px',
-            marginBottom: '24px'
+            paddingBottom: '16px',
+            marginBottom: '22px'
           }}>
             <div style={{
               display: 'inline-block',
@@ -503,9 +424,9 @@ export default function TestPage({ onComplete }) {
               textTransform: 'uppercase',
               marginBottom: '8px'
             }}>
-              Bloque {currentBlock.id} de 5 {currentBlock.isCentral && '— Variable Central'}
+              Bloque {currentBlock.id} de 5 {currentBlock.isCentral && '— Sección Principal'}
             </div>
-            <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 8px' }}>
+            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 6px' }}>
               {currentBlock.title}
             </h2>
             <p style={{ color: '#6B7280', fontSize: '0.88rem', margin: 0, lineHeight: 1.5 }}>
@@ -513,9 +434,9 @@ export default function TestPage({ onComplete }) {
             </p>
           </div>
 
-          {/* Lista de Reactivos del Bloque */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '26px' }}>
-            {blockQuestions.map((q, qIndex) => {
+          {/* Lista de Preguntas del Bloque */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+            {blockQuestions.map((q) => {
               const selectedScore = answers[q.id];
 
               return (
@@ -526,7 +447,7 @@ export default function TestPage({ onComplete }) {
                     border: '1px solid',
                     borderColor: selectedScore !== undefined ? '#DDD6FE' : '#EDE4F8',
                     borderRadius: '16px',
-                    padding: '22px',
+                    padding: '18px 16px',
                     transition: 'all 0.2s ease'
                   }}
                 >
@@ -548,7 +469,7 @@ export default function TestPage({ onComplete }) {
                     </span>
                     <p style={{
                       color: '#1E1B4B',
-                      fontSize: '0.98rem',
+                      fontSize: '0.96rem',
                       fontWeight: 600,
                       lineHeight: 1.5,
                       margin: 0
@@ -557,12 +478,8 @@ export default function TestPage({ onComplete }) {
                     </p>
                   </div>
 
-                  {/* Opciones Likert de 5 puntos */}
-                  <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-                    gap: '8px'
-                  }}>
+                  {/* Opciones Likert responsivas */}
+                  <div className="likert-grid">
                     {LIKERT_OPTIONS.map(opt => {
                       const optVal = opt.value !== undefined ? opt.value : opt.val;
                       const isSelected = selectedScore === optVal;
@@ -572,23 +489,7 @@ export default function TestPage({ onComplete }) {
                           key={optVal}
                           type="button"
                           onClick={() => handleScoreChange(q.id, optVal)}
-                          style={{
-                            padding: '10px 8px',
-                            borderRadius: '10px',
-                            border: '1px solid',
-                            borderColor: isSelected ? '#7C3AED' : '#EDE4F8',
-                            background: isSelected ? '#F3E8FF' : '#FFFFFF',
-                            color: isSelected ? '#7C3AED' : '#4B5563',
-                            fontWeight: isSelected ? 800 : 500,
-                            fontSize: '0.82rem',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            gap: '4px',
-                            boxShadow: isSelected ? '0 2px 10px rgba(124, 58, 237, 0.2)' : 'none',
-                            transition: 'all 0.15s ease'
-                          }}
+                          className={`likert-btn ${isSelected ? 'selected' : ''}`}
                         >
                           <span style={{
                             width: '22px',
@@ -619,9 +520,11 @@ export default function TestPage({ onComplete }) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            marginTop: '30px',
-            paddingTop: '20px',
-            borderTop: '1px solid #EDE4F8'
+            marginTop: '28px',
+            paddingTop: '18px',
+            borderTop: '1px solid #EDE4F8',
+            flexWrap: 'wrap',
+            gap: '12px'
           }}>
             <button
               onClick={handlePrevBlock}
@@ -672,31 +575,25 @@ export default function TestPage({ onComplete }) {
 
   // VISTA 3: REVISIÓN FINAL Y ENVÍO
   return (
-    <div className="container" style={{ maxWidth: '820px', padding: '36px 20px 80px' }}>
-      <div style={{
-        background: '#FFFFFF',
-        border: '1px solid #EDE4F8',
-        borderRadius: '24px',
-        padding: '36px',
-        boxShadow: '0 12px 35px -8px rgba(124, 58, 237, 0.10)'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+    <div className="test-wrapper">
+      <div className="test-card-panel">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '22px', flexWrap: 'wrap', gap: '12px' }}>
           <div>
             <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>
-              Verificación Final
+              Paso Final • Verificación
             </span>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1E1B4B', margin: '4px 0 8px' }}>
+            <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#1E1B4B', margin: '4px 0 6px' }}>
               Revisión de Respuestas
             </h1>
             <p style={{ color: '#4B5563', fontSize: '0.92rem', margin: 0 }}>
-              Verifica que hayas completado los 5 bloques antes de generar tu informe individual descriptivo.
+              Verifica que hayas respondido las 42 preguntas antes de generar tu reporte individual.
             </p>
           </div>
-          <img src="/lasalle-logo.png" alt="La Salle" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
+          <img src="/lasalle-logo.png" alt="La Salle" style={{ height: '46px', width: 'auto', objectFit: 'contain' }} />
         </div>
 
         {/* Resumen por Bloques */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px', marginBottom: '26px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px', marginBottom: '24px' }}>
           {BLOCKS.map(b => {
             const bQuestions = QUESTIONS_42.filter(q => q.blockId === b.id);
             const answeredInBlock = bQuestions.filter(q => answers[q.id] !== undefined).length;
@@ -710,7 +607,7 @@ export default function TestPage({ onComplete }) {
                   border: '1px solid',
                   borderColor: complete ? '#DDD6FE' : '#FCA5A5',
                   borderRadius: '12px',
-                  padding: '16px'
+                  padding: '14px 16px'
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
@@ -719,11 +616,11 @@ export default function TestPage({ onComplete }) {
                   </span>
                   {complete ? <IconCheckCircle size={16} color="#059669" /> : <IconAlertCircle size={16} color="#B91C1C" />}
                 </div>
-                <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#1E1B4B', marginBottom: '4px' }}>
-                  {b.title}
+                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#1E1B4B', marginBottom: '4px' }}>
+                  {b.shortName || b.title}
                 </div>
                 <div style={{ fontSize: '0.78rem', color: '#6B7280' }}>
-                  {answeredInBlock} de {bQuestions.length} respondidos
+                  {answeredInBlock} de {bQuestions.length} respondidas
                 </div>
               </div>
             );
@@ -748,7 +645,7 @@ export default function TestPage({ onComplete }) {
           </div>
         )}
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', marginTop: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', marginTop: '20px', flexWrap: 'wrap' }}>
           <button
             onClick={() => setStep('survey')}
             style={{
@@ -756,20 +653,20 @@ export default function TestPage({ onComplete }) {
               background: '#FFFFFF',
               color: '#4B5563',
               border: '1px solid #EDE4F8',
-              borderRadius: '10px',
+              borderRadius: '12px',
               fontSize: '0.9rem',
               fontWeight: 700,
               cursor: 'pointer'
             }}
           >
-            ← Volver al Cuestionario
+            ← Volver a las Preguntas
           </button>
 
           <button
             onClick={handleSubmit}
             disabled={isSubmitting || totalAnswered < 42}
             style={{
-              padding: '14px 28px',
+              padding: '14px 26px',
               background: totalAnswered < 42 ? '#9CA3AF' : '#7C3AED',
               color: '#FFFFFF',
               border: 'none',
@@ -783,7 +680,7 @@ export default function TestPage({ onComplete }) {
               boxShadow: '0 6px 20px rgba(124, 58, 237, 0.3)'
             }}
           >
-            <span>{isSubmitting ? 'Procesando evaluación...' : 'Finalizar y Ver Mis Resultados'}</span>
+            <span>{isSubmitting ? 'Guardando evaluación...' : 'Finalizar y Ver Mis Resultados'}</span>
             <IconCheckCircle size={18} />
           </button>
         </div>
