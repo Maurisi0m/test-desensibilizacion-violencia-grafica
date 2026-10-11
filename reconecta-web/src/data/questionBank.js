@@ -5,11 +5,11 @@
 // Escala Likert de 5 puntos (1 = Nunca a 5 = Siempre) - Últimas 4 semanas
 
 export const LIKERT_OPTIONS = [
-  { val: 1, label: 'Nunca' },
-  { val: 2, label: 'Raras veces' },
-  { val: 3, label: 'A veces' },
-  { val: 4, label: 'Frecuentemente' },
-  { val: 5, label: 'Siempre' }
+  { val: 1, value: 1, label: 'Nunca' },
+  { val: 2, value: 2, label: 'Raras veces' },
+  { val: 3, value: 3, label: 'A veces' },
+  { val: 4, value: 4, label: 'Frecuentemente' },
+  { val: 5, value: 5, label: 'Siempre' }
 ];
 
 export const BLOCKS = [

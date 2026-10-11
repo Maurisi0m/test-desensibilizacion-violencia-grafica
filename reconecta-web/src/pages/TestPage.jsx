@@ -564,13 +564,14 @@ export default function TestPage({ onComplete }) {
                     gap: '8px'
                   }}>
                     {LIKERT_OPTIONS.map(opt => {
-                      const isSelected = selectedScore === opt.value;
+                      const optVal = opt.value !== undefined ? opt.value : opt.val;
+                      const isSelected = selectedScore === optVal;
 
                       return (
                         <button
-                          key={opt.value}
+                          key={optVal}
                           type="button"
-                          onClick={() => handleScoreChange(q.id, opt.value)}
+                          onClick={() => handleScoreChange(q.id, optVal)}
                           style={{
                             padding: '10px 8px',
                             borderRadius: '10px',
@@ -601,7 +602,7 @@ export default function TestPage({ onComplete }) {
                             alignItems: 'center',
                             justifyContent: 'center'
                           }}>
-                            {opt.value}
+                            {optVal}
                           </span>
                           <span style={{ textAlign: 'center', lineHeight: 1.2 }}>{opt.label}</span>
                         </button>
