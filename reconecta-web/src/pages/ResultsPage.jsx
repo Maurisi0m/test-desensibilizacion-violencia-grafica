@@ -1,5 +1,7 @@
 import React from 'react';
 import { IconDownload, IconArrowLeft, IconFileText, IconCheckCircle } from '../components/Icons';
+import DimensionExplanationCard from '../components/DimensionExplanationCard';
+import StudentVisualCharts from '../components/StudentVisualCharts';
 
 export default function ResultsPage({ result, onBackToTest }) {
   if (!result || !result.blocks) {
@@ -146,137 +148,65 @@ export default function ResultsPage({ result, onBackToTest }) {
           </p>
         </div>
 
-        {/* TARJETA HERO: VARIABLE CENTRAL (DESENSIBILIZACIÓN Y HABITUACIÓN) */}
-        <div style={{
-          background: 'linear-gradient(135deg, #FAF5FF 0%, #F5F3FF 50%, #EDE9FE 100%)',
-          border: '2px solid #C4B5FD',
-          borderRadius: '20px',
-          padding: '28px',
-          marginBottom: '30px',
-          boxShadow: '0 8px 24px rgba(124, 58, 237, 0.08)'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '16px' }}>
-            <div>
-              <span style={{
-                display: 'inline-block',
-                padding: '4px 10px',
-                background: '#7C3AED',
-                color: '#FFFFFF',
-                borderRadius: '6px',
-                fontSize: '0.74rem',
-                fontWeight: 800,
-                textTransform: 'uppercase',
-                marginBottom: '8px'
-              }}>
-                Variable Central Principal (Bloque 2)
-              </span>
-              <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1E1B4B', margin: 0 }}>
-                {c.title || 'Desensibilización y Habituación a Violencia Gráfica'}
-              </h2>
-            </div>
+        {/* GRÁFICOS RELEVANTES INDIVIDUALES */}
+        <StudentVisualCharts
+          blocks={b}
+          centralScore={c}
+          exposureComp={expComp}
+          answers={result.answers || []}
+        />
 
-            <div style={{
-              background: '#FFFFFF',
-              border: '2px solid #8B5CF6',
-              borderRadius: '16px',
-              padding: '12px 24px',
-              textAlign: 'center',
-              boxShadow: '0 4px 16px rgba(124, 58, 237, 0.15)'
-            }}>
-              <div style={{ fontSize: '2.4rem', fontWeight: 900, color: '#7C3AED', lineHeight: 1 }}>
-                {c.index !== undefined ? `${c.index.toFixed(1)}%` : '0.0%'}
-              </div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6B7280', marginTop: '4px' }}>
-                Índice Global (0 a 100%)
-              </div>
-            </div>
+        {/* SECCIÓN DETALLADA: PUNTUACIONES Y FUNDAMENTACIÓN POR DIMENSIÓN */}
+        <div style={{ marginBottom: '32px' }}>
+          <div style={{ marginBottom: '16px' }}>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 4px' }}>
+              Fundamentación Metodológica y Utilidad de cada Dimensión
+            </h3>
+            <p style={{ color: '#6B7280', fontSize: '0.85rem', margin: 0 }}>
+              Desglose detallado sobre qué mide cada porcentaje, su sustento teórico y su propósito tanto para ti como estudiante como para el equipo de investigación.
+            </p>
           </div>
 
-          {/* Barra de Rango */}
-          <div style={{ width: '100%', height: '10px', background: '#DDD6FE', borderRadius: '9999px', overflow: 'hidden', marginBottom: '14px' }}>
-            <div style={{
-              width: `${Math.min(100, Math.max(0, c.index || 0))}%`,
-              height: '100%',
-              background: 'linear-gradient(90deg, #7C3AED, #A78BFA)',
-              borderRadius: '9999px'
-            }} />
-          </div>
+          {/* 1. VARIABLE CENTRAL (BLOQUE 2: DESENSIBILIZACIÓN) */}
+          <DimensionExplanationCard
+            dimKey="DES"
+            score={c.index ?? b.DES?.index ?? 0}
+            mean={c.mean ?? b.DES?.mean ?? null}
+            defaultOpen={true}
+            isHero={true}
+          />
 
-          <p style={{ color: '#4B5563', fontSize: '0.88rem', lineHeight: 1.55, margin: 0 }}>
-            Calculado a partir de los 12 reactivos del Bloque 2 que evalúan habituación somática ante sangre y lesiones físicas graves (8 reactivos) y búsqueda de entretenimiento o morbo (4 reactivos). Promedio obtenido: <strong style={{ color: '#1E1B4B' }}>{c.mean?.toFixed(2)} de 5.00</strong>.
-          </p>
-        </div>
+          {/* 2. BLOQUE 1: EXPOSICIÓN */}
+          <DimensionExplanationCard
+            dimKey="EXP"
+            score={b.EXP?.index ?? 0}
+            mean={b.EXP?.mean ?? null}
+            defaultOpen={false}
+          />
 
-        {/* 4 BLOQUES SECUNDARIOS EN GRID */}
-        <div style={{ marginBottom: '30px' }}>
-          <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 16px' }}>
-            Puntuaciones de las Variables Secundarias
-          </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
-            {/* Bloque 1: Exposición */}
-            <div style={{ background: '#FAF8FE', border: '1px solid #EDE4F8', borderRadius: '16px', padding: '20px' }}>
-              <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>Bloque 1</span>
-              <h4 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#1E1B4B', margin: '4px 0 10px' }}>Exposición Gráfica</h4>
-              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#7C3AED', marginBottom: '4px' }}>
-                {b.EXP?.index !== undefined ? `${b.EXP.index.toFixed(1)}%` : '0.0%'}
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#6B7280' }}>
-                10 reactivos (Media: {b.EXP?.mean?.toFixed(2)} / 5)
-              </div>
-            </div>
+          {/* 3. BLOQUE 3: NORMALIZACIÓN */}
+          <DimensionExplanationCard
+            dimKey="NOR"
+            score={b.NOR?.index ?? 0}
+            mean={b.NOR?.mean ?? null}
+            defaultOpen={false}
+          />
 
-            {/* Bloque 3: Normalización */}
-            <div style={{ background: '#FAF8FE', border: '1px solid #EDE4F8', borderRadius: '16px', padding: '20px' }}>
-              <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>Bloque 3</span>
-              <h4 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#1E1B4B', margin: '4px 0 10px' }}>Normalización</h4>
-              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#7C3AED', marginBottom: '4px' }}>
-                {b.NOR?.index !== undefined ? `${b.NOR.index.toFixed(1)}%` : '0.0%'}
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#6B7280' }}>
-                6 reactivos (Memes y humor)
-              </div>
-            </div>
+          {/* 4. BLOQUE 4: AGRESIVIDAD */}
+          <DimensionExplanationCard
+            dimKey="AGR"
+            score={b.AGR?.index ?? 0}
+            mean={b.AGR?.mean ?? null}
+            defaultOpen={false}
+          />
 
-            {/* Bloque 4: Agresividad */}
-            <div style={{ background: '#FAF8FE', border: '1px solid #EDE4F8', borderRadius: '16px', padding: '20px' }}>
-              <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>Bloque 4</span>
-              <h4 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#1E1B4B', margin: '4px 0 10px' }}>Agresividad</h4>
-              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#7C3AED', marginBottom: '4px' }}>
-                {b.AGR?.index !== undefined ? `${b.AGR.index.toFixed(1)}%` : '0.0%'}
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#6B7280' }}>
-                8 reactivos (Adaptación BPAQ)
-              </div>
-            </div>
-
-            {/* Bloque 5: Relaciones */}
-            <div style={{ background: '#FAF8FE', border: '1px solid #EDE4F8', borderRadius: '16px', padding: '20px' }}>
-              <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>Bloque 5</span>
-              <h4 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#1E1B4B', margin: '4px 0 10px' }}>Relaciones Interp.</h4>
-              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#7C3AED', marginBottom: '4px' }}>
-                {b.REL?.index !== undefined ? `${b.REL.index.toFixed(1)}%` : '0.0%'}
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#6B7280' }}>
-                6 reactivos (Empatía prosocial)
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* COMPARACIÓN INCIDENTAL VS. ACTIVA */}
-        <div style={{
-          background: '#FAF8FE',
-          border: '1px solid #EDE4F8',
-          borderRadius: '16px',
-          padding: '22px',
-          marginBottom: '26px'
-        }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 12px' }}>
-            Comparación de Exposición: Incidental vs. Búsqueda Intencional
-          </h3>
-          <p style={{ color: '#4B5563', fontSize: '0.88rem', lineHeight: 1.55, margin: '0 0 10px' }}>
-            Diferencia observada: <strong style={{ color: '#7C3AED' }}>{expComp.difference > 0 ? `+${expComp.difference}%` : `${expComp.difference}%`}</strong>. {expComp.interpretation}
-          </p>
+          {/* 5. BLOQUE 5: RELACIONES INTERPERSONALES */}
+          <DimensionExplanationCard
+            dimKey="REL"
+            score={b.REL?.index ?? 0}
+            mean={b.REL?.mean ?? null}
+            defaultOpen={false}
+          />
         </div>
 
         {/* PERFIL EXPLORATORIO Y NARRATIVA */}

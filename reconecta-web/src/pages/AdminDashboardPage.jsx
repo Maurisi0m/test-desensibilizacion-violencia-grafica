@@ -9,9 +9,12 @@ import {
   IconAlertCircle, 
   IconUser, 
   IconSearch, 
-  IconPrinter 
+  IconPrinter,
+  IconTrash
 } from '../components/Icons';
 import { BLOCKS, QUESTIONS_42 } from '../data/questionBank';
+import DimensionExplanationCard from '../components/DimensionExplanationCard';
+import StudentVisualCharts from '../components/StudentVisualCharts';
 
 export default function AdminDashboardPage({ onRequireLogin }) {
   const [evaluations, setEvaluations] = useState([]);
@@ -154,6 +157,71 @@ export default function AdminDashboardPage({ onRequireLogin }) {
       URL.revokeObjectURL(url);
     } catch (err) {
       alert('Error al exportar matriz CSV: ' + err.message);
+    }
+  };
+
+  const handleDeleteEvaluation = async (id, alias) => {
+    if (!window.confirm(`¿Estás seguro de que deseas eliminar permanentemente la evaluación #${id} (${alias || 'Estudiante'})? Esta acción no se puede deshacer.`)) {
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/evaluations/${id}`, {
+        method: 'DELETE',
+        headers: getAuthHeader()
+      });
+
+      if (res.status === 401) {
+        onRequireLogin();
+        return;
+      }
+
+      if (!res.ok) {
+        throw new Error('Error al eliminar participante de la base de datos.');
+      }
+
+      setEvaluations(prev => {
+        const next = prev.filter(e => e.id !== id);
+        if (selectedStudentId === id) {
+          setSelectedStudentId(next.length > 0 ? next[0].id : null);
+        }
+        return next;
+      });
+      setSelectedIds(prev => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
+  };
+
+  const handleDeleteSelected = async () => {
+    const count = selectedIds.size;
+    if (count === 0) return;
+
+    if (!window.confirm(`¿Confirmas eliminar permanentemente los ${count} participantes seleccionados de la base de datos? Esta acción es irreversible.`)) {
+      return;
+    }
+
+    try {
+      const idsArray = Array.from(selectedIds);
+      for (const id of idsArray) {
+        await fetch(`/api/evaluations/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeader()
+        });
+      }
+
+      setEvaluations(prev => {
+        const next = prev.filter(e => !selectedIds.has(e.id));
+        setSelectedStudentId(next.length > 0 ? next[0].id : null);
+        return next;
+      });
+      setSelectedIds(new Set());
+    } catch (err) {
+      alert('Error al eliminar seleccionados: ' + err.message);
     }
   };
 
@@ -979,15 +1047,39 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                     </h2>
                   </div>
 
-                  <div style={{
-                    padding: '6px 14px',
-                    background: '#F3E8FF',
-                    borderRadius: '10px',
-                    fontSize: '0.8rem',
-                    color: '#7C3AED',
-                    fontWeight: 700
-                  }}>
-                    Fecha: {new Date(selectedStudent.created_at || selectedStudent.participant?.evaluated_at).toLocaleString()}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                    <div style={{
+                      padding: '6px 14px',
+                      background: '#F3E8FF',
+                      borderRadius: '10px',
+                      fontSize: '0.8rem',
+                      color: '#7C3AED',
+                      fontWeight: 700
+                    }}>
+                      Fecha: {new Date(selectedStudent.created_at || selectedStudent.participant?.evaluated_at).toLocaleString()}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteEvaluation(selectedStudent.id, selectedStudent.participant?.alias)}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        padding: '7px 14px',
+                        background: '#FEF2F2',
+                        color: '#B91C1C',
+                        border: '1px solid #FECACA',
+                        borderRadius: '10px',
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      <IconTrash size={14} color="#B91C1C" />
+                      <span>Eliminar Alumno</span>
+                    </button>
                   </div>
                 </div>
 
@@ -1012,97 +1104,77 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                 </div>
               </div>
 
-              {/* RESULTADOS FINALES: HERO CON VARIABLE CENTRAL */}
+              {/* GRÁFICOS VISUALES DEL ALUMNO SELECCIONADO */}
+              <StudentVisualCharts
+                blocks={selectedStudent.blocks || {
+                  DES: { index: selectedStudent.idx_central_des ?? 0, mean: selectedStudent.central_score?.mean ?? 0 },
+                  EXP: { index: selectedStudent.idx_exp ?? 0, mean: selectedStudent.blocks?.EXP?.mean ?? 0 },
+                  NOR: { index: selectedStudent.idx_nor ?? 0, mean: selectedStudent.blocks?.NOR?.mean ?? 0 },
+                  AGR: { index: selectedStudent.idx_agr ?? 0, mean: selectedStudent.blocks?.AGR?.mean ?? 0 },
+                  REL: { index: selectedStudent.idx_rel ?? 0, mean: selectedStudent.blocks?.REL?.mean ?? 0 }
+                }}
+                centralScore={selectedStudent.central_score || { index: selectedStudent.idx_central_des ?? 0 }}
+                exposureComp={selectedStudent.exposure_comparison || {}}
+                answers={selectedStudent.answers || []}
+              />
+
+              {/* SECCIÓN DETALLADA: QUÉ MIDE, EN QUÉ SE BASA Y PARA QUÉ SIRVE CADA PORCENTAJE */}
               <div style={{
-                background: 'linear-gradient(135deg, #FAF5FF 0%, #F5F3FF 50%, #EDE9FE 100%)',
-                border: '2px solid #C4B5FD',
+                background: '#FFFFFF',
+                border: '1px solid #EDE4F8',
                 borderRadius: '20px',
                 padding: '24px 28px',
-                boxShadow: '0 8px 24px rgba(124, 58, 237, 0.08)'
+                boxShadow: '0 4px 20px rgba(124, 58, 237, 0.05)'
               }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '14px', marginBottom: '14px' }}>
-                  <div>
-                    <span style={{
-                      display: 'inline-block',
-                      padding: '3px 8px',
-                      background: '#7C3AED',
-                      color: '#FFFFFF',
-                      borderRadius: '6px',
-                      fontSize: '0.72rem',
-                      fontWeight: 800,
-                      textTransform: 'uppercase',
-                      marginBottom: '6px'
-                    }}>
-                      Variable Central Principal (Bloque 2)
-                    </span>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1E1B4B', margin: 0 }}>
-                      Desensibilización y Habituación a Violencia Gráfica
-                    </h3>
-                  </div>
-
-                  <div style={{
-                    background: '#FFFFFF',
-                    border: '2px solid #8B5CF6',
-                    borderRadius: '14px',
-                    padding: '8px 20px',
-                    textAlign: 'center'
-                  }}>
-                    <div style={{ fontSize: '2.1rem', fontWeight: 900, color: '#7C3AED', lineHeight: 1 }}>
-                      {selectedStudent.central_score?.index !== undefined ? `${selectedStudent.central_score.index.toFixed(1)}%` : `${selectedStudent.idx_central_des?.toFixed(1)}%`}
-                    </div>
-                    <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#6B7280', marginTop: '3px' }}>
-                      Índice 0 a 100%
-                    </div>
-                  </div>
+                <div style={{ marginBottom: '18px' }}>
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 4px' }}>
+                    Fundamentación Metodológica y Utilidad de los Porcentajes
+                  </h3>
+                  <p style={{ color: '#6B7280', fontSize: '0.85rem', margin: 0 }}>
+                    Explicación teórica y científica de cada dimensión tanto para el estudiante como para el equipo de investigación.
+                  </p>
                 </div>
 
-                <div style={{ width: '100%', height: '8px', background: '#DDD6FE', borderRadius: '9999px', overflow: 'hidden', marginBottom: '10px' }}>
-                  <div style={{
-                    width: `${Math.min(100, Math.max(0, selectedStudent.central_score?.index || selectedStudent.idx_central_des || 0))}%`,
-                    height: '100%',
-                    background: 'linear-gradient(90deg, #7C3AED, #A78BFA)',
-                    borderRadius: '9999px'
-                  }} />
-                </div>
+                {/* 1. VARIABLE CENTRAL (BLOQUE 2: DESENSIBILIZACIÓN) */}
+                <DimensionExplanationCard
+                  dimKey="DES"
+                  score={selectedStudent.central_score?.index ?? selectedStudent.idx_central_des ?? 0}
+                  mean={selectedStudent.central_score?.mean ?? selectedStudent.blocks?.DES?.mean ?? null}
+                  defaultOpen={true}
+                  isHero={true}
+                />
 
-                <div style={{ fontSize: '0.84rem', color: '#4B5563', lineHeight: 1.5 }}>
-                  <strong>Perfil interpretativo:</strong> {selectedStudent.profile?.name || selectedStudent.profile_name} — {selectedStudent.profile?.description || selectedStudent.profile_desc}
-                </div>
-              </div>
+                {/* 2. BLOQUE 1: EXPOSICIÓN */}
+                <DimensionExplanationCard
+                  dimKey="EXP"
+                  score={selectedStudent.blocks?.EXP?.index ?? selectedStudent.idx_exp ?? 0}
+                  mean={selectedStudent.blocks?.EXP?.mean ?? null}
+                  defaultOpen={false}
+                />
 
-              {/* LAS 4 VARIABLES SECUNDARIAS */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px' }}>
-                <div style={{ background: '#FFFFFF', border: '1px solid #EDE4F8', borderRadius: '16px', padding: '18px' }}>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>Bloque 1</span>
-                  <div style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1E1B4B', margin: '3px 0 8px' }}>Exposición Gráfica</div>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#7C3AED' }}>
-                    {selectedStudent.blocks?.EXP?.index !== undefined ? `${selectedStudent.blocks.EXP.index.toFixed(1)}%` : `${selectedStudent.idx_exp?.toFixed(1)}%`}
-                  </div>
-                </div>
+                {/* 3. BLOQUE 3: NORMALIZACIÓN */}
+                <DimensionExplanationCard
+                  dimKey="NOR"
+                  score={selectedStudent.blocks?.NOR?.index ?? selectedStudent.idx_nor ?? 0}
+                  mean={selectedStudent.blocks?.NOR?.mean ?? null}
+                  defaultOpen={false}
+                />
 
-                <div style={{ background: '#FFFFFF', border: '1px solid #EDE4F8', borderRadius: '16px', padding: '18px' }}>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>Bloque 3</span>
-                  <div style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1E1B4B', margin: '3px 0 8px' }}>Normalización</div>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#7C3AED' }}>
-                    {selectedStudent.blocks?.NOR?.index !== undefined ? `${selectedStudent.blocks.NOR.index.toFixed(1)}%` : `${selectedStudent.idx_nor?.toFixed(1)}%`}
-                  </div>
-                </div>
+                {/* 4. BLOQUE 4: AGRESIVIDAD */}
+                <DimensionExplanationCard
+                  dimKey="AGR"
+                  score={selectedStudent.blocks?.AGR?.index ?? selectedStudent.idx_agr ?? 0}
+                  mean={selectedStudent.blocks?.AGR?.mean ?? null}
+                  defaultOpen={false}
+                />
 
-                <div style={{ background: '#FFFFFF', border: '1px solid #EDE4F8', borderRadius: '16px', padding: '18px' }}>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>Bloque 4</span>
-                  <div style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1E1B4B', margin: '3px 0 8px' }}>Agresividad</div>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#7C3AED' }}>
-                    {selectedStudent.blocks?.AGR?.index !== undefined ? `${selectedStudent.blocks.AGR.index.toFixed(1)}%` : `${selectedStudent.idx_agr?.toFixed(1)}%`}
-                  </div>
-                </div>
-
-                <div style={{ background: '#FFFFFF', border: '1px solid #EDE4F8', borderRadius: '16px', padding: '18px' }}>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase' }}>Bloque 5</span>
-                  <div style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1E1B4B', margin: '3px 0 8px' }}>Relaciones Interp.</div>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#7C3AED' }}>
-                    {selectedStudent.blocks?.REL?.index !== undefined ? `${selectedStudent.blocks.REL.index.toFixed(1)}%` : `${selectedStudent.idx_rel?.toFixed(1)}%`}
-                  </div>
-                </div>
+                {/* 5. BLOQUE 5: RELACIONES INTERPERSONALES */}
+                <DimensionExplanationCard
+                  dimKey="REL"
+                  score={selectedStudent.blocks?.REL?.index ?? selectedStudent.idx_rel ?? 0}
+                  mean={selectedStudent.blocks?.REL?.mean ?? null}
+                  defaultOpen={false}
+                />
               </div>
 
               {/* DETALLE Y AUDITORÍA REACTIVO POR REACTIVO (42 PREGUNTAS) */}
@@ -1316,27 +1388,54 @@ export default function AdminDashboardPage({ onRequireLogin }) {
               </button>
             </div>
 
-            <button
-              onClick={handleExportCsv}
-              disabled={selectedIds.size === 0}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '9px 18px',
-                background: selectedIds.size === 0 ? '#9CA3AF' : '#7C3AED',
-                color: '#FFFFFF',
-                border: 'none',
-                borderRadius: '10px',
-                fontSize: '0.86rem',
-                fontWeight: 800,
-                cursor: selectedIds.size === 0 ? 'not-allowed' : 'pointer',
-                boxShadow: '0 4px 12px rgba(124, 58, 237, 0.25)'
-              }}
-            >
-              <IconDownload size={16} />
-              <span>Exportar Matriz de Datos (.CSV)</span>
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                onClick={handleDeleteSelected}
+                disabled={selectedIds.size === 0}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '9px 16px',
+                  background: selectedIds.size === 0 ? '#F3F4F6' : '#FEF2F2',
+                  color: selectedIds.size === 0 ? '#9CA3AF' : '#B91C1C',
+                  border: '1px solid',
+                  borderColor: selectedIds.size === 0 ? '#E5E7EB' : '#FECACA',
+                  borderRadius: '10px',
+                  fontSize: '0.84rem',
+                  fontWeight: 700,
+                  cursor: selectedIds.size === 0 ? 'not-allowed' : 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <IconTrash size={15} color={selectedIds.size === 0 ? '#9CA3AF' : '#B91C1C'} />
+                <span>Eliminar Seleccionados ({selectedIds.size})</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleExportCsv}
+                disabled={selectedIds.size === 0}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '9px 18px',
+                  background: selectedIds.size === 0 ? '#9CA3AF' : '#7C3AED',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  borderRadius: '10px',
+                  fontSize: '0.86rem',
+                  fontWeight: 800,
+                  cursor: selectedIds.size === 0 ? 'not-allowed' : 'pointer',
+                  boxShadow: '0 4px 12px rgba(124, 58, 237, 0.25)'
+                }}
+              >
+                <IconDownload size={16} />
+                <span>Exportar Matriz de Datos (.CSV)</span>
+              </button>
+            </div>
           </div>
 
           {/* MATRIZ DE CORRELACIÓN DE SPEARMAN */}
@@ -1440,6 +1539,7 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                     <th style={{ padding: '10px 12px', textAlign: 'center' }}>Desensibilización (Central)</th>
                     <th style={{ padding: '10px 12px', textAlign: 'center' }}>Exposición Gráfica</th>
                     <th style={{ padding: '10px 12px' }}>Fecha</th>
+                    <th style={{ padding: '10px 12px', textAlign: 'center' }}>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1476,6 +1576,30 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                         </td>
                         <td style={{ padding: '10px 12px', color: '#9CA3AF', fontSize: '0.78rem' }}>
                           {new Date(e.created_at || p.evaluated_at).toLocaleDateString()}
+                        </td>
+                        <td style={{ padding: '10px 12px', textAlign: 'center' }}>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteEvaluation(e.id, p.alias)}
+                            title="Eliminar este participante de la base de datos"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              padding: '5px 10px',
+                              background: '#FEF2F2',
+                              color: '#B91C1C',
+                              border: '1px solid #FECACA',
+                              borderRadius: '6px',
+                              fontSize: '0.74rem',
+                              fontWeight: 700,
+                              cursor: 'pointer',
+                              transition: 'all 0.15s ease'
+                            }}
+                          >
+                            <IconTrash size={12} color="#B91C1C" />
+                            <span>Eliminar</span>
+                          </button>
                         </td>
                       </tr>
                     );
