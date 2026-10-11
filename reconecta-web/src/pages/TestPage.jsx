@@ -132,7 +132,7 @@ export default function TestPage({ onComplete }) {
                 fontWeight: 700,
                 marginBottom: '14px'
               }}>
-                <span>Estudio sobre Redes Sociales y Adolescencia</span>
+                <span>Exposición al Contenido Violento Gráfico en las Redes Sociales</span>
               </div>
               <h1 style={{ fontSize: '1.9rem', fontWeight: 800, color: '#1E1B4B', margin: '0 0 10px', lineHeight: 1.25 }}>
                 Desensibilización a Contenido Gráfico Violento
@@ -152,6 +152,33 @@ export default function TestPage({ onComplete }) {
                 flexShrink: 0
               }}
             />
+          </div>
+
+          {/* Ficha de Autores e Investigación */}
+          <div style={{
+            background: 'linear-gradient(135deg, #FAF5FF 0%, #F5F3FF 100%)',
+            border: '1px solid #DDD6FE',
+            borderRadius: '16px',
+            padding: '16px 20px',
+            marginBottom: '24px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '6px'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+              <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Equipo de Investigación • Metodología de la Investigación
+              </span>
+              <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#6B7280', background: '#FFFFFF', padding: '2px 8px', borderRadius: '6px', border: '1px solid #EDE4F8' }}>
+                La Salle Pachuca (Campus La Luz)
+              </span>
+            </div>
+            <div style={{ fontSize: '0.94rem', fontWeight: 800, color: '#1E1B4B' }}>
+              Alan David Cortés Hernández • Raúl Gabriel García Márquez • Daniel Rodríguez García • Mauro Ortiz Juárez
+            </div>
+            <div style={{ fontSize: '0.8rem', color: '#5B21B6', fontWeight: 500 }}>
+              Alumnos de 5to semestre de bachillerato • Colegio La Salle Pachuca
+            </div>
           </div>
 
           {/* Definición Operacional y Marco Ético */}

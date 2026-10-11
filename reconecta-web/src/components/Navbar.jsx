@@ -44,20 +44,9 @@ export default function Navbar({ currentView, setView, isAuthenticated, onOpenLo
               }}>
                 Redes & Violencia
               </span>
-              <span style={{ 
-                fontSize: '0.72rem', 
-                fontWeight: 700, 
-                padding: '2px 8px', 
-                background: '#F3E8FF', 
-                color: '#7C3AED', 
-                borderRadius: '6px',
-                border: '1px solid #DDD6FE'
-              }}>
-                EDV
-              </span>
             </div>
             <div style={{ fontSize: '0.76rem', color: '#6B7280', fontWeight: 500 }}>
-              Desensibilización a Violencia Gráfica y Convivencia Escolar
+              Exposición a Contenido Violento Gráfico en Redes Sociales • La Salle Pachuca
             </div>
           </div>
         </div>
