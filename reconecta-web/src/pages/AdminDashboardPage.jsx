@@ -936,7 +936,8 @@ export default function AdminDashboardPage({ onRequireLogin }) {
       {/* PESTAÑA 2: ANÁLISIS INDIVIDUAL POR PERSONA (SIMILAR A LA APP .EXE) */}
       {/* ========================================================================= */}
       {activeTab === 'individual' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: '24px', alignItems: 'start' }}>
+        <div className="admin-individual-grid" style={{ gap: '24px', alignItems: 'start' }}>
+
           
           {/* COLUMNA IZQUIERDA: LISTA Y BUSCADOR DE PARTICIPANTES */}
           <div style={{
@@ -1336,6 +1337,15 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                         const qInfo = QUESTIONS_42.find(q => q.id === ans.question_id) || {};
                         const score = ans.score;
 
+                        const LIKERT_MAP = {
+                          1: 'Nunca',
+                          2: 'Raras veces',
+                          3: 'A veces',
+                          4: 'Frecuentemente',
+                          5: 'Siempre'
+                        };
+                        const labelText = LIKERT_MAP[score] || ans.score_label || 'Puntaje';
+
                         // Colores según nivel de respuesta
                         let badgeBg = '#F3F4F6';
                         let badgeColor = '#4B5563';
@@ -1355,26 +1365,40 @@ export default function AdminDashboardPage({ onRequireLogin }) {
 
                         return (
                           <tr key={ans.question_id || idx} style={{ borderBottom: '1px solid #F3F4F6' }}>
-                            <td style={{ padding: '10px 12px', textAlign: 'center', fontWeight: 800, color: '#7C3AED' }}>
-                              {ans.question_id}
+                            <td style={{ padding: '12px 10px', textAlign: 'center', fontWeight: 800, color: '#7C3AED', fontSize: '0.9rem' }}>
+                              #{ans.question_id}
                             </td>
-                            <td style={{ padding: '10px 12px', fontSize: '0.75rem', fontWeight: 700, color: '#6B7280' }}>
-                              B{qInfo.blockId} ({ans.block || 'EXP'})
+                            <td style={{ padding: '12px 10px', fontSize: '0.74rem', fontWeight: 700, color: '#6B7280' }}>
+                              <span style={{ background: '#FAF5FF', color: '#7C3AED', border: '1px solid #EDE4F8', padding: '2px 7px', borderRadius: '6px' }}>
+                                B{qInfo.blockId || ans.block_id || '1'}
+                              </span>
                             </td>
-                            <td style={{ padding: '10px 14px', color: '#1E1B4B', lineHeight: 1.45 }}>
-                              {ans.question_text || qInfo.text}
+                            <td style={{ padding: '12px 14px', lineHeight: 1.45 }}>
+                              <div style={{ fontWeight: 600, color: '#1E1B4B', fontSize: '0.88rem' }}>
+                                {qInfo.text || ans.question_text}
+                              </div>
+                              {qInfo.guidance && (
+                                <div style={{ fontSize: '0.74rem', color: '#6B7280', marginTop: '3px' }}>
+                                  {qInfo.guidance}
+                                </div>
+                              )}
                             </td>
-                            <td style={{ padding: '10px 14px', textAlign: 'center' }}>
+                            <td style={{ padding: '12px 14px', textAlign: 'center', whiteSpace: 'nowrap' }}>
                               <span style={{
-                                display: 'inline-block',
-                                padding: '4px 10px',
-                                borderRadius: '6px',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                padding: '5px 12px',
+                                borderRadius: '999px',
                                 background: badgeBg,
                                 color: badgeColor,
                                 fontWeight: 800,
-                                fontSize: '0.8rem'
+                                fontSize: '0.8rem',
+                                border: '1px solid rgba(0,0,0,0.05)'
                               }}>
-                                {score} - {ans.score_label || 'Puntaje'}
+                                <span>{score}</span>
+                                <span>•</span>
+                                <span>{labelText}</span>
                               </span>
                             </td>
                           </tr>

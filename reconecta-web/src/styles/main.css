@@ -652,6 +652,18 @@ button, input, select {
   }
 }
 
+.admin-individual-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+}
+
+@media (max-width: 860px) {
+  .admin-individual-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 
 /* =========================================================================
    RESPONSIVE SURVEY & TEST STYLES (MÓVILES, TABLETS Y DESKTOP)
