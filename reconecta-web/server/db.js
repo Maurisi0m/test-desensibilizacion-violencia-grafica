@@ -17,6 +17,9 @@ const db = new DatabaseSync(dbPath);
 
 // Inicializar esquema relacional para investigación de 42 reactivos y autenticación
 db.exec(`
+  PRAGMA journal_mode = WAL;
+  PRAGMA synchronous = NORMAL;
+  PRAGMA busy_timeout = 5000;
   PRAGMA foreign_keys = ON;
 
   -- Tabla de usuarios de investigación
@@ -123,60 +126,67 @@ export function saveEvaluation(evaluationData) {
   const c = evaluationData.central_score || {};
   const prof = evaluationData.profile || {};
 
-  const insertEval = db.prepare(`
-    INSERT INTO evaluations_v3 (
-      alias, age, gender, school_grade, screen_hours, evaluated_at,
-      profile_name, profile_desc,
-      idx_central_des, idx_exp, idx_nor, idx_agr, idx_rel,
-      payload_json
-    ) VALUES (
-      ?, ?, ?, ?, ?, ?,
-      ?, ?,
-      ?, ?, ?, ?, ?,
-      ?
-    )
-  `);
-
-  const result = insertEval.run(
-    p.alias || 'Estudiante',
-    p.age || 15,
-    p.gender || 'No especificado',
-    p.school_grade || 'Secundaria',
-    p.screen_hours || '2 a 4 horas',
-    p.evaluated_at || new Date().toISOString(),
-    prof.name || 'Perfil general',
-    prof.description || '',
-    c.index ?? b.DES?.index ?? 0,
-    b.EXP?.index ?? 0,
-    b.NOR?.index ?? 0,
-    b.AGR?.index ?? 0,
-    b.REL?.index ?? 0,
-    JSON.stringify(evaluationData)
-  );
-
-  const evaluationId = result.lastInsertRowid;
-
-  if (Array.isArray(evaluationData.answers) && evaluationData.answers.length > 0) {
-    const insertAnswer = db.prepare(`
-      INSERT INTO evaluation_answers_v3 (
-        evaluation_id, question_id, block, dimension, question_text, score, score_label
-      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+  db.exec('BEGIN IMMEDIATE;');
+  try {
+    const insertEval = db.prepare(`
+      INSERT INTO evaluations_v3 (
+        alias, age, gender, school_grade, screen_hours, evaluated_at,
+        profile_name, profile_desc,
+        idx_central_des, idx_exp, idx_nor, idx_agr, idx_rel,
+        payload_json
+      ) VALUES (
+        ?, ?, ?, ?, ?, ?,
+        ?, ?,
+        ?, ?, ?, ?, ?,
+        ?
+      )
     `);
 
-    for (const ans of evaluationData.answers) {
-      insertAnswer.run(
-        evaluationId,
-        ans.question_id,
-        ans.block || 'DES',
-        ans.dimension || '',
-        ans.question_text || '',
-        ans.score,
-        ans.score_label || ''
-      );
-    }
-  }
+    const result = insertEval.run(
+      p.alias || 'Estudiante',
+      p.age || 15,
+      p.gender || 'No especificado',
+      p.school_grade || 'Secundaria',
+      p.screen_hours || '2 a 4 horas',
+      p.evaluated_at || new Date().toISOString(),
+      prof.name || 'Perfil general',
+      prof.description || '',
+      c.index ?? b.DES?.index ?? 0,
+      b.EXP?.index ?? 0,
+      b.NOR?.index ?? 0,
+      b.AGR?.index ?? 0,
+      b.REL?.index ?? 0,
+      JSON.stringify(evaluationData)
+    );
 
-  return getEvaluationById(evaluationId);
+    const evaluationId = result.lastInsertRowid;
+
+    if (Array.isArray(evaluationData.answers) && evaluationData.answers.length > 0) {
+      const insertAnswer = db.prepare(`
+        INSERT INTO evaluation_answers_v3 (
+          evaluation_id, question_id, block, dimension, question_text, score, score_label
+        ) VALUES (?, ?, ?, ?, ?, ?, ?)
+      `);
+
+      for (const ans of evaluationData.answers) {
+        insertAnswer.run(
+          evaluationId,
+          ans.question_id,
+          ans.block || 'DES',
+          ans.dimension || '',
+          ans.question_text || '',
+          ans.score,
+          ans.score_label || ''
+        );
+      }
+    }
+
+    db.exec('COMMIT;');
+    return getEvaluationById(evaluationId);
+  } catch (err) {
+    db.exec('ROLLBACK;');
+    throw err;
+  }
 }
 
 export function getAllEvaluations() {
