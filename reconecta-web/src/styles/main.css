@@ -8,15 +8,15 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--bg-dark);
-  color: var(--text-main);
+  background-color: #F8FAFC;
+  color: #1E1B4B;
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
   background-image: 
-    radial-gradient(at 10% 10%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
-    radial-gradient(at 90% 20%, rgba(6, 182, 212, 0.10) 0px, transparent 50%),
-    radial-gradient(at 50% 90%, rgba(244, 63, 94, 0.08) 0px, transparent 60%);
+    radial-gradient(at 10% 10%, rgba(124, 58, 237, 0.06) 0px, transparent 50%),
+    radial-gradient(at 90% 20%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, rgba(236, 72, 153, 0.04) 0px, transparent 60%);
   background-attachment: fixed;
 }
 
@@ -655,6 +655,10 @@ button, input, select {
 .admin-individual-grid {
   display: grid;
   grid-template-columns: 320px 1fr;
+}
+
+.admin-individual-grid > * {
+  min-width: 0;
 }
 
 @media (max-width: 860px) {
