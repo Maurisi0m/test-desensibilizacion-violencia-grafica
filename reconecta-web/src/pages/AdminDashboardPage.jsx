@@ -1331,11 +1331,11 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                     <tbody>
                       {(selectedStudent.answers || []).filter(a => {
                         if (filterBlockReview === 0) return true;
-                        const qInfo = QUESTIONS_42.find(q => q.id === a.question_id);
+                        const qInfo = QUESTIONS_42.find(q => Number(q.id) === Number(a.question_id));
                         return qInfo && qInfo.blockId === filterBlockReview;
                       }).map((ans, idx) => {
-                        const qInfo = QUESTIONS_42.find(q => q.id === ans.question_id) || {};
-                        const score = ans.score;
+                        const qInfo = QUESTIONS_42.find(q => Number(q.id) === Number(ans.question_id)) || {};
+                        const score = Number(ans.score) || 1;
 
                         const LIKERT_MAP = {
                           1: 'Nunca',
