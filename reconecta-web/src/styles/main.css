@@ -592,31 +592,66 @@ button, input, select {
 
 /* Responsive */
 @media (max-width: 860px) {
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background: #0B1120;
-    border-bottom: 1px solid var(--border-subtle);
-    flex-direction: column;
-    padding: 20px;
-    gap: 12px;
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .mobile-menu-btn {
-    display: block;
-  }
-
   .history-container {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* =========================================================================
+   NAVBAR RESPONSIVE STYLES
+   ========================================================================= */
+.nav-desktop-menu {
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-mobile-controls {
+  display: none !important;
+}
+
+.nav-subtitle-full {
+  display: block !important;
+}
+
+.nav-subtitle-short {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .nav-desktop-menu {
+    display: none !important;
+  }
+
+  .nav-mobile-controls {
+    display: flex !important;
+  }
+
+  .nav-subtitle-full {
+    display: none !important;
+  }
+
+  .nav-subtitle-short {
+    display: block !important;
+  }
+
+  .nav-mobile-drawer {
+    animation: navDrawerFade 0.2s ease-out;
+  }
+}
+
+@keyframes navDrawerFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* =========================================================================
    RESPONSIVE SURVEY & TEST STYLES (MÓVILES, TABLETS Y DESKTOP)

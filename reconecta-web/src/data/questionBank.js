@@ -1,7 +1,7 @@
 // Banco de 42 reactivos para Investigación Escolar Cuantitativa
 // Variable Central: Exposición a Contenido Gráfico Violento y Desensibilización/Habituación
-// Definición Operacional de Contenido Gráfico Violento: Publicaciones o videos que muestran sangre,
-// lesiones físicas graves, mutilaciones o muertes violentas (distinguiéndolo de discusiones o agresiones verbales).
+// Definición Operacional de Contenido Gráfico Violento: Publicaciones o videos que muestran accidentes graves,
+// heridas físicas visibles o agresiones explícitas (distinguiéndolo de discusiones o conflictos verbales).
 // Escala Likert de 5 puntos (1 = Nunca a 5 = Siempre) - Últimas 4 semanas
 
 export const LIKERT_OPTIONS = [
@@ -18,7 +18,7 @@ export const BLOCKS = [
     code: 'EXP',
     title: 'Bloque 1: ¿Con qué frecuencia te aparecen estos contenidos?',
     shortName: 'Frecuencia de videos',
-    description: 'Preguntas sobre qué tan seguido te salen publicaciones o videos con sangre o accidentes en redes sociales, y si alguna vez los buscas por curiosidad.',
+    description: 'Preguntas sobre qué tan seguido te salen publicaciones o videos con accidentes o situaciones impactantes en redes sociales, y si alguna vez los buscas por curiosidad.',
     itemCount: 10,
     purpose: 'Conocer con qué frecuencia el estudiante ve publicaciones con accidentes, heridas o violencia en internet.',
     guidance: 'Frecuencia con la que te aparecen estos videos o fotos en tus redes.'
@@ -69,7 +69,7 @@ export const BLOCKS = [
 // Exactamente 42 reactivos distribuidos en los 5 bloques
 export const QUESTIONS_42 = [
   // =========================================================================
-  // BLOQUE 1: EXPOSICIÓN A VIOLENCIA GRÁFICA (10 REACTIVOS)
+  // BLOQUE 1: EXPOSICIÓN A VIOLENCIA GRÁFICA / CONTENIDO IMPACTANTE (10 REACTIVOS)
   // =========================================================================
   // Exposición incidental (Ítems 1-5)
   {
@@ -77,40 +77,40 @@ export const QUESTIONS_42 = [
     blockId: 1,
     dimension: 'EXP_INC',
     dimensionName: 'Exposición Gráfica Incidental',
-    text: 'Al navegar en mis redes sociales (TikTok, Reels, Instagram, X), me aparecen videos que muestran sangre o personas con heridas graves sin que yo los busque.',
-    guidance: 'Considera la intrusión no solicitada de heridas o sangre en tus líneas de tiempo.'
+    text: 'Al navegar en mis redes sociales (TikTok, Reels, Instagram, X), me aparecen videos que muestran accidentes o personas con heridas visibles sin que yo los busque.',
+    guidance: 'Considera la aparición no solicitada de accidentes o personas lesionadas en tus líneas de tiempo.'
   },
   {
     id: 2,
     blockId: 1,
     dimension: 'EXP_INC',
     dimensionName: 'Exposición Gráfica Incidental',
-    text: 'En mis sugerencias automáticas de video me salen grabaciones de accidentes fatales o choques fuertes donde se ven víctimas ensangrentadas.',
-    guidance: 'Evalúa la frecuencia con la que los algoritmos te muestran siniestros mortales de imprevisto.'
+    text: 'En mis sugerencias automáticas de video me salen grabaciones de accidentes fuertes o choques viales donde se ven personas lastimadas o heridas.',
+    guidance: 'Evalúa la frecuencia con la que los algoritmos te muestran siniestros viales de imprevisto.'
   },
   {
     id: 3,
     blockId: 1,
     dimension: 'EXP_INC',
     dimensionName: 'Exposición Gráfica Incidental',
-    text: 'En chats grupales o aplicaciones de mensajería (WhatsApp, Telegram) contactos mandan fotos o videos de personas heridas de gravedad o fallecidas.',
-    guidance: 'Mide la recepción de contenido sangriento a través de círculos de pares o canales compartidos.'
+    text: 'En chats grupales o aplicaciones de mensajería (WhatsApp, Telegram) contactos mandan fotos o videos de personas con lesiones graves o accidentes.',
+    guidance: 'Mide la recepción de contenido de impacto a través de grupos o canales compartidos.'
   },
   {
     id: 4,
     blockId: 1,
     dimension: 'EXP_INC',
     dimensionName: 'Exposición Gráfica Incidental',
-    text: 'Veo grabaciones de cámaras de seguridad (CCTV) con atropellos mortales, asaltos con disparos o linchamientos mientras hago scroll normal.',
-    guidance: 'Indica la aparición casual de metrajes de circuito cerrado con violencia letal no ficticia.'
+    text: 'Veo grabaciones de cámaras de seguridad (CCTV) con accidentes de tránsito, asaltos con violencia o agresiones físicas mientras navego.',
+    guidance: 'Indica la aparición casual de metrajes de circuito cerrado con incidentes violentos en tu feed.'
   },
   {
     id: 5,
     blockId: 1,
     dimension: 'EXP_INC',
     dimensionName: 'Exposición Gráfica Incidental',
-    text: 'Cuando ocurre una noticia violenta de alto impacto, las redes sociales me bombardean con el metraje explícito sin censura.',
-    guidance: 'Mide la saturación repetitiva del evento cruento impulsada por viralidad.'
+    text: 'Cuando ocurre un hecho violento o una tragedia, las redes sociales me muestran repetidamente las grabaciones reales sin censura.',
+    guidance: 'Mide la saturación y repetición del evento en plataformas digitales.'
   },
 
   // Búsqueda intencional (Ítems 6-10)
@@ -119,40 +119,40 @@ export const QUESTIONS_42 = [
     blockId: 1,
     dimension: 'EXP_ACT',
     dimensionName: 'Búsqueda Gráfica Intencional',
-    text: 'Si me entero de un video que muestra una tragedia, balacera o ejecución violenta, busco la grabación para verla con mis propios ojos.',
-    guidance: 'Evalúa tu iniciativa personal deliberada de localizar grabaciones cruentas.'
+    text: 'Si me entero de un video que muestra una tragedia, balacera o agresión armada, busco la grabación para verla directamente.',
+    guidance: 'Evalúa tu iniciativa personal voluntaria de buscar grabaciones del suceso.'
   },
   {
     id: 7,
     blockId: 1,
     dimension: 'EXP_ACT',
     dimensionName: 'Búsqueda Gráfica Intencional',
-    text: 'He buscado intencionalmente en internet o Telegram canales o sitios web dedicados a publicar fotos y videos de gore, sangre o muerte.',
-    guidance: 'Mide la visita premeditada a repositorios de shock content o contenido extremo.'
+    text: 'He buscado intencionalmente en internet o Telegram canales o páginas dedicadas a difundir videos de accidentes graves o contenido explícito sin censura.',
+    guidance: 'Mide el ingreso voluntario a páginas o canales que difunden contenido explícito.'
   },
   {
     id: 8,
     blockId: 1,
     dimension: 'EXP_ACT',
     dimensionName: 'Búsqueda Gráfica Intencional',
-    text: 'Cuando veo advertencias de "contenido delicado o sensible" que cubre imágenes de heridas o violencia extrema, desactivo el filtro para mirar.',
-    guidance: 'Refleja la acción voluntaria de retirar los filtros de advertencia digital.'
+    text: 'Cuando veo advertencias de "contenido delicado o sensible" que cubre imágenes de personas lastimadas o situaciones violentas, desactivo el filtro para mirar.',
+    guidance: 'Refleja la decisión voluntaria de retirar los filtros de advertencia digital.'
   },
   {
     id: 9,
     blockId: 1,
     dimension: 'EXP_ACT',
     dimensionName: 'Búsqueda Gráfica Intencional',
-    text: 'Suelo pedir a amigos o contactos que me pasen enlaces de videos de accidentes sangrientos o riñas fuertes que se hayan hecho virales.',
-    guidance: 'Evalúa la solicitud activa de material gráfico cruento a conocidos.'
+    text: 'Suelo pedir a amigos o contactos que me pasen enlaces de videos de accidentes fuertes o peleas callejeras que se hayan hecho virales.',
+    guidance: 'Evalúa la solicitud activa de videos de impacto a tus conocidos.'
   },
   {
     id: 10,
     blockId: 1,
     dimension: 'EXP_ACT',
     dimensionName: 'Búsqueda Gráfica Intencional',
-    text: 'He buscado grabaciones de cirugías invasivas extremas, accidentes letales o violencia cruda por curiosidad o morbo en momentos de ocio.',
-    guidance: 'Mide la búsqueda de estimulación visual extrema como entretenimiento.'
+    text: 'He buscado grabaciones de operaciones médicas complejas, accidentes impactantes o incidentes de riesgo por curiosidad en momentos libres.',
+    guidance: 'Mide la búsqueda de videos impactantes como entretenimiento o curiosidad.'
   },
 
   // =========================================================================
@@ -164,16 +164,16 @@ export const QUESTIONS_42 = [
     blockId: 2,
     dimension: 'DES_HAB',
     dimensionName: 'Desensibilización y Habituación Somática',
-    text: 'Puedo ver videos o fotos con heridas abiertas, fracturas expuestas o abundante sangre sin sentir asco ni náuseas.',
-    guidance: 'Evalúa la atenuación de la respuesta corporal de aversión o rechazo gástrico.'
+    text: 'Puedo ver videos o fotos con personas muy lastimadas, heridas visibles o accidentes fuertes sin sentir asco ni malestar en el estómago.',
+    guidance: 'Evalúa si tu cuerpo experimenta o no malestar físico o sensación de rechazo.'
   },
   {
     id: 12,
     blockId: 2,
     dimension: 'DES_HAB',
     dimensionName: 'Desensibilización y Habituación Somática',
-    text: 'He notado que ver imágenes de personas gravemente lastimadas ya no me altera el ritmo cardíaco ni me produce taquicardia o sobresalto.',
-    guidance: 'Mide la disminución en la activación autonómica de alerta fisiológica.'
+    text: 'He notado que ver imágenes de personas con lesiones graves ya no me acelera el corazón ni me produce sobresalto.',
+    guidance: 'Mide si se mantiene o disminuye la reacción física de alerta o nerviosismo.'
   },
   {
     id: 13,
@@ -181,47 +181,47 @@ export const QUESTIONS_42 = [
     dimension: 'DES_HAB',
     dimensionName: 'Desensibilización y Habituación Somática',
     text: 'Puedo comer o botanear mientras veo videos donde personas sufren heridas graves o accidentes sin que se me quite el apetito.',
-    guidance: 'Indica desvinculación entre la imaginería cruenta y el malestar digestivo.'
+    guidance: 'Indica desvinculación entre las imágenes de accidentes y el malestar digestivo.'
   },
   {
     id: 14,
     blockId: 2,
     dimension: 'DES_HAB',
     dimensionName: 'Desensibilización y Habituación Somática',
-    text: 'Antes me impactaba o perturbaba mucho ver videos sangrientos, pero ahora que los veo seguido en redes ya no me causan nada.',
-    guidance: 'Mide la percepción directa de acostumbramiento progresivo por exposición acumulada.'
+    text: 'Antes me impactaba mucho ver videos de accidentes y violencia gráfica, pero ahora que los veo seguido en redes siento que ya no me impresionan.',
+    guidance: 'Mide la sensación de acostumbramiento progresivo con el paso del tiempo.'
   },
   {
     id: 15,
     blockId: 2,
     dimension: 'DES_HAB',
     dimensionName: 'Desensibilización y Habituación Somática',
-    text: 'Las imágenes de violencia extrema o cuerpos mutilados que veo en internet no me provocan pesadillas ni memorias intrusivas al dormir.',
-    guidance: 'Evalúa la ausencia de huella afectiva o perturbación del sueño a corto plazo.'
+    text: 'Las imágenes de accidentes graves o violencia gráfica que veo en internet no me provocan pesadillas ni malestar al dormir.',
+    guidance: 'Evalúa si los contenidos visuales que ves de día afectan o no tu descanso nocturno.'
   },
   {
     id: 16,
     blockId: 2,
     dimension: 'DES_HAB',
     dimensionName: 'Desensibilización y Habituación Somática',
-    text: 'Siento que me he acostumbrado a ver sangre y muerte en internet al punto de que me parece algo común que ya no me impresiona.',
-    guidance: 'Refleja la pérdida de asombro ante la pérdida de vidas humanas en pantalla.'
+    text: 'Siento que me he acostumbrado a ver tragedias y accidentes en internet al punto de que ya no me causan impresión.',
+    guidance: 'Refleja si te sorprende o ya ves como algo común los sucesos difíciles en pantalla.'
   },
   {
     id: 17,
     blockId: 2,
     dimension: 'DES_DIV',
     dimensionName: 'Diversión al Atestiguar Violencia Gráfica',
-    text: 'Me parece entretenido o emocionante ver videos donde dos personas se agarran a golpes causándose heridas físicas visibles.',
-    guidance: 'Mide la respuesta de entretenimiento ante agresiones con daño corporal evidente (EDV adaptada).'
+    text: 'Me parece entretenido o llamativo ver videos donde dos personas pelean fuertemente y terminan lastimadas.',
+    guidance: 'Mide si ver agresiones físicas te resulta entretenido o emocionante.'
   },
   {
     id: 18,
     blockId: 2,
     dimension: 'DES_DIV',
     dimensionName: 'Diversión al Atestiguar Violencia Gráfica',
-    text: 'Me causa risa ver grabaciones de peleas o caídas aparatosas donde alguien termina gravemente lastimado o sangrando.',
-    guidance: 'Evalúa si el dolor físico o las lesiones de terceros provocan hilaridad.'
+    text: 'Me causa gracia o risa ver grabaciones de peleas o caídas aparatosas donde alguien termina lastimado.',
+    guidance: 'Evalúa si las caídas con dolor físico o los golpes provocan risa o humor.'
   },
   {
     id: 19,
@@ -236,24 +236,24 @@ export const QUESTIONS_42 = [
     blockId: 2,
     dimension: 'DES_DIV',
     dimensionName: 'Diversión al Atestiguar Violencia Gráfica',
-    text: 'Disfruto viendo compilaciones de riñas, disturbios o enfrentamientos con golpes y sangre entre jóvenes.',
-    guidance: 'Mide el consumo lúdico de compilaciones de agresiones corporales sangrientas.'
+    text: 'Disfruto viendo recopilaciones de peleas, disturbios o enfrentamientos físicos entre personas.',
+    guidance: 'Mide el gusto por ver compilaciones de peleas en video.'
   },
   {
     id: 21,
     blockId: 2,
     dimension: 'DES_HAB',
     dimensionName: 'Desensibilización y Habituación Somática',
-    text: 'Me parece que las personas que se perturban o se asustan profundamente al ver sangre en redes son exageradas o demasiado débiles.',
-    guidance: 'Compara el umbral de incomodidad afectiva propio frente a la reacción de pares.'
+    text: 'Me parece que las personas que se asustan o se impresionan mucho por ver accidentes o peleas en redes son exageradas.',
+    guidance: 'Compara tu nivel de tolerancia afectiva con el de otras personas.'
   },
   {
     id: 22,
     blockId: 2,
     dimension: 'DES_HAB',
     dimensionName: 'Desensibilización y Habituación Somática',
-    text: 'Rara vez desvío la mirada o cierro un video cuando aparece una escena de violencia física cruda o sangrienta.',
-    guidance: 'Mide la latencia atencional y la ausencia de conductas de evitación visual inmediata.'
+    text: 'Rara vez desvío la mirada o cierro un video cuando aparece una escena de violencia física o accidentes fuertes.',
+    guidance: 'Mide si prefieres seguir mirando o apartar la vista ante una escena difícil.'
   },
 
   // =========================================================================
@@ -265,7 +265,7 @@ export const QUESTIONS_42 = [
     blockId: 3,
     dimension: 'NOR_GRAF',
     dimensionName: 'Normalización de Violencia Gráfica',
-    text: 'Considero que ver videos de violencia gráfica o sangre es algo normal hoy en día y no tiene nada de malo.',
+    text: 'Considero que ver videos de accidentes y violencia en redes es algo normal hoy en día y no tiene nada de raro.',
     guidance: 'Evalúa la percepción de normalidad en el consumo habitual de imaginería violenta.'
   },
   {
@@ -273,41 +273,42 @@ export const QUESTIONS_42 = [
     blockId: 3,
     dimension: 'NOR_GRAF',
     dimensionName: 'Normalización de Violencia Gráfica',
-    text: 'Me causan gracia los memes, stickers o remates de humor negro hechos a partir de grabaciones de accidentes fatales o tragedias reales.',
-    guidance: 'Mide el uso de mecanismos de humor para trivializar el dolor de víctimas reales (etiquetado eufemístico de Bandura).'
+    text: 'Me causan gracia los memes, stickers o chistes de humor negro basados en accidentes o tragedias reales.',
+    guidance: 'Mide si te divierte el humor negro surgido de situaciones trágicas reales.'
   },
   {
     id: 25,
     blockId: 3,
     dimension: 'NOR_GRAF',
     dimensionName: 'Normalización de Violencia Gráfica',
-    text: 'Siento que ver contenido gráfico violento me ayuda a "endurecerme" y a ser más fuerte psicológicamente para la vida real.',
-    guidance: 'Mide la creencia racionalizada de que el consumo de crudeza visual otorga fortaleza adaptativa.'
+    text: 'Siento que ver videos de situaciones fuertes me ayuda a "endurecerme" y a ser más resistente para la vida real.',
+    guidance: 'Mide la idea de que ver imágenes crudas sirve para fortalecerse psicológicamente.'
   },
   {
     id: 26,
     blockId: 3,
     dimension: 'NOR_GRAF',
     dimensionName: 'Normalización de Violencia Gráfica',
-    text: 'Comparto o reacciono con risa a publicaciones que se burlan de personas que sufrieron mutilaciones o accidentes graves en videos.',
-    guidance: 'Evalúa la difusión activa y refuerzo lúdico de tragedias humanas entre pares.'
+    text: 'Comparto o reacciono con risa a publicaciones que se burlan de personas que sufrieron caídas o accidentes graves en videos.',
+    guidance: 'Evalúa la difusión y reacción lúdica ante accidentes de personas en internet.'
   },
   {
     id: 27,
     blockId: 3,
     dimension: 'NOR_GRAF',
     dimensionName: 'Normalización de Violencia Gráfica',
-    text: 'Pienso que quienes sufren agresiones o accidentes sangrientos filmados en internet seguro tuvieron la culpa o se lo buscaron por imprudentes.',
-    guidance: 'Evalúa el sesgo de atribución defensiva y culpabilización de la víctima (Melvin Lerner).'
+    text: 'Pienso que las personas que sufren agresiones o accidentes en internet seguro tuvieron la culpa o se lo buscaron por imprudentes.',
+    guidance: 'Evalúa la tendencia a responsabilizar a la persona que sufrió el percance.'
   },
   {
     id: 28,
     blockId: 3,
     dimension: 'NOR_GRAF',
     dimensionName: 'Normalización de Violencia Gráfica',
-    text: 'Considero que hacer escándalo o alarmarse por la difusión de videos sangrientos en redes es innecesario, porque la violencia siempre ha existido.',
-    guidance: 'Mide la minimización social del impacto del contenido explícito en plataformas digitales.'
+    text: 'Considero que alarmarse por la difusión de videos de violencia en redes es innecesario, porque las noticias difíciles siempre han existido.',
+    guidance: 'Mide si consideras innecesaria la preocupación social por estos contenidos.'
   },
+
 
   // =========================================================================
   // BLOQUE 4: AGRESIVIDAD (8 REACTIVOS)

@@ -11,9 +11,9 @@ export const DIMENSION_DETAILS = {
     bgLight: '#FAF5FF',
     borderLight: '#C4B5FD',
     itemsCount: 12,
-    whatIs: 'Mide la pérdida progresiva de reacciones corporales viscerales de aversión (náuseas, taquicardia, mareo, sobresalto o necesidad de apartar la vista) y el surgimiento de frialdad emocional, indiferencia o búsqueda de entretenimiento morboso al observar imágenes y videos con sangre real, lesiones corporales graves, mutilaciones o muerte violenta.',
+    whatIs: 'Mide la atenuación de reacciones corporales de impacto (náuseas, taquicardia o necesidad de apartar la vista) y la aparición de indiferencia o frialdad emocional al observar imágenes y videos con accidentes graves, heridas visibles o contenido violento explícito.',
     foundation: 'Basado en la Escala de Desensibilización a la Violencia para Adolescentes (EDV) de Galán Jiménez, Sánchez-Armáss y García y Barragán (2019, Nova Scientia), instrumento psicométrico validado en México que demostró la atenuación de la reactividad somática autonómica tras el consumo repetido de violencia visual.',
-    studentUtility: 'Te ayuda a reconocer si tu cuerpo y emociones se han "acostumbrado" o adormecido ante imágenes crudas de dolor humano. Conocer este porcentaje te permite tomar el control de lo que consumes en redes, evitar canales morbosos que dañen tu salud mental y recuperar la sensibilidad natural de cuidado personal.',
+    studentUtility: 'Te ayuda a reconocer si tu cuerpo y emociones se han "acostumbrado" o adormecido ante imágenes fuertes de dolor humano. Conocer este porcentaje te permite tomar el control de lo que consumes en redes, evitar contenidos morbosos que dañen tu salud mental y recuperar la sensibilidad natural de cuidado personal.',
     researcherUtility: 'Es la Variable Dependiente Central del proyecto de investigación. Proporciona el índice métrico (0.0% a 100.0%) con el cual el equipo contrasta la hipótesis principal: comprobar numéricamente si a mayor frecuencia de exposición en redes sociales, mayor es la habituación psicofisiológica observada en estudiantes de La Salle Pachuca.'
   },
   EXP: {
