@@ -1706,8 +1706,11 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                     <th style={{ padding: '10px 12px' }}>ID / Alias</th>
                     <th style={{ padding: '10px 12px' }}>Edad / Sexo</th>
                     <th style={{ padding: '10px 12px' }}>Grado</th>
-                    <th style={{ padding: '10px 12px', textAlign: 'center' }}>Desensibilización (Central)</th>
-                    <th style={{ padding: '10px 12px', textAlign: 'center' }}>Exposición Gráfica</th>
+                    <th style={{ padding: '10px 8px', textAlign: 'center' }}>[EXP] Exposición</th>
+                    <th style={{ padding: '10px 8px', textAlign: 'center' }}>[DES] Central</th>
+                    <th style={{ padding: '10px 8px', textAlign: 'center' }}>[NOR] Normaliz.</th>
+                    <th style={{ padding: '10px 8px', textAlign: 'center' }}>[AGR] Agresiv.</th>
+                    <th style={{ padding: '10px 8px', textAlign: 'center' }}>[REL] Empatía</th>
                     <th style={{ padding: '10px 12px' }}>Fecha</th>
                     <th style={{ padding: '10px 12px', textAlign: 'center' }}>Acciones</th>
                   </tr>
@@ -1718,6 +1721,12 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                     const p = e.participant || {};
                     const c = e.central_score || {};
                     const b = e.blocks || {};
+
+                    const valExp = b.EXP?.index !== undefined ? b.EXP.index : (e.idx_exp ?? 0);
+                    const valDes = c.index !== undefined ? c.index : (e.idx_central_des ?? 0);
+                    const valNor = b.NOR?.index !== undefined ? b.NOR.index : (e.idx_nor ?? 0);
+                    const valAgr = b.AGR?.index !== undefined ? b.AGR.index : (e.idx_agr ?? 0);
+                    const valRel = b.REL?.index !== undefined ? b.REL.index : (e.idx_rel ?? 0);
 
                     return (
                       <tr key={e.id} style={{ borderBottom: '1px solid #F3F4F6', background: isSelected ? '#FAF5FF' : 'transparent' }}>
@@ -1738,11 +1747,20 @@ export default function AdminDashboardPage({ onRequireLogin }) {
                         <td style={{ padding: '10px 12px', color: '#6B7280' }}>
                           {p.school_grade}
                         </td>
-                        <td style={{ padding: '10px 12px', textAlign: 'center', fontWeight: 800, color: '#7C3AED' }}>
-                          {c.index !== undefined ? `${c.index.toFixed(1)}%` : `${e.idx_central_des?.toFixed(1)}%`}
+                        <td style={{ padding: '10px 8px', textAlign: 'center', color: '#4B5563', fontWeight: 600 }}>
+                          {valExp.toFixed(1)}%
                         </td>
-                        <td style={{ padding: '10px 12px', textAlign: 'center', color: '#4B5563' }}>
-                          {b.EXP?.index !== undefined ? `${b.EXP.index.toFixed(1)}%` : `${e.idx_exp?.toFixed(1)}%`}
+                        <td style={{ padding: '10px 8px', textAlign: 'center', fontWeight: 800, color: '#7C3AED', background: '#FAF5FF' }}>
+                          {valDes.toFixed(1)}%
+                        </td>
+                        <td style={{ padding: '10px 8px', textAlign: 'center', color: '#4B5563', fontWeight: 600 }}>
+                          {valNor.toFixed(1)}%
+                        </td>
+                        <td style={{ padding: '10px 8px', textAlign: 'center', color: '#4B5563', fontWeight: 600 }}>
+                          {valAgr.toFixed(1)}%
+                        </td>
+                        <td style={{ padding: '10px 8px', textAlign: 'center', color: '#059669', fontWeight: 700 }}>
+                          {valRel.toFixed(1)}%
                         </td>
                         <td style={{ padding: '10px 12px', color: '#9CA3AF', fontSize: '0.78rem' }}>
                           {new Date(e.created_at || p.evaluated_at).toLocaleDateString()}
