@@ -710,6 +710,22 @@ button, input, select {
   margin-bottom: 12px;
 }
 
+.test-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  display: inline-block;
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
 .test-title-main {
   font-size: 1.85rem;
   font-weight: 800;
@@ -718,11 +734,154 @@ button, input, select {
   line-height: 1.25;
 }
 
+.test-title-hook {
+  font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+  letter-spacing: -0.02em;
+}
+
+.test-title-sub-gradient {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.82em;
+  background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #0284C7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
 .test-subtitle {
   color: #4B5563;
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: 0.98rem;
+  line-height: 1.6;
   margin: 0;
+}
+
+/* Hook curiosity cards */
+.hook-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .hook-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+.hook-card {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF8FE 100%);
+  border: 1px solid #E9D5FF;
+  border-radius: 16px;
+  padding: 16px 14px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.hook-card:hover {
+  transform: translateY(-2px);
+  border-color: #C084FC;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.08);
+}
+
+.hook-card-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.hook-tag-cyan {
+  background: #E0F2FE;
+  color: #0369A1;
+  border: 1px solid #BAE6FD;
+}
+
+.hook-tag-purple {
+  background: #F3E8FF;
+  color: #7C3AED;
+  border: 1px solid #DDD6FE;
+}
+
+.hook-tag-rose {
+  background: #FFE4E6;
+  color: #BE123C;
+  border: 1px solid #FECDD3;
+}
+
+.hook-card-title {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: #1E1B4B;
+  margin: 0 0 6px;
+}
+
+.hook-card-desc {
+  font-size: 0.82rem;
+  color: #6B7280;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Hook stats bar */
+.hook-stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #FAF8FE;
+  border: 1px solid #EDE4F8;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hook-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hook-stat-number {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #7C3AED;
+  line-height: 1.1;
+}
+
+.hook-stat-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+}
+
+.hook-stat-divider {
+  width: 1px;
+  height: 24px;
+  background: #E5E7EB;
+}
+
+@media (max-width: 540px) {
+  .hook-stat-divider {
+    display: none;
+  }
+  .hook-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 }
 
 .test-logo-img {
