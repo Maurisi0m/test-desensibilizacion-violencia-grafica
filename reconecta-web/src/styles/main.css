@@ -704,11 +704,72 @@ button, input, select {
   }
 }
 
+/* Hero Intro Animations (Transicion de derecha a izquierda suave y llamativa) */
+:root {
+  --hero-slide-x: 48px;
+}
+
+@keyframes heroSlideRightMain {
+  0% {
+    opacity: 0;
+    transform: translateX(var(--hero-slide-x, 48px));
+    filter: blur(4px);
+  }
+  65% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroSlideRightSub {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(var(--hero-slide-x, 48px) + 12px));
+    filter: blur(4px);
+  }
+  65% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroFadeUpSubtitle {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShiftSmooth {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .test-hero-container {
   text-align: center;
   padding: 8px 0 28px;
   max-width: 980px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .test-hero-top {
@@ -736,31 +797,48 @@ button, input, select {
 }
 
 .test-title-hook {
-  font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+  margin: 0 auto 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.test-hero-line-main {
+  display: inline-block;
+  font-size: clamp(2.1rem, 5.2vw, 3.8rem);
   font-weight: 850;
   letter-spacing: -0.03em;
   line-height: 1.15;
   color: #1E1B4B;
-  margin: 0 auto 16px;
+  animation: heroSlideRightMain 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
 }
 
 .test-title-sub-gradient {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.74em;
-  background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 45%, #0284C7 100%);
+  display: inline-block;
+  font-size: clamp(1.35rem, 3.5vw, 2.45rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+  background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 32%, #0284C7 68%, #9333EA 100%);
+  background-size: 240% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 800;
-  line-height: 1.22;
+  animation: 
+    heroSlideRightSub 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both,
+    gradientShiftSmooth 8s ease-in-out 1.2s infinite alternate;
+  will-change: transform, opacity, background-position;
 }
 
 .test-subtitle-hero {
   color: #4B5563;
-  font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+  font-size: clamp(0.98rem, 1.6vw, 1.16rem);
   line-height: 1.65;
   max-width: 860px;
   margin: 0 auto;
+  animation: heroFadeUpSubtitle 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+  will-change: transform, opacity;
 }
 
 .test-subtitle {
@@ -1057,8 +1135,12 @@ button, input, select {
 
 /* MEDIA QUERIES PARA CELULARES Y TABLETS */
 @media (max-width: 768px) {
+  :root {
+    --hero-slide-x: 24px;
+  }
+
   .test-wrapper {
-    padding: 20px 14px 60px;
+    padding: 16px 12px 60px;
   }
 
   .test-card-panel {
@@ -1066,12 +1148,41 @@ button, input, select {
     border-radius: 20px;
   }
 
-  .test-title-main {
-    font-size: 1.55rem;
+  .test-hero-container {
+    padding: 4px 0 20px;
+  }
+
+  .test-hero-top {
+    margin-bottom: 16px;
   }
 
   .test-logo-img {
     height: 48px;
+  }
+
+  .test-title-hook {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .test-hero-line-main {
+    font-size: clamp(1.85rem, 6.2vw, 2.45rem);
+    line-height: 1.18;
+  }
+
+  .test-title-sub-gradient {
+    font-size: clamp(1.22rem, 4.4vw, 1.68rem);
+    line-height: 1.25;
+  }
+
+  .test-subtitle-hero {
+    font-size: 0.94rem;
+    line-height: 1.55;
+    padding: 0 4px;
+  }
+
+  .test-title-main {
+    font-size: 1.55rem;
   }
 
   .test-form-grid {
@@ -1092,6 +1203,19 @@ button, input, select {
 }
 
 @media (max-width: 480px) {
+  :root {
+    --hero-slide-x: 18px;
+  }
+
+  .test-wrapper {
+    padding: 10px 8px 40px;
+  }
+
+  .test-card-panel {
+    padding: 18px 12px;
+    border-radius: 16px;
+  }
+
   .test-header-grid {
     flex-direction: column-reverse;
     align-items: flex-start;
@@ -1100,7 +1224,21 @@ button, input, select {
 
   .test-logo-img {
     height: 42px;
-    align-self: flex-end;
+  }
+
+  .test-hero-line-main {
+    font-size: 1.65rem;
+    line-height: 1.16;
+  }
+
+  .test-title-sub-gradient {
+    font-size: 1.18rem;
+    line-height: 1.24;
+  }
+
+  .test-subtitle-hero {
+    font-size: 0.88rem;
+    line-height: 1.52;
   }
 
   .test-title-main {
@@ -1114,6 +1252,10 @@ button, input, select {
   .test-form-box {
     padding: 16px 14px;
     border-radius: 16px;
+  }
+
+  .hook-card {
+    padding: 14px 12px;
   }
 
   .likert-grid {

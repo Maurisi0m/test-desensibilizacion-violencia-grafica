@@ -122,7 +122,9 @@ export default function TestPage({ onComplete }) {
             </div>
 
             <h1 className="test-title-hook">
-              ¿Sigues siendo sensible?
+              <span className="test-hero-line-main">
+                ¿Sigues siendo sensible?
+              </span>
               <span className="test-title-sub-gradient">
                 O ¿el algoritmo normalizó la violencia en tu pantalla?
               </span>
