@@ -137,6 +137,9 @@ export default function TestPage({ onComplete }) {
 
           {/* Tarjetas Inmersivas de Curiosidad: ¿Cuál es tu reacción habitual? */}
           <div className="hook-cards-grid">
+            <div className="hook-cards-mobile-header">
+              Reacciones comunes ante contenido fuerte en pantalla
+            </div>
             <div className="hook-card">
               <div className="hook-card-tag hook-tag-cyan">Reacción 1</div>
               <h3 className="hook-card-title">Alerta Emocional</h3>

@@ -688,6 +688,8 @@ button, input, select {
 }
 
 .test-card-panel {
+  display: flex;
+  flex-direction: column;
   background: #FFFFFF;
   border: 1px solid #EDE4F8;
   border-radius: 28px;
@@ -849,6 +851,10 @@ button, input, select {
 }
 
 /* Hook curiosity cards */
+.hook-cards-mobile-header {
+  display: none;
+}
+
 .hook-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1134,50 +1140,102 @@ button, input, select {
 }
 
 /* MEDIA QUERIES PARA CELULARES Y TABLETS */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   :root {
     --hero-slide-x: 24px;
   }
 
   .test-wrapper {
-    padding: 16px 12px 60px;
+    padding: 14px 10px 50px;
   }
 
   .test-card-panel {
-    padding: 22px 16px;
-    border-radius: 20px;
+    padding: 20px 14px;
+    border-radius: 18px;
   }
 
+  /* REORDENAMIENTO EXCLUSIVO PARA CELULAR Y TABLET:
+     1. Hero grande llamativo
+     2. Formulario directo para responder
+     3. Acordeon explicativo
+     4. Las 3 reacciones (movidas al final en movil)
+     5. Barra de metricas/stats
+     6. Ficha institucional de La Salle
+  */
   .test-hero-container {
-    padding: 4px 0 20px;
+    order: 1;
+    padding: 2px 0 16px;
   }
 
+  .test-form-box {
+    order: 2;
+    margin-bottom: 20px;
+  }
+
+  .test-info-accordion {
+    order: 3;
+    margin-top: 0;
+  }
+
+  .hook-cards-grid {
+    order: 4;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 18px;
+    margin-bottom: 0;
+  }
+
+  .hook-cards-mobile-header {
+    display: block;
+    grid-column: 1 / -1;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #1E1B4B;
+    margin-bottom: 4px;
+    text-align: left;
+  }
+
+  .hook-stats-bar {
+    order: 5;
+    margin-top: 18px;
+  }
+
+  .test-authors-card {
+    order: 6;
+    margin-top: 14px;
+  }
+
+  /* HERO MAS GRANDE Y LLAMATIVO EN CELULARES Y TABLETS */
   .test-hero-top {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .test-logo-img {
-    height: 48px;
+    height: 44px;
   }
 
   .test-title-hook {
-    gap: 6px;
+    gap: 8px;
     margin-bottom: 14px;
   }
 
   .test-hero-line-main {
-    font-size: clamp(1.85rem, 6.2vw, 2.45rem);
-    line-height: 1.18;
+    font-size: clamp(2.35rem, 8.2vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
   }
 
   .test-title-sub-gradient {
-    font-size: clamp(1.22rem, 4.4vw, 1.68rem);
-    line-height: 1.25;
+    font-size: clamp(1.48rem, 5.4vw, 2.1rem);
+    font-weight: 850;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
   }
 
   .test-subtitle-hero {
-    font-size: 0.94rem;
-    line-height: 1.55;
+    font-size: 1.02rem;
+    line-height: 1.58;
     padding: 0 4px;
   }
 
@@ -1208,11 +1266,11 @@ button, input, select {
   }
 
   .test-wrapper {
-    padding: 10px 8px 40px;
+    padding: 8px 6px 36px;
   }
 
   .test-card-panel {
-    padding: 18px 12px;
+    padding: 16px 12px;
     border-radius: 16px;
   }
 
@@ -1222,23 +1280,38 @@ button, input, select {
     gap: 12px;
   }
 
+  .test-hero-top {
+    margin-bottom: 8px;
+  }
+
   .test-logo-img {
-    height: 42px;
+    height: 38px;
+  }
+
+  /* HERO MAXIMA VISIBILIDAD EN PANTALLAS COMPACTAS */
+  .test-title-hook {
+    gap: 6px;
+    margin-bottom: 12px;
   }
 
   .test-hero-line-main {
-    font-size: 1.65rem;
-    line-height: 1.16;
+    font-size: clamp(2.2rem, 9.4vw, 2.75rem);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
   }
 
   .test-title-sub-gradient {
-    font-size: 1.18rem;
-    line-height: 1.24;
+    font-size: clamp(1.38rem, 6.0vw, 1.85rem);
+    font-weight: 850;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
   }
 
   .test-subtitle-hero {
-    font-size: 0.88rem;
+    font-size: 0.96rem;
     line-height: 1.52;
+    padding: 0;
   }
 
   .test-title-main {
@@ -1250,7 +1323,7 @@ button, input, select {
   }
 
   .test-form-box {
-    padding: 16px 14px;
+    padding: 18px 14px;
     border-radius: 16px;
   }
 
