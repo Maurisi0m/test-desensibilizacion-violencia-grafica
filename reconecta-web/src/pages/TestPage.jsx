@@ -160,29 +160,6 @@ export default function TestPage({ onComplete }) {
             </div>
           </div>
 
-          {/* Social Proof y Estadísticas Rápidas de la Muestra */}
-          <div className="hook-stats-bar">
-            <div className="hook-stat-item">
-              <span className="hook-stat-number">42</span>
-              <span className="hook-stat-label">Reactivos Rápidos</span>
-            </div>
-            <div className="hook-stat-divider"></div>
-            <div className="hook-stat-item">
-              <span className="hook-stat-number">~4 min</span>
-              <span className="hook-stat-label">Duración Promedio</span>
-            </div>
-            <div className="hook-stat-divider"></div>
-            <div className="hook-stat-item">
-              <span className="hook-stat-number">+40</span>
-              <span className="hook-stat-label">Alumnos Evaluados</span>
-            </div>
-            <div className="hook-stat-divider"></div>
-            <div className="hook-stat-item">
-              <span className="hook-stat-number">100%</span>
-              <span className="hook-stat-label">Sin Nombres Reales</span>
-            </div>
-          </div>
-
           {/* SECCIÓN PRINCIPAL ARRIBA: DATOS DEL PARTICIPANTE Y BOTÓN DE INICIO */}
           <div className="test-form-box">
             <div style={{ borderBottom: '1px solid #EDE4F8', paddingBottom: '14px', marginBottom: '16px' }}>
@@ -358,6 +335,29 @@ export default function TestPage({ onComplete }) {
                   Tu participación es libre y anónima. No guardamos correos ni contraseñas. Este cuestionario tiene un fin estrictamente educativo y escolar para nuestra materia de investigación, por lo que no representa una evaluación médica ni psicológica.
                 </span>
               </div>
+            </div>
+          </div>
+
+          {/* Social Proof y Estadísticas Rápidas de la Muestra (Al final) */}
+          <div className="hook-stats-bar">
+            <div className="hook-stat-item">
+              <span className="hook-stat-number">42</span>
+              <span className="hook-stat-label">Reactivos Rápidos</span>
+            </div>
+            <div className="hook-stat-divider"></div>
+            <div className="hook-stat-item">
+              <span className="hook-stat-number">~4 min</span>
+              <span className="hook-stat-label">Duración Promedio</span>
+            </div>
+            <div className="hook-stat-divider"></div>
+            <div className="hook-stat-item">
+              <span className="hook-stat-number">+40</span>
+              <span className="hook-stat-label">Alumnos Evaluados</span>
+            </div>
+            <div className="hook-stat-divider"></div>
+            <div className="hook-stat-item">
+              <span className="hook-stat-number">100%</span>
+              <span className="hook-stat-label">Sin Nombres Reales</span>
             </div>
           </div>
 

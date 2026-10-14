@@ -850,11 +850,12 @@ button, input, select {
   justify-content: space-around;
   background: #FAF8FE;
   border: 1px solid #EDE4F8;
-  border-radius: 14px;
-  padding: 12px 16px;
-  margin-bottom: 20px;
+  border-radius: 16px;
+  padding: 14px 20px;
+  margin: 20px auto 0;
+  max-width: 960px;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .hook-stat-item {
@@ -909,7 +910,7 @@ button, input, select {
   border: 1px solid #DDD6FE;
   border-radius: 16px;
   padding: 16px 20px;
-  margin: 24px auto 0;
+  margin: 14px auto 0;
   max-width: 960px;
   display: flex;
   flex-direction: column;
