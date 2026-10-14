@@ -110,29 +110,27 @@ export default function TestPage({ onComplete }) {
     return (
       <div className="test-wrapper">
         <div className="test-card-panel">
-          {/* Cabecera Inmersiva de Alto Impacto Visual */}
-          <div className="test-header-grid">
-            <div style={{ flex: '1 1 auto' }}>
-              <div className="test-badge-chip">
-                <span className="test-badge-dot"></span>
-                <span>Test Psicométrico • 4 Minutos • 100% Anónimo</span>
-              </div>
-              <h1 className="test-title-main test-title-hook">
-                ¿Sigues siendo sensible?
-                <span className="test-title-sub-gradient">
-                  O ¿el algoritmo normalizó la violencia en tu pantalla?
-                </span>
-              </h1>
-              <p className="test-subtitle">
-                Al scrollear en TikTok, X o Instagram te topas con peleas, accidentes o videos fuertes sin previo aviso. Descubre con qué facilidad tu cerebro se acostumbró a ignorarlos y obtén tu perfil de sensibilidad y empatía digital en tiempo real.
-              </p>
+          {/* Hero Inmersivo de Pantalla Completa */}
+          <div className="test-hero-container">
+            <div className="test-hero-top">
+              <div style={{ flex: 1 }}></div>
+              <img 
+                src="/lasalle-logo.png" 
+                alt="Logo La Salle" 
+                className="test-logo-img"
+              />
             </div>
 
-            <img 
-              src="/lasalle-logo.png" 
-              alt="Logo La Salle" 
-              className="test-logo-img"
-            />
+            <h1 className="test-title-hook">
+              ¿Sigues siendo sensible?
+              <span className="test-title-sub-gradient">
+                O ¿el algoritmo normalizó la violencia en tu pantalla?
+              </span>
+            </h1>
+
+            <p className="test-subtitle-hero">
+              Al scrollear en TikTok, X o Instagram te topas con peleas, accidentes o videos fuertes sin previo aviso. Descubre con qué facilidad tu cerebro se acostumbró a ignorarlos y obtén tu perfil de sensibilidad y empatía digital en tiempo real.
+            </p>
           </div>
 
           {/* Tarjetas Inmersivas de Curiosidad: ¿Cuál es tu reacción habitual? */}
@@ -182,24 +180,6 @@ export default function TestPage({ onComplete }) {
             <div className="hook-stat-item">
               <span className="hook-stat-number">100%</span>
               <span className="hook-stat-label">Sin Nombres Reales</span>
-            </div>
-          </div>
-
-          {/* Ficha Institucional de Respaldo Académico La Salle */}
-          <div className="test-authors-card">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
-              <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Investigación Científica • Metodología de la Investigación
-              </span>
-              <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#6B7280', background: '#FFFFFF', padding: '2px 8px', borderRadius: '6px', border: '1px solid #EDE4F8' }}>
-                Colegio La Salle Pachuca (Campus La Luz)
-              </span>
-            </div>
-            <div style={{ fontSize: '0.94rem', fontWeight: 800, color: '#1E1B4B' }}>
-              Alan David Cortés Hernández • Raúl Gabriel García Márquez • Daniel Rodríguez García • Mauro Ortiz Juárez
-            </div>
-            <div style={{ fontSize: '0.8rem', color: '#5B21B6', fontWeight: 500 }}>
-              Alumnos de 5to semestre de bachillerato • Estudio con fines psicométricos y de divulgación escolar
             </div>
           </div>
 
@@ -378,6 +358,24 @@ export default function TestPage({ onComplete }) {
                   Tu participación es libre y anónima. No guardamos correos ni contraseñas. Este cuestionario tiene un fin estrictamente educativo y escolar para nuestra materia de investigación, por lo que no representa una evaluación médica ni psicológica.
                 </span>
               </div>
+            </div>
+          </div>
+
+          {/* Ficha Institucional de Respaldo Académico La Salle (Al final) */}
+          <div className="test-authors-card">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+              <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#7C3AED', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Investigación Científica • Metodología de la Investigación
+              </span>
+              <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#6B7280', background: '#FFFFFF', padding: '3px 10px', borderRadius: '6px', border: '1px solid #EDE4F8' }}>
+                Colegio La Salle Pachuca (Campus La Luz)
+              </span>
+            </div>
+            <div style={{ fontSize: '0.96rem', fontWeight: 800, color: '#1E1B4B', marginTop: '4px' }}>
+              Alan David Cortés Hernández • Raúl Gabriel García Márquez • Daniel Rodríguez García • Mauro Ortiz Juárez
+            </div>
+            <div style={{ fontSize: '0.82rem', color: '#5B21B6', fontWeight: 500, marginTop: '2px' }}>
+              Alumnos de 5to semestre de bachillerato • Estudio con fines psicométricos y de divulgación escolar
             </div>
           </div>
         </div>
