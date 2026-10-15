@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { QUESTIONS_42, LIKERT_OPTIONS, BLOCKS } from '../data/questionBank';
 import { IconCheckCircle, IconArrowRight, IconArrowLeft, IconAlertCircle, IconFileText } from '../components/Icons';
+import SurveyCircleCard from '../components/SurveyCircleCard';
 
 export default function TestPage({ onComplete }) {
   const [step, setStep] = useState('welcome'); // 'welcome' | 'survey' | 'review'
@@ -133,6 +134,10 @@ export default function TestPage({ onComplete }) {
             <p className="test-subtitle-hero">
               Al scrollear en TikTok, X o Instagram te topas con peleas, accidentes o videos fuertes sin previo aviso. Descubre con qué facilidad tu cerebro se acostumbró a ignorarlos y obtén tu perfil de sensibilidad y empatía digital en tiempo real.
             </p>
+
+            <div className="test-surveycircle-note">
+              PD: Los usuarios de <a href="https://www.surveycircle.com" target="_blank" rel="noopener noreferrer" style={{ color: '#7C3AED', textDecoration: 'underline', fontStyle: 'normal', fontWeight: 600 }}>SurveyCircle.com</a> reciben puntos por su participación, que pueden utilizar para reclutar participantes de forma gratuita.
+            </div>
           </div>
 
           {/* Tarjetas Inmersivas de Curiosidad: ¿Cuál es tu reacción habitual? */}
@@ -701,6 +706,9 @@ export default function TestPage({ onComplete }) {
             <span>{errorMsg}</span>
           </div>
         )}
+
+        {/* SurveyCircle Redemption Box en pantalla de revisión */}
+        <SurveyCircleCard style={{ marginTop: '16px', marginBottom: '14px' }} />
 
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', marginTop: '20px', flexWrap: 'wrap' }}>
           <button

@@ -3,6 +3,7 @@ import { IconDownload, IconArrowLeft, IconFileText, IconCheckCircle } from '../c
 import DimensionExplanationCard from '../components/DimensionExplanationCard';
 import StudentVisualCharts from '../components/StudentVisualCharts';
 import { generateStudentConclusion } from '../data/conclusionGenerator';
+import SurveyCircleCard from '../components/SurveyCircleCard';
 
 export default function ResultsPage({ result, onBackToTest }) {
   if (!result || !result.blocks) {
@@ -319,6 +320,9 @@ export default function ResultsPage({ result, onBackToTest }) {
             </div>
           );
         })()}
+
+        {/* SurveyCircle Redemption Box (Discreto y compacto) */}
+        <SurveyCircleCard style={{ marginBottom: '22px' }} />
 
         {/* ACCIONES INFERIORES */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '14px' }}>

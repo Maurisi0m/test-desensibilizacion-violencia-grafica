@@ -850,6 +850,25 @@ button, input, select {
   margin: 0;
 }
 
+.test-surveycircle-note {
+  margin: 10px auto 0;
+  max-width: 820px;
+  font-size: 0.78rem;
+  color: #6B7280;
+  font-style: italic;
+  line-height: 1.45;
+  text-align: center;
+  animation: heroFadeUpSubtitle 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+@media (max-width: 640px) {
+  .test-surveycircle-note {
+    font-size: 0.73rem;
+    margin-top: 8px;
+    padding: 0 4px;
+  }
+}
+
 /* Hook curiosity cards */
 .hook-cards-mobile-header {
   display: none;
